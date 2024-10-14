@@ -15,5 +15,25 @@ dev:
 watch:
 	rye run watchmedo shell-command --patterns='content/*;src/utahwaterpoloassociation/templates/*' --recursive --command='make generate' .
 
+copy_assets:
+	cp -fR public/* output/
+
 assets:
-	rye run watchmedo shell-command --patterns='public/*' --recursive --command='cp -fR public/* output/' .
+	rye run watchmedo shell-command --patterns='public/*' --recursive --command='make copy_assets' .
+
+css:
+	tailwindcss -i css/input.css -o output/style.css
+
+tailwind:
+	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
+	chmod +x tailwindcss-linux-x64
+	mv tailwindcss-linux-x644 tailwindcss
+
+build:
+	curl -sSf https://rye.astral.sh/get | bash
+	rye sync
+	make tailwind
+	make css
+	make sync
+	make generate
+	
