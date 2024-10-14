@@ -22,7 +22,7 @@ assets:
 	rye run watchmedo shell-command --patterns='public/*' --recursive --command='make copy_assets' .
 
 generate_css:
-	tailwindcss -i css/input.css -o output/style.css
+	./tailwindcss -i css/input.css -o output/style.css
 
 tailwind:
 	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
