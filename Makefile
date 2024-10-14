@@ -27,7 +27,7 @@ css:
 tailwind:
 	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
 	chmod +x tailwindcss-linux-x64
-	mv tailwindcss-linux-x644 tailwindcss
+	mv tailwindcss-linux-x64 tailwindcss
 
 build:
 	./build.sh

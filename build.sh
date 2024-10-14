@@ -7,3 +7,4 @@ make tailwind
 make css
 make sync
 make generate
+make copy_assets
