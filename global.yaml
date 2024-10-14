@@ -1,0 +1,21 @@
+---
+title: Utah Water Polo Association
+navigation:
+  - title: Home
+    link: /
+    section: home
+  - title: Schedule
+    link: /schedule
+    section: schedule
+  - title: Parents
+    link: /parents
+    section: parents
+  - title: Coaches
+    link: /coaches
+    section: coaches
+  - title: Referres
+    link: /referres
+    section: referres
+  - title: Directory
+    link: /directory
+    section: directory

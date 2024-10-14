@@ -1,0 +1,36 @@
+<html class="h-full">
+
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/style.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    {% block head %}
+    <title>{% block title %}{{p.attributes.title}}{% endblock %} - {{ g.meta.title }}</title>
+    {% endblock %}
+</head>
+
+<body class="h-full">
+    <div class="min-h-full">
+        {% include 'nav.html.jinja2' %}
+        <div class="py-10">
+            <header>
+                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-3xl font-bold leading-tight tracking-tight text-gray-900">
+                        {{ p.attributes.title }}
+                    </h1>
+                </div>
+            </header>
+            <main>
+                <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
