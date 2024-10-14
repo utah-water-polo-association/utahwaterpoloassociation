@@ -21,7 +21,7 @@ copy_assets:
 assets:
 	rye run watchmedo shell-command --patterns='public/*' --recursive --command='make copy_assets' .
 
-css:
+generate_css:
 	tailwindcss -i css/input.css -o output/style.css
 
 tailwind:
