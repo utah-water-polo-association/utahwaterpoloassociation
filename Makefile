@@ -30,10 +30,5 @@ tailwind:
 	mv tailwindcss-linux-x644 tailwindcss
 
 build:
-	curl -sSf https://rye.astral.sh/get | RYE_INSTALL_OPTION="--yes" bash
-	rye sync
-	make tailwind
-	make css
-	make sync
-	make generate
+	./build.sh
 	
