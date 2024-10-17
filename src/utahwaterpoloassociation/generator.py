@@ -89,8 +89,8 @@ class Generator:
         )
 
         league = None
-        with open("data.pkl", "rb") as fd:
-            league: Leauge = pickle.load(fd)
+        with open("league.json", "r") as fd:
+            league: Leauge = Leauge.model_validate_json(fd.read())
 
         globals = {}
         with open(file="global.yaml", mode="r") as fd:

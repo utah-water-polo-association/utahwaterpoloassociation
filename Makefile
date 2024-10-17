@@ -1,3 +1,4 @@
+# In CI environment variables will be set no need to use 1password
 ifeq "$(CI)" "true"
     PULL_ENV :=
 else
@@ -38,3 +39,5 @@ tailwind:
 build:
 	./build.sh
 	
+test:
+	rye run pytest

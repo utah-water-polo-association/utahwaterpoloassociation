@@ -1,7 +1,7 @@
 import httpx
 import os
 import csv
-import pickle
+import json
 from utahwaterpoloassociation.models import (
     Leauge,
     SECTIONS,
@@ -69,9 +69,10 @@ def get_league() -> Leauge:
 
 if __name__ == "__main__":
     leauge: Leauge = get_league()
-
-    with open("data.pkl", "wb") as file:
+    data = leauge.model_dump(mode="json", serialize_as_any=True)
+    raw = json.dumps(data, sort_keys=True)
+    with open("league.json", "w") as file:
         # Dump the data into the file
-        pickle.dump(leauge, file, -1)
+        file.write(raw)
 
     get_content()

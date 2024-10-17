@@ -25,11 +25,15 @@ class Organization(BaseModel):
     }
     name: str
     full_name: Optional[str]
-    locations: list["Location"] = []
 
     @staticmethod
     def from_csv(data: list[dict]) -> list["Organization"]:
         return from_csv(Organization, data)
+
+    def to_serializable(self) -> dict:
+        """Converts the model to a dictionary format that can be serialized."""
+
+        return self.model_dump(mode="json", exclude=["locations"])
 
 
 class Location(BaseModel):
@@ -83,7 +87,7 @@ class Team(BaseModel):
         return from_csv(Team, data)
 
     def key(self) -> Tuple[str, Division]:
-        return (self.name, self.division)
+        return "-".join([self.name, self.division.name])
 
 
 class Game(BaseModel):
@@ -145,14 +149,14 @@ class Game(BaseModel):
         self.division = l.divisions[self.division_name]
         self.location = l.locations[self.location_name]
 
-        self.home_team = l.teams[(self.home_team_name, self.division)]
-        self.away_team = l.teams[(self.away_team_name, self.division)]
+        self.home_team = l.teams["-".join([self.home_team_name, self.division.name])]
+        self.away_team = l.teams["-".join([self.away_team_name, self.division.name])]
 
         if self.winner_name:
-            self.winner = l.teams[(self.winner_name, self.division)]
+            self.winner = l.teams["-".join([self.winner_name, self.division.name])]
 
         if self.loser_name:
-            self.loser = l.teams[(self.loser_name, self.division)]
+            self.loser = l.teams["-".join([self.loser_name, self.division.name])]
 
 
 class Contact(BaseModel):
@@ -196,7 +200,7 @@ SECTIONS: list[SectionConfig] = [
 
 class DirectoryEntry(BaseModel):
     organization: Organization
-    teams: dict[Tuple[str, Division], Team] = {}
+    teams: dict[str, Team] = {}
     locations: list[Location] = []
     contacts: list[Contact] = []
 
@@ -205,7 +209,7 @@ class Leauge(BaseModel):
     organizations: dict[str, Organization] = {}
     locations: dict[str, Location] = {}
     divisions: dict[str, Division] = {}
-    teams: dict[Tuple[str, Division], Team] = {}
+    teams: dict[str, Team] = {}
     games: list[Game] = []
     contacts: list[Contact] = []
 
@@ -240,7 +244,7 @@ class Leauge(BaseModel):
         elif isinstance(d, Team):
             d.organization = self.organizations[d.organization_name]
             d.division = self.divisions[d.division_name]
-            self.teams[(d.name, d.division)] = d
+            self.teams[d.key()] = d
         elif isinstance(d, Game):
             d.hydrate_from_league(self)
             self.games.append(d)
