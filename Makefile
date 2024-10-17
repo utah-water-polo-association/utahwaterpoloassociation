@@ -1,7 +1,5 @@
-PULL_ENV := ""
-
 ifeq "$(CI)" "true"
-    PULL_ENV :=  ""
+    PULL_ENV :=
 else
     PULL_ENV :=  op run --env-file="./.env" --
 endif
