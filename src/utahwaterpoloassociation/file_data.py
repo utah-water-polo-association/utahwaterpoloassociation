@@ -23,7 +23,8 @@ class FileData(BaseModel):
         """Reads file at path and returns dict with separated frontmatter.
         See read() for more info on dict return value.
         """
-        with open(path, encoding="utf-8") as fd:
+        print("path %s" % (path))
+        with open(path) as fd:
             file_contents = fd.read()
             body = ""
             result = _regex.search(string=file_contents)

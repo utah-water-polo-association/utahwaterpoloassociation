@@ -13,9 +13,9 @@ navigation:
   - title: Coaches
     link: /coaches
     section: coaches
-  - title: Referres
-    link: /referres
-    section: referres
+  - title: Referees
+    link: /referees
+    section: referees
   - title: Directory
     link: /directory
     section: directory

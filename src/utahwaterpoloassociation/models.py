@@ -155,6 +155,29 @@ class Game(BaseModel):
             self.loser = l.teams[(self.loser_name, self.division)]
 
 
+class Contact(BaseModel):
+    MAP: ClassVar[dict[str, str]] = {
+        "Team Name": "organization_name",
+        "Role": "role",
+        "Name": "name",
+        "Phone Number": "phone_number",
+        "Email": "email",
+        "Notes": "notes",
+        "__organization": "organization",
+    }
+    organization_name: str
+    role: str
+    name: str
+    phone_number: str
+    email: str
+    notes: str
+    organization: Optional[Organization]
+
+    @staticmethod
+    def from_csv(data: list[dict]) -> list["Contact"]:
+        return from_csv(Contact, data)
+
+
 class SectionConfig(BaseModel):
     label: str
     gid: str
@@ -167,7 +190,15 @@ SECTIONS: list[SectionConfig] = [
     SectionConfig(label="Divisions", gid="99051020", model=Division),
     SectionConfig(label="Teams", gid="2085958623", model=Team),
     SectionConfig(label="Games", gid="424067115", model=Game),
+    SectionConfig(label="Contact Sheet", gid="1058937840", model=Contact),
 ]
+
+
+class DirectoryEntry(BaseModel):
+    organization: Organization
+    teams: dict[Tuple[str, Division], Team] = {}
+    locations: list[Location] = []
+    contacts: list[Contact] = []
 
 
 class Leauge(BaseModel):
@@ -176,6 +207,27 @@ class Leauge(BaseModel):
     divisions: dict[str, Division] = {}
     teams: dict[Tuple[str, Division], Team] = {}
     games: list[Game] = []
+    contacts: list[Contact] = []
+
+    def directory(self) -> list[DirectoryEntry]:
+        directory_items: list[DirectoryEntry] = []
+        for _, o in self.organizations.items():
+            d = DirectoryEntry(organization=o)
+            d.locations = [
+                l
+                for (_, l) in self.locations.items()
+                if l.organization == d.organization
+            ]
+            d.teams = {
+                key: t
+                for (key, t) in self.teams.items()
+                if t.organization == d.organization
+            }
+            d.contacts = [c for c in self.contacts if c.organization == d.organization]
+
+            directory_items.append(d)
+
+        return directory_items
 
     def add_data(self, d: BaseModel):
         if isinstance(d, Organization):
@@ -192,6 +244,9 @@ class Leauge(BaseModel):
         elif isinstance(d, Game):
             d.hydrate_from_league(self)
             self.games.append(d)
+        elif isinstance(d, Contact):
+            d.organization = self.organizations[d.organization_name]
+            self.contacts.append(d)
 
 
 class Data(BaseModel):

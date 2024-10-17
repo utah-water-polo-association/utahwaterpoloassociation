@@ -1,0 +1,82 @@
+{% extends "base.html.jinja2" %}
+
+{% macro defenition_list() %}
+<dl class="grid grid-cols-1 sm:grid-cols-2">
+    {{ caller() }}
+</dl>
+{% endmacro %}
+
+{% macro defenition_list_row() %}
+<div class="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
+    {{ caller() }}
+</div>
+{% endmacro %}
+
+{% macro defenition_list_defenition() %}
+<dd class="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
+    {{ caller() }}
+</dd>
+{% endmacro %}
+
+{% macro defenition_list_term() %}
+<dt class="text-sm font-medium leading-6 text-gray-900">
+    {{ caller() }}
+</dt>
+{% endmacro %}
+
+
+
+{% macro organization_entry(o) %}
+<div class="justify-between gap-x-6 py-5">
+    <div class="border-b border-gray-200 bg-white py-5">
+        <h3>{{ o.organization.name }}</h3>
+    </div>
+    <div class="min-w-0">
+        <div role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {% if o.contacts %}
+            <div class="col-span-1 flex flex-col divide-y divide-gray-200  bg-white  shadow">
+                <div class="flex flex-1 flex-col p-8">
+                    <h4>Contacts</h4>
+                    <ul>
+                        {% for contact in o.contacts %}
+                        <li>{{contact.name}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+            {% if o.locations %}
+            <div class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white shadow">
+                <div class="flex flex-1 flex-col p-8">
+                    <h4>Locations</h4>
+                    <ul>
+                        {% for location in o.locations %}
+                        <li>{{location.address}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+            {% if o.teams %}
+            <div class="col-span-1 flex flex-col divide-y divide-gray-200 bg-white  shadow">
+                <div class="flex flex-1 flex-col p-8">
+                    <h4>Teams</h4>
+                    <ul>
+                        {% for key, team in o.teams.items() %}
+                        <li>{{key.1.name}}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endmacro %}
+{% block content %}
+<div role="list" class="divide-y divide-gray-100">
+    {% for o in g.league.directory() %}
+    {{ organization_entry(o) }}
+    {%endfor %}
+</div>
+{% endblock %}

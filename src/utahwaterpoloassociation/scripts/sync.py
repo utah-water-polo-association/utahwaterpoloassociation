@@ -1,18 +1,17 @@
 import httpx
-from pydantic import BaseModel
-from typing import Type
+import os
 import csv
 import pickle
 from utahwaterpoloassociation.models import (
-    Organization,
-    Division,
-    Location,
-    Team,
-    Game,
     Leauge,
+    SECTIONS,
 )
+from notion2md.exporter.block import MarkdownExporter
+from notion_client import Client
 
 BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT6ytRH8Uqoesk5-A8suLW6OlJ-ucUXgAeTab_c6rIKDSC1SO3Onrj_Tno9koOsPUNIbOuuGAVj_4yw/pub?output=csv"
+
+notion_client = Client(auth=os.environ["NOTION_TOKEN"])
 
 
 def from_csv(cls, data):
@@ -31,19 +30,27 @@ def from_csv(cls, data):
     return results
 
 
-class SectionConfig(BaseModel):
-    label: str
-    gid: str
-    model: Type[BaseModel]
+def get_content():
+    resp = notion_client.blocks.children.list(
+        block_id="12043305db9a8021956ef22e7802e09a"
+    )
+    pages = list(filter(lambda x: x["type"] == "child_page", resp.get("results", [])))
+    for page in pages:
+        page_title = page.get("child_page", {}).get("title", "").lower()
+        print("downloading %s" % (page_title))
 
+        me = MarkdownExporter(
+            block_id=page["id"],
+            output_filename="index",
+            output_path="content/%s" % (page_title),
+            download=True,
+            unzipped=True,
+            token=os.environ["NOTION_TOKEN"],
+            page_title=page_title,
+            section=page_title,
+        )
 
-SECTIONS: list[SectionConfig] = [
-    SectionConfig(label="Organizations", gid="0", model=Organization),
-    SectionConfig(label="Locations", gid="1642579731", model=Location),
-    SectionConfig(label="Divisions", gid="99051020", model=Division),
-    SectionConfig(label="Teams", gid="2085958623", model=Team),
-    SectionConfig(label="Games", gid="424067115", model=Game),
-]
+        me.export()
 
 
 def get_league() -> Leauge:
@@ -66,3 +73,5 @@ if __name__ == "__main__":
     with open("data.pkl", "wb") as file:
         # Dump the data into the file
         pickle.dump(leauge, file, -1)
+
+    get_content()

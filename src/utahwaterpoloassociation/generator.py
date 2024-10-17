@@ -13,6 +13,33 @@ import pickle
 import yaml
 
 
+from markdown.treeprocessors import Treeprocessor
+
+
+class MyTreeprocessor(Treeprocessor):
+    def run(self, root):
+        return None
+        # for element in root.iter("h1"):
+        #     element.set(
+        #         "class", "text-3xl font-bold leading-tight tracking-tight text-gray-900"
+        #     )
+
+        # for element in root.iter("h2"):
+        #     element.set(
+        #         "class", "text-2xl font-bold leading-tight tracking-tight text-gray-900"
+        #     )
+
+        # for element in root.iter("h3"):
+        #     element.set(
+        #         "class", "text-xl font-bold leading-tight tracking-tight text-gray-900"
+        #     )
+
+
+class MyExtension(Extension):
+    def extendMarkdown(self, md):
+        md.treeprocessors.register(MyTreeprocessor(md), "mytreeprocessor", 10)
+
+
 class MarkdownJinja(Extension):
     environment: Environment
     data: Data
@@ -75,7 +102,11 @@ class Generator:
         self.env.filters["markdown"] = lambda text: Markup(
             object=markdown.markdown(
                 text=text,
-                extensions=[makeExtension(env=self.env, data=self.data), "md_in_html"],
+                extensions=[
+                    makeExtension(env=self.env, data=self.data),
+                    MyExtension(),
+                    "md_in_html",
+                ],
             )
         )
 
@@ -85,6 +116,8 @@ class Generator:
         for filename in glob.iglob(basename + "/**", recursive=True):
             # relative_directory = root
             if os.path.isdir(filename):
+                continue
+            if "/assets/" in filename:
                 continue
             dir, fname = os.path.split(p=filename)
             dir = dir.replace(basename, "output")

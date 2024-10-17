@@ -1,5 +1,5 @@
 sync:
-	rye run python src/utahwaterpoloassociation/scripts/sync.py
+	op run --env-file="./.env" -- rye run python src/utahwaterpoloassociation/scripts/sync.py
 
 generate:
 	mkdir -p output
@@ -22,7 +22,7 @@ assets:
 	rye run watchmedo shell-command --patterns='public/*' --recursive --command='make copy_assets' .
 
 generate_css:
-	./tailwindcss -i css/input.css -o output/style.css
+	./tailwindcss -i css/input.css -o output/style.css --minify
 
 tailwind:
 	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
@@ -32,3 +32,6 @@ tailwind:
 build:
 	./build.sh
 	
+notion_to_markdown:
+	mkdir -p markdown
+	op run --env-file="./.env" -- rye run notion2md --download -n post --unzipped -p ./markdown --url="https://www.notion.so/Parents-12043305db9a8017b6daead37a6f17fb"
