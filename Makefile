@@ -1,5 +1,13 @@
+PULL_ENV := ""
+
+ifeq "$(CI)" "true"
+    PULL_ENV :=  ""
+else
+    PULL_ENV :=  op run --env-file="./.env" --
+endif
+
 sync:
-	op run --env-file="./.env" -- rye run python src/utahwaterpoloassociation/scripts/sync.py
+	${PULL_ENV} rye run python src/utahwaterpoloassociation/scripts/sync.py
 
 generate:
 	mkdir -p output
@@ -32,6 +40,3 @@ tailwind:
 build:
 	./build.sh
 	
-notion_to_markdown:
-	mkdir -p markdown
-	op run --env-file="./.env" -- rye run notion2md --download -n post --unzipped -p ./markdown --url="https://www.notion.so/Parents-12043305db9a8017b6daead37a6f17fb"
