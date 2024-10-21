@@ -1,5 +1,6 @@
 {% extends "base.html.jinja2" %}
 {% import "games.html.jinja2" as games %}
 {% block content %}
+{{ p.body | markdown }}
 {{ games.table(g.league.games) }}
 {% endblock %}

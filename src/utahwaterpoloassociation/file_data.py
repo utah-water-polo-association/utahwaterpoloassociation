@@ -18,6 +18,9 @@ class FileData(BaseModel):
     def render_as_markdown(self) -> str:
         return markdown.markdown(self.body)
 
+    def main_section(self):  # -> Any:
+        return self.attributes.get("parent_section", self.attributes.get("section"))
+
     @staticmethod
     def read_file(path) -> "FileData":
         """Reads file at path and returns dict with separated frontmatter.

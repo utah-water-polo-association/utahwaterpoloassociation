@@ -1,32 +1,8 @@
 import os
-from contextlib import contextmanager
 from pydantic import BaseModel
 from utahwaterpoloassociation.file_data import FileData
 from utahwaterpoloassociation.models import Data
 from jinja2 import Environment, Template
-from domonic.html import *
-
-
-def page_head(p: FileData, g: Data) -> head:
-    return head(
-        link(rel="apple-touch-icon", sizes="180x180", href="/apple-touch-icon.png"),
-        link(rel="icon", type="image/png", sizes="32x32", href="/favicon-32x32.png"),
-        link(rel="icon", type="image/png", sizes="16x16", href="/favicon-16x16.png"),
-        link(rel="manifest", href="/site.webmanifest"),
-        link(rel="stylesheet", href="/style.css"),
-        script(src="//unpkg.com/alpinejs", defer=""),
-        title(f"{p.attributes.get('title', '')} - {g.meta.get('title', '')}"),
-    )
-
-
-def base_html(content: div, p: FileData, g: Data) -> html:
-    return html(
-        page_head(p, g), body(div(cls="min-h-full"), cls="h-full"), cls="w-full"
-    )
-
-
-def page_html(p: FileData, g: Data) -> str:
-    return ""
 
 
 class Page(BaseModel):

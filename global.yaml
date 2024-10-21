@@ -4,18 +4,30 @@ navigation:
   - title: Home
     link: /
     section: home
-  - title: Schedule
-    link: /schedule
-    section: schedule
+  - title: Schedules
+    link: /schedules
+    section: schedules
+    subnav:
+      - title: Fall High School
+        link: /schedules/fall-high-school
+        section: schedule-fall-high-school
+      - title: Fall Youth
+        link: /schedules/fall-youth
+        section: schedule-fall-youth
+      - title: Spring All Ages
+        link: /schedules/spring-all-ages
+        section: schedule-spring-all-ages
   - title: Parents
     link: /parents
     section: parents
   - title: Coaches
     link: /coaches
     section: coaches
+    subnav:
+      - title: Directory
+        link: /coaches/directory
+        section: directory
   - title: Referees
     link: /referees
     section: referees
-  - title: Directory
-    link: /directory
-    section: directory
+

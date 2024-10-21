@@ -1,8 +1,10 @@
 # In CI environment variables will be set no need to use 1password
 ifeq "$(CI)" "true"
     PULL_ENV :=
+	TAILWIND :=./tailwindcss
 else
     PULL_ENV :=  op run --env-file="./.env" --
+	TAILWIND :=tailwindcss
 endif
 
 sync:
@@ -10,7 +12,10 @@ sync:
 
 generate:
 	mkdir -p output
+	rm -fR output/*
 	rye run python src/utahwaterpoloassociation/scripts/generate.py
+	make copy_assets
+	make generate_css
 
 server:
 	echo "Running at http://127.0.0.1:8000"
@@ -20,7 +25,7 @@ dev:
 	rye run -- honcho -f Procfile start
 
 watch:
-	rye run watchmedo shell-command --patterns='content/*;src/utahwaterpoloassociation/templates/*' --recursive --command='make generate' .
+	rye run watchmedo shell-command --patterns='content/*;src/utahwaterpoloassociation/templates/*;global.yaml' --recursive --command='make generate' .
 
 copy_assets:
 	cp -fR public/* output/
@@ -29,7 +34,7 @@ assets:
 	rye run watchmedo shell-command --patterns='public/*' --recursive --command='make copy_assets' .
 
 generate_css:
-	./tailwindcss -i css/input.css -o output/style.css --minify
+	${TAILWIND} -i css/input.css -o output/style.css --minify
 
 tailwind:
 	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
