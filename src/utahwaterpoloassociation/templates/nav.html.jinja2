@@ -6,12 +6,12 @@
                     <img class="block h-8 w-auto lg:hidden" src="/uwpa-logo.png" alt="Your Company">
                     <img class="hidden h-8 w-auto lg:block" src="/uwpa-logo.png" alt="Your Company">
                 </div>
-                <div class="md:hidden lg:hidden flex flex-shrink-0 items-center">
+                <div class="block md:hidden flex flex-shrink-0 items-center">
                     <span
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-900"
                         aria-current="page">Utah Water Polo Association</span>
                 </div>
-                <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+                <div class="hidden md:-my-px md:ml-6 md:flex md:space-x-8">
                     <span
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-900"
                         aria-current="page">Utah Water Polo Association</span>
@@ -22,7 +22,7 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="-mr-2 flex items-center sm:hidden">
+            <div class="-mr-2 flex items-center md:hidden">
                 <!-- Mobile menu button -->
                 <button type="button"
                     class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -48,7 +48,7 @@
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div class="sm:hidden" id="mobile-menu" :class="{'hidden': !open, 'block': open }">
+    <div class="md:hidden" id="mobile-menu" :class="{'hidden': !open, 'block': open }">
         <div class="space-y-1 pb-3 pt-2">
             <!-- Current: "", Default: "" -->
             {% for link in g.meta.navigation %}
@@ -57,5 +57,12 @@
                 {{link.title }}</a>
             {% endfor %}
         </div>
+    </div>
+    <div class="absolute bottom-0 left-0 p-2 background-block">
+        <div class="block sm:hidden">screen-size: xs</div>
+        <div class="hidden sm:block md:hidden">screen-size: sm</div>
+        <div class="hidden md:block xl:hidden">screen-size: md</div>
+        <div class="hidden xl:block xl2:hidden">screen-size: xl</div>
+        <div class="hidden xl2:block">screen-size: xl2</div>
     </div>
 </nav>

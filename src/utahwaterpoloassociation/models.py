@@ -1,3 +1,5 @@
+import os
+from slugify import slugify
 from pydantic import BaseModel
 from typing import Optional, Tuple, ClassVar, Type, Any
 
@@ -35,6 +37,9 @@ class Organization(BaseModel):
 
         return self.model_dump(mode="json", exclude=["locations"])
 
+    def slug(self) -> str:
+        return slugify(self.name.replace("'", ""))
+
 
 class Location(BaseModel):
     MAP: ClassVar[dict[str, str]] = {
@@ -63,8 +68,11 @@ class Division(BaseModel):
     def from_csv(data: list[dict]) -> list["Division"]:
         return from_csv(Division, data)
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return self.name.__hash__()
+
+    def slug(self) -> str:
+        return slugify(self.name.replace("'", ""))
 
 
 class Team(BaseModel):
@@ -88,6 +96,12 @@ class Team(BaseModel):
 
     def key(self) -> Tuple[str, Division]:
         return "-".join([self.name, self.division.name])
+
+    def slug(self) -> str:
+        return slugify(self.name.replace("'", ""))
+
+    def url(self):
+        os.path.join(self.organization.slug(), self.division.slug(), self.slug())
 
 
 class Game(BaseModel):
@@ -203,6 +217,7 @@ class DirectoryEntry(BaseModel):
     teams: dict[str, Team] = {}
     locations: list[Location] = []
     contacts: list[Contact] = []
+    teams_by_division: dict[str, list[Team]] = {}
 
 
 class Leauge(BaseModel):
@@ -215,6 +230,8 @@ class Leauge(BaseModel):
 
     def directory(self) -> list[DirectoryEntry]:
         directory_items: list[DirectoryEntry] = []
+        teams_by_division: dict[str, list[Team]] = {}
+
         for _, o in self.organizations.items():
             d = DirectoryEntry(organization=o)
             d.locations = [
@@ -222,11 +239,17 @@ class Leauge(BaseModel):
                 for (_, l) in self.locations.items()
                 if l.organization == d.organization
             ]
-            d.teams = {
-                key: t
-                for (key, t) in self.teams.items()
-                if t.organization == d.organization
-            }
+
+            d.teams = {}
+            for key, t in self.teams.items():
+                if not teams_by_division.get(t.division.slug()):
+                    teams_by_division[t.division.slug()] = []
+                teams_by_division[t.division.slug()].append(t)
+                if t.organization != d.organization:
+                    continue
+
+                d.teams[key] = t
+
             d.contacts = [c for c in self.contacts if c.organization == d.organization]
 
             directory_items.append(d)
