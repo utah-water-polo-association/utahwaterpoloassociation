@@ -9,6 +9,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
       - name: Build
+        env:
+          NOTION_TOKEN: ${{ vars.NOTION_TOKEN }}
         run: make build
       - name: Website Artifacts
         uses: actions/upload-artifact@v4
