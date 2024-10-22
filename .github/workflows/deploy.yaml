@@ -14,6 +14,6 @@ jobs:
           NOTION_TOKEN: ${{ vars.NOTION_TOKEN }}
         run: make build
 
-      - name: Build
+      - name: Deploy
         if: github.ref == 'refs/heads/main'
-        run: make build
+        run: make deploy
