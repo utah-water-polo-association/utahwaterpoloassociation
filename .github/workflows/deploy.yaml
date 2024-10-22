@@ -1,0 +1,23 @@
+name: Deploy
+
+on: [push]
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build
+        env:
+          NOTION_TOKEN: ${{ vars.NOTION_TOKEN }}
+        run: make build
+
+      - uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy
+        if: github.ref == 'refs/heads/main'
+        run: make deploy
