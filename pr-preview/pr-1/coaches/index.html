@@ -1,0 +1,223 @@
+<html class="h-full">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/style.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    
+    <title>Coaches - Utah Water Polo Association</title>
+    
+</head>
+
+<body class="h-full">
+    <div class="min-h-full">
+        <nav class="border-b border-gray-200 bg-white" x-data="{ open: false }">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 justify-between">
+            <div class="flex">
+                <div class="flex flex-shrink-0 items-center">
+                    <img class="block h-8 w-auto lg:hidden" src="/uwpa-logo.png" alt="Your Company">
+                    <img class="hidden h-8 w-auto lg:block" src="/uwpa-logo.png" alt="Your Company">
+                </div>
+                <div class="block md:hidden flex flex-shrink-0 items-center">
+                    <span
+                        class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-900"
+                        aria-current="page">Utah Water Polo Association</span>
+                </div>
+                <div class="hidden md:-my-px md:ml-6 md:flex md:space-x-8">
+                    <span
+                        class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-900"
+                        aria-current="page">Utah Water Polo Association</span>
+                    
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        aria-current="page">
+                        <div class="relative inline-block">
+                            <a href="/">Home</a>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        aria-current="page">
+                        <div class="relative inline-block">
+                            <a href="/schedules">Schedules</a>
+                            
+                            <div class="invisible group-hover:visible absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                    
+                                    <a href="/schedules/fall-high-school"
+                                        class="block px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem" tabindex="-1" id="menu-item-0">Fall High School</a>
+                                    
+                                    <a href="/schedules/fall-youth"
+                                        class="block px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem" tabindex="-1" id="menu-item-0">Fall Youth</a>
+                                    
+                                    <a href="/schedules/spring-all-ages"
+                                        class="block px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem" tabindex="-1" id="menu-item-0">Spring All Ages</a>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        aria-current="page">
+                        <div class="relative inline-block">
+                            <a href="/parents">Parents</a>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-indigo-500 text-gray-900"
+                        aria-current="page">
+                        <div class="relative inline-block">
+                            <a href="/coaches">Coaches</a>
+                            
+                            <div class="invisible group-hover:visible absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                    
+                                    <a href="/coaches/directory"
+                                        class="block px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem" tabindex="-1" id="menu-item-0">Directory</a>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        aria-current="page">
+                        <div class="relative inline-block">
+                            <a href="/referees">Referees</a>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="-mr-2 flex items-center md:hidden">
+                <!-- Mobile menu button -->
+                <button type="button"
+                    class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    aria-controls="mobile-menu" aria-expanded="false" @click="open = !open">
+                    <span class="absolute -inset-0.5"></span>
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Menu open: "hidden", Menu closed: "block" -->
+                    <svg :class="{'hidden': open, 'block': !open }" class="block h-6 w-6" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"
+                        data-slot="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                    <!-- Menu open: "block", Menu closed: "hidden" -->
+                    <svg :class="{'hidden': !open, 'block': open }" class="hidden h-6 w-6" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"
+                        data-slot="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="md:hidden" id="mobile-menu" :class="{'hidden': !open, 'block': open }">
+        <div class="space-y-1 pb-3 pt-2">
+            <!-- Current: "", Default: "" -->
+            
+            <a href="/"
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
+                Home</a>
+            
+            <a href="/schedules"
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
+                Schedules</a>
+            
+            <a href="/parents"
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
+                Parents</a>
+            
+            <a href="/coaches"
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-indigo-500 bg-indigo-50 text-indigo-700">
+                Coaches</a>
+            
+            <a href="/referees"
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
+                Referees</a>
+            
+        </div>
+    </div>
+    <div class="absolute bottom-0 left-0 p-2 background-block hidden">
+        <div class="block sm:hidden">screen-size: xs</div>
+        <div class="hidden sm:block md:hidden">screen-size: sm</div>
+        <div class="hidden md:block lg:hidden">screen-size: md</div>
+        <div class="hidden lg:block xl:hidden">screen-size: lg</div>
+        <div class="hidden xl:block xl2:hidden">screen-size: xl</div>
+        <div class="hidden xl2:block">screen-size: xl2</div>
+    </div>
+</nav>
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <header>
+                
+                <div class="border-b border-gray-200">
+                    <div class="sm:flex sm:items-baseline">
+                        <h3 class="text-base font-semibold leading-6 text-gray-900">
+                            
+                            Coaches
+                            
+                        </h3>
+                        
+                        <div class="mt-4 sm:ml-10 sm:mt-0">
+                            <nav class="-mb-px flex space-x-8">
+                                
+                                <a href="/coaches/directory"
+                                    class="whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    aria-current="page">Directory</a>
+                                
+                            </nav>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </header>
+            <main>
+                <div class="mx-auto max-w-7xl prose lg:prose-xl">
+                    
+<p><strong>Jobs to be done</strong>:</p>
+<ol>
+<li>
+<p>What is the schedule for upcoming seasons</p>
+</li>
+<li>
+<p>What is the schedule of the forthcoming games</p>
+</li>
+<li>
+<p>What are the current standings</p>
+</li>
+<li>
+<p>Contact list for other coaches</p>
+</li>
+<li>
+<p>Get ideas for how to run practice</p>
+</li>
+</ol>
+<p><br/></p>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,656 @@
+<html class="h-full">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="/style.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+    
+    <title>Schedules - Utah Water Polo Association</title>
+    
+</head>
+
+<body class="h-full">
+    <div class="min-h-full">
+        <nav class="border-b border-gray-200 bg-white" x-data="{ open: false }">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 justify-between">
+            <div class="flex">
+                <div class="flex flex-shrink-0 items-center">
+                    <img class="block h-8 w-auto lg:hidden" src="/uwpa-logo.png" alt="Your Company">
+                    <img class="hidden h-8 w-auto lg:block" src="/uwpa-logo.png" alt="Your Company">
+                </div>
+                <div class="block md:hidden flex flex-shrink-0 items-center">
+                    <span
+                        class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-900"
+                        aria-current="page">Utah Water Polo Association</span>
+                </div>
+                <div class="hidden md:-my-px md:ml-6 md:flex md:space-x-8">
+                    <span
+                        class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-900"
+                        aria-current="page">Utah Water Polo Association</span>
+                    
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        aria-current="page">
+                        <div class="relative inline-block">
+                            <a href="/">Home</a>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-indigo-500 text-gray-900"
+                        aria-current="page">
+                        <div class="relative inline-block">
+                            <a href="/schedules">Schedules</a>
+                            
+                            <div class="invisible group-hover:visible absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                    
+                                    <a href="/schedules/fall-high-school"
+                                        class="block px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem" tabindex="-1" id="menu-item-0">Fall High School</a>
+                                    
+                                    <a href="/schedules/fall-youth"
+                                        class="block px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem" tabindex="-1" id="menu-item-0">Fall Youth</a>
+                                    
+                                    <a href="/schedules/spring-all-ages"
+                                        class="block px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem" tabindex="-1" id="menu-item-0">Spring All Ages</a>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        aria-current="page">
+                        <div class="relative inline-block">
+                            <a href="/parents">Parents</a>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        aria-current="page">
+                        <div class="relative inline-block">
+                            <a href="/coaches">Coaches</a>
+                            
+                            <div class="invisible group-hover:visible absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                    
+                                    <a href="/coaches/directory"
+                                        class="block px-4 py-2 text-sm text-gray-700"
+                                        role="menuitem" tabindex="-1" id="menu-item-0">Directory</a>
+                                    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        aria-current="page">
+                        <div class="relative inline-block">
+                            <a href="/referees">Referees</a>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="-mr-2 flex items-center md:hidden">
+                <!-- Mobile menu button -->
+                <button type="button"
+                    class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                    aria-controls="mobile-menu" aria-expanded="false" @click="open = !open">
+                    <span class="absolute -inset-0.5"></span>
+                    <span class="sr-only">Open main menu</span>
+                    <!-- Menu open: "hidden", Menu closed: "block" -->
+                    <svg :class="{'hidden': open, 'block': !open }" class="block h-6 w-6" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"
+                        data-slot="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                    <!-- Menu open: "block", Menu closed: "hidden" -->
+                    <svg :class="{'hidden': !open, 'block': open }" class="hidden h-6 w-6" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true"
+                        data-slot="icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile menu, show/hide based on menu state. -->
+    <div class="md:hidden" id="mobile-menu" :class="{'hidden': !open, 'block': open }">
+        <div class="space-y-1 pb-3 pt-2">
+            <!-- Current: "", Default: "" -->
+            
+            <a href="/"
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
+                Home</a>
+            
+            <a href="/schedules"
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-indigo-500 bg-indigo-50 text-indigo-700">
+                Schedules</a>
+            
+            <a href="/parents"
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
+                Parents</a>
+            
+            <a href="/coaches"
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
+                Coaches</a>
+            
+            <a href="/referees"
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800">
+                Referees</a>
+            
+        </div>
+    </div>
+    <div class="absolute bottom-0 left-0 p-2 background-block hidden">
+        <div class="block sm:hidden">screen-size: xs</div>
+        <div class="hidden sm:block md:hidden">screen-size: sm</div>
+        <div class="hidden md:block lg:hidden">screen-size: md</div>
+        <div class="hidden lg:block xl:hidden">screen-size: lg</div>
+        <div class="hidden xl:block xl2:hidden">screen-size: xl</div>
+        <div class="hidden xl2:block">screen-size: xl2</div>
+    </div>
+</nav>
+        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <header>
+                
+                <div class="border-b border-gray-200">
+                    <div class="sm:flex sm:items-baseline">
+                        <h3 class="text-base font-semibold leading-6 text-gray-900">
+                            
+                            Schedules
+                            
+                        </h3>
+                        
+                        <div class="mt-4 sm:ml-10 sm:mt-0">
+                            <nav class="-mb-px flex space-x-8">
+                                
+                                <a href="/schedules/fall-high-school"
+                                    class="whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    aria-current="page">Fall High School</a>
+                                
+                                <a href="/schedules/fall-youth"
+                                    class="whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    aria-current="page">Fall Youth</a>
+                                
+                                <a href="/schedules/spring-all-ages"
+                                    class="whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                                    aria-current="page">Spring All Ages</a>
+                                
+                            </nav>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </header>
+            <main>
+                <div class="mx-auto max-w-7xl prose lg:prose-xl">
+                    
+
+<div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <table class="min-w-full divide-y divide-gray-300">
+                <thead>
+                    <tr>
+                        <th scope="col"
+                            class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
+                            Date</th>
+                        <th scope="col"
+                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Time
+                        </th>
+                        <th scope="col"
+                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell">
+                            Location
+                        </th>
+                        <th scope="col"
+                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            Division</th>
+                        <th scope="col"
+                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Away
+                            Team (White)
+                        </th>
+                        <th scope="col"
+                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm hidden xl:table-cell font-semibold text-gray-900">
+                            Away
+                            Team Score
+                        </th>
+                        <th scope="col"
+                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Home
+                            Team (Dark)</th>
+                        <th scope="col"
+                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm hidden xl:table-cell font-semibold text-gray-900">
+                            Home
+                            Team Score</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/20/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">6:45 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Olympus High School</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Women's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Brighton
+                            <span class="xl:collapse">2</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">2</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Olympus
+                            <span class="xl:collapse">17</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">17</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/20/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">7:40 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Olympus High School</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Men's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Brighton
+                            <span class="xl:collapse">3</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">3</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Olympus
+                            <span class="xl:collapse">20</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">20</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/20/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">8:35 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Olympus High School</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Men's Junior Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Kearns
+                            <span class="xl:collapse">9</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">9</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Olympus
+                            <span class="xl:collapse">6</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">6</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/21/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">6:40 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Skyline High School</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Women's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Murray
+                            <span class="xl:collapse">8</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">8</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Skyline
+                            <span class="xl:collapse">7</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">7</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/21/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">7:40 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell"></td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500"></td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            
+                            <span class="xl:collapse"></span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500"></td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            
+                            <span class="xl:collapse"></span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/21/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">8:35 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell"></td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500"></td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            
+                            <span class="xl:collapse"></span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500"></td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            
+                            <span class="xl:collapse"></span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/22/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">4:00 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Kearns Oquirrh Park Fitness Center</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Men's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Copper Hills
+                            <span class="xl:collapse">9</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">9</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Kearns
+                            <span class="xl:collapse">16</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">16</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/22/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">4:55 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Kearns Oquirrh Park Fitness Center</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Men's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Cyprus
+                            <span class="xl:collapse">5</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">5</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Murray
+                            <span class="xl:collapse">20</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">20</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/22/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">5:50 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Kearns Oquirrh Park Fitness Center</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Women's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Cyprus
+                            <span class="xl:collapse">2</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">2</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Kearns
+                            <span class="xl:collapse">6</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">6</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/22/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">6:45 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Kearns Oquirrh Park Fitness Center</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Men's Junior Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Murray
+                            <span class="xl:collapse">3</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">3</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Kearns
+                            <span class="xl:collapse">6</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">6</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/26/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">3:45 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">The Park Center in Murray</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Women's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Brighton
+                            <span class="xl:collapse">2</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">2</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Murray
+                            <span class="xl:collapse">11</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">11</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/26/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">4:40 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">The Park Center in Murray</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Men's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Skyline
+                            <span class="xl:collapse">12</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">12</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Murray
+                            <span class="xl:collapse">15</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">15</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/26/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">5:35 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">The Park Center in Murray</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Men's Junior Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Skyline
+                            <span class="xl:collapse">3</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">3</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Murray
+                            <span class="xl:collapse">13</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">13</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/26/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">6:30 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">The Park Center in Murray</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Combined Boys</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Utah County
+                            <span class="xl:collapse">6</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">6</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Murray
+                            <span class="xl:collapse">8</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">8</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/26/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">7:25 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell"></td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500"></td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            
+                            <span class="xl:collapse"></span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500"></td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            
+                            <span class="xl:collapse"></span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/27/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">6:45 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Olympus High School</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Men's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Park City
+                            <span class="xl:collapse">9</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">9</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Olympus
+                            <span class="xl:collapse">18</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">18</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/27/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">7:45 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Olympus High School</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Men's Junior Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Park City
+                            <span class="xl:collapse">9</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">9</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Olympus
+                            <span class="xl:collapse">22</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">22</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/28/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">4:00 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Kearns Oquirrh Park Fitness Center</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Combined Boys</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Murray
+                            <span class="xl:collapse">15</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">15</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Kearns
+                            <span class="xl:collapse">8</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">8</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/28/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">4:55 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Kearns Oquirrh Park Fitness Center</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Combined Girls</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Murray
+                            <span class="xl:collapse">6</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">6</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Kearns
+                            <span class="xl:collapse">8</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">8</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/28/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">5:50 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Kearns Oquirrh Park Fitness Center</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Men's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Murray
+                            <span class="xl:collapse">6</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">6</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Kearns
+                            <span class="xl:collapse">12</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">12</td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">8/28/2024</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">6:45 PM</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">Kearns Oquirrh Park Fitness Center</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">Women's Varsity</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 ">
+                            Murray
+                            <span class="xl:collapse">1</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">1</td>
+                        <td
+                            class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 font-bold">
+                            Kearns
+                            <span class="xl:collapse">13</span>
+                        </td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">13</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
