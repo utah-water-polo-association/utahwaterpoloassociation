@@ -14,10 +14,13 @@ jobs:
           NOTION_TOKEN: ${{ vars.NOTION_TOKEN }}
         run: make build
 
-      - uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
       - name: Deploy
         if: github.ref == 'refs/heads/main'
-        run: make deploy
+        uses: Burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -r --delete-after
+          path: output/
+          remote_path: /home1/eczrvsmy/public_html/website_287658e3/
+          remote_host: 50.6.153.225
+          remote_user: eczrvsmy
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
