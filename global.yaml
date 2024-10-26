@@ -32,5 +32,8 @@ navigation:
     section: referees
   - title: About
     link: /about
-    section: referees
-
+    section: about
+    subnav:
+      - title: Sponsors
+        link: /sponsors
+        section: sponsors

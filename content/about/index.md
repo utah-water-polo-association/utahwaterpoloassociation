@@ -20,7 +20,3 @@ section: about
 
 - Gallery
 
-[//]: # (child_page is not supported)
-
-[//]: # (child_database is not supported)
-
