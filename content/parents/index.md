@@ -4,7 +4,7 @@ section: parents
 ---
 Welcome Parents!
 
-### Prospective Parents
+### Hey New Parents
 
 These people are looking for sports for their kids or might be curious about what kind of water polo we have here in Utah.
 

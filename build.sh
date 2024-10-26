@@ -6,6 +6,5 @@ source "$HOME/.rye/env"
 rye sync
 make tailwind
 make generate_css
-make sync
 make generate
 make copy_assets

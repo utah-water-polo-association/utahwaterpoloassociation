@@ -30,4 +30,7 @@ navigation:
   - title: Referees
     link: /referees
     section: referees
+  - title: About
+    link: /about
+    section: referees
 

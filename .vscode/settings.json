@@ -1,5 +1,8 @@
 {
   "editor.formatOnSave": true,
   "python.analysis.inlayHints.functionReturnTypes": true,
-  "python.analysis.inlayHints.variableTypes": true
+  "python.analysis.inlayHints.variableTypes": true,
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///Users/alex/Documents/codes/utahwaterpoloassociation/.github/workflows/deploy.yaml"
+  }
 }

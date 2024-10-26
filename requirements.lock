@@ -65,6 +65,9 @@ iniconfig==2.0.0
 jinja2==3.1.4
     # via pelican
     # via utahwaterpoloassociation
+joblib==1.4.2
+    # via scikit-learn
+    # via utahwaterpoloassociation
 markdown==3.7
     # via utahwaterpoloassociation
 markdown-it-py==3.0.0
@@ -77,11 +80,18 @@ mypy-extensions==1.0.0
     # via black
 notion-client==2.2.1
     # via utahwaterpoloassociation
+numpy==2.1.2
+    # via pandas
+    # via scikit-learn
+    # via scipy
+    # via utahwaterpoloassociation
 ordered-set==4.1.0
     # via pelican
 packaging==24.1
     # via black
     # via pytest
+pandas==2.2.3
+    # via utahwaterpoloassociation
 pathspec==0.12.1
     # via black
 pelican==4.10.1
@@ -105,11 +115,13 @@ pytest==8.3.3
     # via utahwaterpoloassociation
 python-dateutil==2.8.2
     # via domonic
+    # via pandas
     # via pelican
 python-slugify==8.0.4
     # via utahwaterpoloassociation
 pytz==2024.2
     # via feedgenerator
+    # via pandas
 pyyaml==6.0.2
     # via utahwaterpoloassociation
 rapidfuzz==3.10.0
@@ -118,6 +130,11 @@ requests==2.31.0
     # via domonic
 rich==13.9.2
     # via pelican
+scikit-learn==1.5.2
+    # via utahwaterpoloassociation
+scipy==1.14.1
+    # via scikit-learn
+    # via utahwaterpoloassociation
 six==1.16.0
     # via html5lib
     # via python-dateutil
@@ -126,6 +143,8 @@ sniffio==1.3.1
     # via httpx
 text-unidecode==1.3
     # via python-slugify
+threadpoolctl==3.5.0
+    # via scikit-learn
 tomli==2.0.2
     # via autopep8
     # via black
@@ -136,6 +155,8 @@ typing-extensions==4.12.2
     # via pydantic
     # via pydantic-core
     # via rich
+tzdata==2024.2
+    # via pandas
 unidecode==1.3.8
     # via pelican
 urllib3==2.0.7

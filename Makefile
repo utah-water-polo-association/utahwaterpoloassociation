@@ -49,3 +49,6 @@ test:
 
 deploy:
 	./deploy.sh
+
+load:
+	rye run python src/utahwaterpoloassociation/scripts/load.py

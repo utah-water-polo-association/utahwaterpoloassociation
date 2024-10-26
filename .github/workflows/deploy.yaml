@@ -1,6 +1,9 @@
 name: Deploy
 
-on: [push]
+on:
+  push:
+  schedule:
+    - cron: "5 * * * *"
 
 jobs:
   build_and_test:
@@ -9,9 +12,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Build
+      - name: Sync
         env:
           NOTION_TOKEN: ${{ vars.NOTION_TOKEN }}
+        run: make sync
+
+      - name: Build
         run: make build
 
       - name: Deploy
