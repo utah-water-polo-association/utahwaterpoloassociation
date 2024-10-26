@@ -12,12 +12,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Sync
+      - name: Build
         env:
           NOTION_TOKEN: ${{ vars.NOTION_TOKEN }}
-        run: make sync
-
-      - name: Build
         run: make build
 
       - name: Deploy
