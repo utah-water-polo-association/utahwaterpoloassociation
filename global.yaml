@@ -37,3 +37,6 @@ navigation:
       - title: Sponsors
         link: /sponsors
         section: sponsors
+      - title: UWPA Board
+        link: /sponsors
+        section: sponsors

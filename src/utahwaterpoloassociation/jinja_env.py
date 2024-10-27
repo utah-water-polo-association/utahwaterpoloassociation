@@ -1,5 +1,6 @@
 from utahwaterpoloassociation.models import Data
 from jinja2 import Environment, PackageLoader, select_autoescape
+import markupsafe
 from markdown.extensions import Extension
 from markdown.preprocessors import Preprocessor
 from markdown import Markdown
@@ -76,15 +77,36 @@ def get_environment(data: Data) -> Environment:
         autoescape=select_autoescape(),
     )
 
-    env.filters["markdown"] = lambda text: Markup(
-        object=markdown.markdown(
-            text=text,
-            extensions=[
-                makeExtension(env=env, data=data),
-                MyExtension(),
-                "md_in_html",
-            ],
+    def markdown_filter(text):
+        text = text.replace("\u2018", "'")  # Left single quote
+        text = text.replace("\u2019", "'")  # Right single quote
+        text = text.replace("\u201c", '"')  # Left double quote
+        text = text.replace("\u201d", '"')  # Right double quote
+
+        return Markup(
+            object=markdown.markdown(
+                text=text,
+                extensions=[
+                    makeExtension(env=env, data=data),
+                    MyExtension(),
+                    "md_in_html",
+                ],
+            )
         )
+
+    env.filters["markdown"] = markdown_filter
+
+    env.globals["directory"] = lambda: markupsafe.Markup(
+        env.get_template(name="directory.html.jinja2").render(g=data)
     )
+
+    def schedule():
+        return markupsafe.Markup(
+            env.get_template(name="schedule.html.jinja2").render(g=data)
+        )
+
+    env.globals["schedule_fall_high_school"] = schedule
+    env.globals["schedule_fall_youth"] = schedule
+    env.globals["schedule_spring"] = schedule
 
     return env

@@ -17,6 +17,7 @@ class Config(object):
         "path_name",
         "page_title",
         "section",
+        "web_path",
     )
 
     def __init__(
@@ -25,6 +26,7 @@ class Config(object):
         block_url: str = None,
         output_filename: str = None,
         output_path: str = None,
+        web_path: str = None,
         download: bool = False,
         unzipped: bool = False,
         page_title: str = None,
@@ -64,3 +66,4 @@ class Config(object):
         else:
             self.unzipped = False
             self.tmp_path = os.path.join(os.getcwd(), "tmp")
+        self.web_path = web_path

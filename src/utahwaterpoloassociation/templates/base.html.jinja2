@@ -21,31 +21,39 @@
                 {% block page_header %}
                 <div class="border-b border-gray-200">
                     <div class="sm:flex sm:items-baseline">
-                        <h3 class="text-base font-semibold leading-6 text-gray-900">
-                            {% if g.meta.navigation_by_section[p.main_section()] %}
-                            {{g.meta.navigation_by_section[p.main_section()].title}}
-                            {% else %}
+                        <h1 class="text-2xl sm:text-4xl font-bold text-gray-900">
+                            {% if p.attributes.path == '/' %}
                             {{p.attributes.title}}
+                            {% else %}
+                            {% for link in g.meta.navigation %}
+                            {% if p.attributes.path.startswith(link.link) %}
+                            {{link.title}}
                             {% endif %}
-                        </h3>
-                        {% if p.main_section() in g.meta.navigation_by_section and
-                        g.meta.navigation_by_section[p.main_section()].subnav %}
+                            {% endfor %}
+                            {% endif %}
+                        </h1>
                         <div class="mt-4 sm:ml-10 sm:mt-0">
                             <nav class="-mb-px flex space-x-8">
-                                {% for link in g.meta.navigation_by_section[p.main_section()].subnav %}
+                                {% for link in g.meta.navigation %}
+                                {% if p.attributes.path.startswith(link.link) and link.navigation %}
+                                {% for link in link.navigation %}
                                 <a href="{{link.link}}"
-                                    class="whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium {% if link.section == p.attributes.section %}border-indigo-500 text-indigo-600{% else %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{% endif %}"
+                                    class="whitespace-nowrap border-b-2 px-1 pb-1 sm:pb-4 text-sm font-medium {% if p.attributes.path.startswith(link.link) %}border-indigo-500 text-indigo-600{% else %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{% endif %}"
                                     aria-current="page">{{link.title}}</a>
                                 {% endfor %}
+                                {% endif %}
+                                {% endfor %}
+                                <span class="whitespace-nowrap border-b-2 px-1 pb-1 sm:pb-4">&nbsp;</span>
                             </nav>
+
                         </div>
-                        {% endif %}
+
                     </div>
                 </div>
                 {% endblock %}
             </header>
             <main>
-                <div class="mx-auto max-w-7xl prose lg:prose-xl">
+                <div class="mx-auto max-w-7xl prose prose-sm sm:prose-base pt-8">
                     {% block content %}
                     {% endblock %}
                 </div>

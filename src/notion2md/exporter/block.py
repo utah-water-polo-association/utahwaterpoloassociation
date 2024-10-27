@@ -9,7 +9,8 @@ from notion2md.util import zip_dir
 PAGE_TEMPLATE = """
 ---
 title: %s
-section: %s  
+section: %s
+path: %s  
 ---
 """
 
@@ -20,6 +21,7 @@ class Exporter:
         block_id: str = None,
         block_url: str = None,
         output_filename: str = None,
+        web_path: str = None,
         output_path: str = None,
         download: bool = False,
         unzipped: bool = False,
@@ -32,6 +34,7 @@ class Exporter:
             block_url=block_url,
             output_filename=output_filename,
             output_path=output_path,
+            web_path=web_path,
             download=download,
             unzipped=unzipped,
             page_title=page_title,
@@ -91,6 +94,7 @@ class MarkdownExporter(Exporter):
             data = PAGE_TEMPLATE % (
                 page_title.title(),
                 page_title,
+                self._config.web_path,
             )
             output.write(data.lstrip())
             output.write(self.block_convertor.convert(self.get_blocks()))

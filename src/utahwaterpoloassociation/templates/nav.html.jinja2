@@ -3,30 +3,32 @@
         <div class="flex h-16 justify-between">
             <div class="flex">
                 <div class="flex flex-shrink-0 items-center">
-                    <img class="block h-8 w-auto lg:hidden" src="/uwpa-logo.png" alt="Your Company">
-                    <img class="hidden h-8 w-auto lg:block" src="/uwpa-logo.png" alt="Your Company">
+                    <a href="/">
+                        <img class="block h-8 w-auto lg:hidden" src="/uwpa-logo.png" alt="Your Company">
+                        <img class="hidden h-8 w-auto lg:block" src="/uwpa-logo.png" alt="Your Company">
+                    </a>
                 </div>
                 <div class="block md:hidden flex flex-shrink-0 items-center">
                     <span
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-900"
-                        aria-current="page">Utah Water Polo Association</span>
+                        aria-current="page"><a href="/">Utah Water Polo Association</a></span>
                 </div>
                 <div class="hidden md:-my-px md:ml-6 md:flex md:space-x-8">
                     <span
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-900"
-                        aria-current="page">Utah Water Polo Association</span>
+                        aria-current="page"><a href="/">Utah Water Polo Association</a></span>
                     {% for link in g.meta.navigation %}
-                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium {% if link.section == p.attributes.section %}border-indigo-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{%endif%}"
+                    <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium {% if p.attributes.path.startswith(link.link) %}border-indigo-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{%endif%}"
                         aria-current="page">
                         <div class="relative inline-block">
                             <a href="{{link.link}}">{{ link.title }}</a>
-                            {% if link.subnav %}
+                            {% if link.navigation %}
                             <div class="invisible group-hover:visible absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                 role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                                 <div class="py-1" role="none">
-                                    {% for link in link.subnav %}
+                                    {% for link in link.navigation %}
                                     <a href="{{link.link}}"
-                                        class="block px-4 py-2 text-sm {% if link.section == p.attributes.section %}bg-gray-100 text-gray-900{% else %}text-gray-700{%endif%}"
+                                        class="block px-4 py-2 text-sm {% if p.attributes.path.startswith(link.link) %}bg-gray-100 text-gray-900{% else %}text-gray-700{%endif%}"
                                         role="menuitem" tabindex="-1" id="menu-item-0">{{ link.title }}</a>
                                     {% endfor %}
                                 </div>
@@ -68,7 +70,7 @@
             <!-- Current: "", Default: "" -->
             {% for link in g.meta.navigation %}
             <a href="{{link.link}}"
-                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium {% if link.section == p.attributes.section %}border-indigo-500 bg-indigo-50 text-indigo-700{% else %}border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800{%endif%}">
+                class="block border-l-4 py-2 pl-3 pr-4 text-base font-medium {% if p.attributes.path.startswith(link.link) %}border-indigo-500 bg-indigo-50 text-indigo-700{% else %}border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800{%endif%}">
                 {{link.title }}</a>
             {% endfor %}
         </div>

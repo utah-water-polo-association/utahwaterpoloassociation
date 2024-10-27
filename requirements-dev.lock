@@ -18,8 +18,12 @@ autopep8==2.3.1
     # via utahwaterpoloassociation
 black==24.10.0
     # via utahwaterpoloassociation
+blessed==1.20.0
+    # via curtsies
 blinker==1.8.2
     # via pelican
+bpython==0.24
+    # via utahwaterpoloassociation
 certifi==2024.8.30
     # via httpcore
     # via httpx
@@ -34,6 +38,11 @@ crashtest==0.4.1
     # via cleo
 cssselect==1.2.0
     # via domonic
+curtsies==0.4.2
+    # via bpython
+cwcwidth==0.1.9
+    # via bpython
+    # via curtsies
 docutils==0.21.2
     # via pelican
 domonic==0.9.12
@@ -45,6 +54,8 @@ exceptiongroup==1.2.2
     # via pytest
 feedgenerator==2.1.0
     # via pelican
+greenlet==3.1.1
+    # via bpython
 h11==0.14.0
     # via httpcore
 honcho==2.0.0
@@ -109,6 +120,7 @@ pydantic==2.9.2
 pydantic-core==2.23.4
     # via pydantic
 pygments==2.18.0
+    # via bpython
     # via pelican
     # via rich
 pytest==8.3.3
@@ -122,11 +134,14 @@ python-slugify==8.0.4
 pytz==2024.2
     # via feedgenerator
     # via pandas
+pyxdg==0.28
+    # via bpython
 pyyaml==6.0.2
     # via utahwaterpoloassociation
 rapidfuzz==3.10.0
     # via cleo
 requests==2.31.0
+    # via bpython
     # via domonic
 rich==13.9.2
     # via pelican
@@ -136,6 +151,7 @@ scipy==1.14.1
     # via scikit-learn
     # via utahwaterpoloassociation
 six==1.16.0
+    # via blessed
     # via html5lib
     # via python-dateutil
 sniffio==1.3.1
@@ -166,5 +182,7 @@ watchdog==5.0.3
     # via utahwaterpoloassociation
 watchfiles==0.24.0
     # via pelican
+wcwidth==0.2.13
+    # via blessed
 webencodings==0.5.1
     # via html5lib
