@@ -28,7 +28,7 @@ watch:
 	rye run watchmedo shell-command --patterns='content/*;src/utahwaterpoloassociation/templates/*;global.yaml' --recursive --command='make generate' .
 
 copy_assets:
-	cp -fR public/* output/
+	./copy.sh
 
 assets:
 	rye run watchmedo shell-command --patterns='public/*' --recursive --command='make copy_assets' .
