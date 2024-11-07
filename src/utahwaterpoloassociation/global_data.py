@@ -14,7 +14,7 @@ def process_globals(g) -> Any:
 
 
 def get_global_data() -> Data:
-    league = get_league(Leagues.UTAH_SPRING_2024)
+    hsh, league = get_league(Leagues.UTAH_SPRING_2025)
 
     globals = {}
     with open(file="global.json", mode="r") as fd:
@@ -22,5 +22,5 @@ def get_global_data() -> Data:
         globals = json.load(fd)
         globals["title"] = "Utah Water Polo Association"
         globals = process_globals(globals)
-
+    print("%s" % (league))
     return Data(league=league, meta=globals)

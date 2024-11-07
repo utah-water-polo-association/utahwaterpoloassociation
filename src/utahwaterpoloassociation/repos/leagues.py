@@ -31,7 +31,7 @@ def hash_data(data: dict[any, any]) -> str:
 
 def get_league(league_id: Leagues) -> Tuple[str, Leauge]:
     with open(data_location(league_data_key(league_id)), "r") as fd:
-        Leauge.model_validate_with_hash(json.load(fd))
+        return Leauge.model_validate_with_hash(json.load(fd))
 
 
 def save_league(league_id: Leagues, league: Leauge) -> str:
