@@ -96,13 +96,20 @@ def get_environment(data: Data) -> Environment:
 
     env.filters["markdown"] = markdown_filter
 
-    env.globals["directory"] = lambda: markupsafe.Markup(
-        env.get_template(name="directory.html.jinja2").render(g=data)
-    )
-
-    def schedule():
+    def directory() -> Markup:
         return markupsafe.Markup(
-            env.get_template(name="schedule.html.jinja2").render(g=data)
+            env.get_template(name="directory.html.jinja2").render(g=data)
+        )
+
+    env.globals["directory"] = directory
+
+    def schedule(season=None):
+        league = data.league
+        if season:
+            league = data.past[season]
+
+        return markupsafe.Markup(
+            env.get_template(name="schedule.html.jinja2").render(g=data, league=league)
         )
 
     env.globals["schedule_fall_high_school"] = schedule

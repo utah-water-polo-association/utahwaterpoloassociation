@@ -5,4 +5,5 @@ from .leauge import Leauge
 
 class Data(BaseModel):
     league: Leauge
+    past: dict[str, Leauge] = {}
     meta: dict[str, Any]

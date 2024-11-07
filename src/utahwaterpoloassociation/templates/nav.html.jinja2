@@ -17,7 +17,7 @@
                     <span
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-900"
                         aria-current="page"><a href="/">Utah Water Polo Association</a></span>
-                    {% for link in g.meta.navigation %}
+                    {% for link in g.meta.navigation if link.section == "header" %}
                     <div class="group inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium {% if p.attributes.path.startswith(link.link) %}border-indigo-500 text-gray-900{% else %}border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700{%endif%}"
                         aria-current="page">
                         <div class="relative inline-block">

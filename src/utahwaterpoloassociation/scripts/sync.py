@@ -16,6 +16,8 @@ BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT6ytRH8Uqoesk5-A8su
 
 notion_client = Client(auth=os.environ["NOTION_TOKEN"])
 
+FOOTER_NAV_PAGES = ["About", "Past Seasons"]
+
 
 def from_csv(cls, data):
     results = []
@@ -36,6 +38,7 @@ def from_csv(cls, data):
 class NavItem(BaseModel):
     title: str
     link: str
+    section: str = "header"
     navigation: list["NavItem"]
 
 
@@ -71,6 +74,7 @@ class Page(BaseModel):
         return NavItem(
             title=self.title,
             link=self.path(),
+            section="footer" if self.title in FOOTER_NAV_PAGES else "header",
             navigation=[x.to_navigation() for x in self.pages],
         )
 
