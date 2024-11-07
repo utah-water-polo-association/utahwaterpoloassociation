@@ -1,0 +1,436 @@
+Timestamp,DateOrTournament,Division,Winning Team,Winning Team Score,Losing Team,Losing Team Score
+2024-03-06T09:31,3/4/2024,16u Girls,Kearns A,19,Murray,10
+2024-03-06T09:31,3/4/2024,16u boys,Kearns A,21,Murray,5
+2024-03-06T09:32,3/4/2024,18u Girls,Murray,7,Kearns A,4
+2024-03-06T09:32,3/4/2024,18u Boys,Kearns A,17,Murray,10
+2024-03-06T09:33,3/4/2024,14u boys,Kearns A,20,Murray,7
+2024-03-06T13:07,3/6/2024,18u Boys,Olympus,10,Murray,7
+2024-03-06T13:07,3/5/2024,16u Girls,Murray,6,Olympus,3
+2024-03-06T13:08,3/5/2024,16u boys,Olympus,9,Murray,7
+2024-03-06T13:08,3/5/2024,18u Girls,Olympus,10,Murray,6
+2024-03-07T10:08,Br tournament,18u Girls,Cache,12,Bear River,5
+2024-03-07T10:09,Br tournament,18u Boys,Bear River,8,Cache,6
+2024-03-07T10:12,Br tournament,18u Boys,Canyon View,15,Cache,4
+2024-03-07T10:13,Br tournament,18u Boys,Bear River,12,Canyon View,11
+2024-03-07T10:13,Br tournament,18u Girls,Canyon View,10,Bear River,9
+2024-03-07T10:15,Br tournament,18u Girls,Cache,12,Canyon View,4
+2024-03-08T08:29,SDRC tournament,18u Boys,Kearns A,17,Olympus,13
+2024-03-08T08:30,SDRC tournament,18u Girls,Kearns A,10,Olympus,9
+2024-03-11T07:12,SDRC tournament,18u Girls,South Davis,15,Cyprus,4
+2024-03-11T07:13,SDRC tournament,18u Boys,South Davis,20,Cyprus,11
+2024-03-11T07:14,SDRC tournament,14u boys,Kearns A,22,Ogden,3
+2024-03-11T07:15,SDRC tournament,14u boys,Olympus,18,South Davis,12
+2024-03-11T07:16,SDRC tournament,18u Girls,South Davis,15,Cedar City,5
+2024-03-11T07:17,SDRC tournament,18u Boys,South Davis,15,Ogden,4
+2024-03-11T07:20,SDRC tournament,18u Girls,Kearns A,16,Canyon View,3
+2024-03-11T07:21,SDRC tournament,18u Boys,Kearns A,20,Canyon View,5
+2024-03-11T07:21,SDRC tournament,14u boys,Kearns A,23,Cedar City,7
+2024-03-11T07:22,SDRC tournament,14u boys,Ogden,10,Olympus,7
+2024-03-11T07:23,SDRC tournament,14u boys,Cedar City,14,South Davis,5
+2024-03-11T07:23,SDRC tournament,18u Boys,Ogden,12,Cyprus,6
+2024-03-11T07:24,SDRC tournament,18u Girls,Olympus,13,Canyon View,4
+2024-03-11T07:25,SDRC tournament,18u Boys,Olympus,20,Canyon View,7
+2024-03-11T07:26,SDRC tournament,18u Girls,Cedar City,11,Cyprus,1
+2024-03-11T07:26,SDRC tournament,18u Boys,South Davis,15,Olympus,13
+2024-03-11T07:27,SDRC tournament,18u Boys,Kearns A,23,Ogden,5
+2024-03-11T07:28,SDRC tournament,18u Girls,Olympus,15,South Davis,9
+2024-03-11T07:30,SDRC tournament,18u Girls,Olympus,15,South Davis,9
+2024-03-11T07:42,SDRC tournament,18u Girls,Kearns A,17,Cedar City,5
+2024-03-11T07:42,SDRC tournament,18u Boys,Cyprus,15,Canyon View,14
+2024-03-11T07:43,SDRC tournament,18u Girls,Canyon View,15,Cyprus,9
+2024-03-11T07:50,SDRC tournament,18u Girls,South Davis,15,Cedar City,12
+2024-03-11T07:51,SDRC tournament,18u Girls,Olympus,12,Kearns A,8
+2024-03-11T07:51,SDRC tournament,18u Boys,Olympus,18,Ogden,9
+2024-03-11T07:55,SDRC tournament,18u Boys,Kearns A,14,South Davis,11
+2024-03-11T07:56,SDRC tournament,14u boys,South Davis,11,Ogden,6
+2024-03-11T07:57,SDRC tournament,14u boys,Kearns A,20,Ogden,2
+2024-03-11T07:57,SDRC tournament,14u boys,Cedar City,15,Olympus,9
+2024-03-11T07:58,SDRC tournament,14u boys,Cedar City,10,Ogden,6
+2024-03-11T07:58,SDRC tournament,14u boys,Kearns A,22,Olympus,1
+2024-03-11T08:02,Cache tournament,16u Girls,Olympus,10,Cache,7
+2024-03-11T08:03,Cache tournament,18u Girls,Bear River,14,Wasatch,10
+2024-03-11T08:03,Cache tournament,18u Boys,Bear River,16,Wasatch,5
+2024-03-11T08:05,Cache tournament,18u Girls,Cache,14,Bear River,3
+2024-03-11T08:05,Cache tournament,18u Girls,United,14,Cache,8
+2024-03-11T08:07,Cache tournament,16u boys,Cache,14,Utah County,13
+2024-03-11T08:18,Cache tournament,18u Girls,United,23,Bear River,5
+2024-03-11T08:20,Cache tournament,18u Girls,Cache,14,Wasatch,3
+2024-03-11T08:21,Cache tournament,18u Boys,Cache,11,Wasatch,9
+2024-03-11T23:01,March 9 Kraken Tournament,16u boys,Murray,13,Utah County,4
+2024-03-11T23:03,March 9 Kraken Tournament,16u boys,Cache,12,United,9
+2024-03-11T23:04,Kraken Tournament,16u boys,United,11,Utah County,8
+2024-03-11T23:06,Kraken Tournament,16u boys,Murray,15,United,5
+2024-03-11T23:33,Kraken Tournament,16u boys,Murray,17,Cache,8
+2024-03-14T08:47,3/12/2024,18u Boys,Olympus,10,South Davis,7
+2024-03-14T08:48,3/12/2024,18u Girls,Olympus,15,South Davis,5
+2024-03-14T08:49,3/12/2024,16u boys,Olympus,17,South Davis,12
+2024-03-14T08:51,3/13/2024,16u boys,United,20,South Davis,7
+2024-03-14T08:52,3/13/2024,18u Girls,United,18,South Davis,5
+2024-03-14T08:53,3/13/2024,18u Boys,United,20,South Davis,7
+2024-03-19T08:37,3/14/2024,18u Girls,Kearns A,21,South Davis,5
+2024-03-19T08:38,3/15/24,18u Girls,Olympus,20,Cyprus,0
+2024-03-19T08:39,3/15/24,18u Girls,Kearns A,9,Murray,6
+2024-03-19T08:40,3/15/24,18u Girls,Cache,16,Tooele,2
+2024-03-19T08:41,3/15/24,18u Girls,United,10,Olympus,9
+2024-03-19T08:41,3/16/24,18u Girls,Murray,15,South Davis,6
+2024-03-19T08:42,3/16/24,18u Girls,Cache,20,Kearns B,4
+2024-03-19T08:43,3/16/24,18u Girls,Bear River,13,Tooele,7
+2024-03-19T08:43,3/16/24,18u Girls,United,21,Cyprus,4
+2024-03-19T08:44,3/16/24,18u Girls,Cache,20,Bear River,3
+2024-03-19T08:44,3/16/24,18u Girls,South Davis,14,Cyprus,6
+2024-03-19T08:45,3/16/24,18u Girls,Murray,7,Olympus,1
+2024-03-19T08:45,3/16/24,18u Girls,Kearns A,10,United,7
+2024-03-19T08:46,3/14/24,18u Girls,Kearns B,6,Tooele,2
+2024-03-19T08:50,3/15/24,18u Girls,Kearns B,14,Bear River,9
+2024-03-19T08:52,3/14/24,16u Girls,Kearns A,16,Murray,6
+2024-03-19T08:53,3/15/24,16u Girls,Kearns A,21,Cyprus,1
+2024-03-19T08:53,3/15/24,16u Girls,Murray,12,Cache,9
+2024-03-19T08:54,3/15/24,16u Girls,Kearns A,13,Olympus,6
+2024-03-19T08:55,3/15/24,16u Girls,Olympus,9,Cache,5
+2024-03-19T08:55,3/15/24,16u Girls,Murray,13,Cyprus,4
+2024-03-19T08:56,3/16/24,16u Girls,Kearns A,15,Cache,10
+2024-03-19T08:56,3/14/24,16u Girls,Olympus,13,Cyprus,3
+2024-03-19T08:57,3/16/24,16u Girls,Cache,14,Cyprus,2
+2024-03-19T08:57,3/16/24,16u Girls,Olympus,9,Murray,8
+2024-03-19T09:00,3/16/24,14u girls,Kearns,18,Bear River,7
+2024-03-19T09:00,3/16/24,14u girls,Kearns,10,United,9
+2024-03-19T09:02,3/14/24,14u girls,Kearns,15,United,12
+2024-03-19T09:03,3/15/24,14u girls,Kearns,22,Bear River,11
+2024-03-19T09:03,3/16/24,14u girls,United,14,Bear River,10
+2024-03-19T09:04,3/16/24,14u girls,United,12,Bear River,4
+2024-03-19T09:06,3/14/24,12u,Kearns B,13,Murray Orange,5
+2024-03-19T09:06,3/14/24,12u,Murray Black,15,United Red,2
+2024-03-19T09:07,3/15/24,12u,Kearns A,12,South Davis,4
+2024-03-19T09:07,3/15/24,12u,United Blue,15,Kearns B,1
+2024-03-19T09:08,3/15/24,12u,Cache,15,Murray Orange,9
+2024-03-19T09:09,3/16/24,12u,Murray Black,18,Olympus,4
+2024-03-19T09:10,3/16/24,12u,Bear River,13,South Davis,7
+2024-03-19T09:10,3/16/24,12u,Olympus,15,United Red,13
+2024-03-19T09:11,3/16/24,12u,Kearns A,11,Bear River,10
+2024-03-19T09:11,3/16/24,12u,United Blue,14,Cache,2
+2024-03-19T09:12,3/16/24,12u,United Red,15,South Davis,11
+2024-03-19T09:12,3/16/24,12u,Bear River,12,Olympus,11
+2024-03-19T09:13,3/16/24,12u,Murray Black,13,Kearns A,11
+2024-03-19T09:13,3/16/24,12u,Cache,5,Kearns B,0
+2024-03-19T09:14,3/16/24,12u,United Blue,21,Murray Orange,4
+2024-03-21T17:21,3/20/2024,18u Boys,Ogden,8,Cyprus,5
+2024-03-21T17:21,3/20/2024,16u boys,Ogden,11,Cyprus,7
+2024-03-26T09:24,3/21/24,16u boys,Kearns A,19,Murray Black,2
+2024-03-26T09:24,3/21/24,18u Boys,United,24,Cyprus,7
+2024-03-26T09:25,3/21/24,18u Boys,Kearns A,17,South Davis,14
+2024-03-26T09:25,3/21/24,16u boys,Olympus,12,United,9
+2024-03-26T09:26,3/21/24,18u Boys,Kearns B,12,Tooele,9
+2024-03-26T09:26,3/21/24,18u Boys,Kearns A,13,Murray,6
+2024-03-26T09:27,3/21/24,16u boys,Kearns B,10,Murray Orange,3
+2024-03-26T09:28,3/22/24,16u boys,Kearns A,19,Olympus,2
+2024-03-26T09:28,3/22/24,14u boys,Kearns A,14,Cache A,1
+2024-03-27T08:44,3/21/24,10u,United,11,Murray,8
+2024-03-27T08:45,3/22/24,10u,Kearns,13,Bear River,5
+2024-03-27T08:47,3/22/24,18u Boys,Olympus,15,Cyprus,5
+2024-03-27T08:48,3/22/24,18u Boys,Bear River,13,Kearns B,10
+2024-03-27T08:49,3/22/24,16u boys,United,13,Murray Black,7
+2024-03-27T08:50,3/22/24,18u Boys,Murray,10,South Davis,7
+2024-03-27T08:52,3/22/24,18u Boys,United,18,Olympus,9
+2024-03-27T08:52,3/23/24,16u boys,Kearns B,13,Cyprus,6
+2024-03-27T08:54,3/23/24,18u Boys,Kearns B,14,Cache,5
+2024-03-27T08:55,3/23/24,18u Boys,Bear River,21,Tooele,6
+2024-03-27T08:56,3/23/24,16u boys,Cache,17,South Davis,8
+2024-03-27T08:57,3/23/24,16u boys,Kearns A,23,United,1
+2024-03-27T08:58,3/23/24,16u boys,Murray Black,17,Olympus,5
+2024-03-27T08:58,3/23/24,18u Boys,Bear River,22,Cache,7
+2024-03-27T08:59,3/23/24,18u Boys,South Davis,17,Cyprus,11
+2024-03-27T09:00,3/23/24,14u boys,Kearns A,18,United Red,6
+2024-03-27T09:00,3/23/24,18u Boys,Murray,14,Olympus,7
+2024-03-27T09:14,3/20/24,18u Girls,United,12,Olympus,7
+2024-03-27T09:19,3/23/24,18u Boys,Kearns A,17,United,9
+2024-03-27T09:19,3/21/24,14u boys,United Red,27,Murray,5
+2024-03-27T09:20,3/21/24,16u boys,Kearns B,5,South Davis,0
+2024-03-27T09:21,3/21/24,10u,United,11,Murray,8
+2024-03-27T09:21,3/21/24,14u boys,Kearns B,21,Olympus,2
+2024-03-27T09:22,3/21/24,14u boys,United Blue,10,Kearns B,9
+2024-03-27T09:22,3/21/24,14u boys,Murray,15,South Davis,5
+2024-03-27T09:24,3/21/24,16u boys,Cyprus,13,South Davis,12
+2024-03-27T09:24,3/22/24,18u Boys,Cache,16,Tooele,15
+2024-03-27T09:25,3/22/24,14u boys,Kearns B,19,Cache B,6
+2024-03-27T09:25,3/22/24,10u,Kearns,13,Bear River,5
+2024-03-28T08:55,3/22/24,16u boys,Cache,14,Cyprus,8
+2024-03-28T08:55,3/22/24,14u boys,United Blue,17,Bear River,9
+2024-03-28T08:56,2/22/24,10u,United,14,Kearns,6
+2024-03-28T08:57,3/22/24,16u boys,Murray Orange,13,Cyprus,4
+2024-03-28T08:57,2/23/24,10u,Kearns,17,Murray,5
+2024-03-28T08:58,3/23/24,10u,United,16,Bear River,4
+2024-03-28T08:59,3/23/24,14u boys,United Red,27,South Davis,1
+2024-03-28T09:01,3/23/24,14u boys,Olympus,18,Cache A,14
+2024-03-28T09:02,3/23/24,14u boys,Bear River,21,Cache B,6
+2024-03-28T09:02,3/23/24,10u,Murray,12,Bear River,8
+2024-03-28T09:03,3/23/24,14u boys,Murray,8,Olympus,7
+2024-03-28T09:03,3/23/24,16u boys,Kearns B,16,Cache,9
+2024-03-28T09:04,3/23/24,14u boys,Cache A,16,South Davis,8
+2024-03-28T09:04,3/23/24,14u boys,Bear River,11,Kearns B,8
+2024-03-28T09:05,3/23/24,14u boys,United Blue,21,Cache B,2
+2024-03-28T09:18,3/25/24,18u Boys,Bear River,15,Tooele,4
+2024-03-28T09:18,3/26/24,18u Girls,Olympus,14,Utah County,2
+2024-03-28T09:19,3/26/24,18u Boys,Olympus,19,Utah County,4
+2024-03-28T09:20,3/26/24,16u boys,Olympus,13,Utah County,11
+2024-03-28T09:20,3/27/24,16u boys,Kearns A,19,United,18
+2024-03-28T09:21,3/27/24,18u Girls,United,13,Kearns A,11
+2024-03-29T09:31,3/27/24,18u Girls,Murray,16,Cyprus,2
+2024-03-29T08:30,3/27/25,18u Boys,Murray,15,Cyprus,12
+2024-03-29T08:32,3/27/26,16u boys,Murray,14,Cyprus,6
+2024-03-29T12:04,3/27/2024,16u boys,Kearns A,19,United,18
+2024-03-29T12:05,3/27/2024,18u Girls,United,13,Kearns A,11
+2024-03-29T12:05,3/27/2024,18u Boys,United,12,Kearns A,8
+2024-03-29T12:06,3/28/2024,16u boys,Kearns A,21,South Davis,2
+2024-03-29T12:07,3/28/2024,18u Girls,Kearns A,19,South Davis,5
+2024-03-29T13:19,3/28/2024,12u,Kearns A,17,South Davis,4
+2024-03-29T13:20,3/28/2024,14u boys,South Davis,15,Kearns B,13
+2024-03-29T13:21,3/28/2024,18u Boys,Kearns A,15,South Davis,5
+2024-03-29T13:22,3/27/2024,14u boys,Kearns A,17,United Red,6
+2024-03-29T13:24,3/27/2024,14u girls,Kearns,17,United,4
+2024-04-08T08:55,3/29/24,12u,Bear River,15,Cache,3
+2024-04-08T08:55,3/29/24,12u,Bear River,9,Kearns A,4
+2024-04-08T08:56,3/29/24,10u,Kearns,13,Bear River,10
+2024-04-08T08:57,3/29/24,12u,Kearns B,15,Cache,6
+2024-04-08T08:58,3/29/24,14u boys,Cache A,10,Bear River,5
+2024-04-08T09:01,3/30/24,14u boys,Cache A,10,Wasatch,4
+2024-04-08T09:01,3/30/24,14u boys,Kearns A,16,Cache B,0
+2024-04-08T09:02,3/30/24,14u boys,Bear River,9,Wasatch,7
+2024-04-08T09:03,3/30/24,14u boys,Kearns A,4,Cache A,2
+2024-04-08T09:04,3/30/24,14u boys,Kearns A,12,Cache A,8
+2024-04-08T09:05,3/30/24,14u boys,Wasatch,11,Cache B,3
+2024-04-08T09:05,3/30/24,14u boys,Kearns A,13,Bear River,4
+2024-04-08T09:06,4/4/24,18u Girls,Cache,10,Tooele,2
+2024-04-08T09:08,4/4/24,18u Girls,Cache,8,Cedar City,4
+2024-04-08T09:08,4/4/24,18u Girls,Cache,11,Murray,9
+2024-04-09T10:35,4/4/24,18u Boys,Utah County,9,Tooele,7
+2024-04-09T10:38,4/4/24,18u Boys,Cyprus,14,Kearns B,13
+2024-04-09T10:39,4/5/24,18u Boys,SUWP,17,Cache,11
+2024-04-09T10:40,4/5/24,18u Boys,Murray B,18,Utah County,5
+2024-04-09T10:40,4/5/24,18u Boys,Wasatch,7,Cedar City,5
+2024-04-09T10:41,4/5/24,18u Boys,Murray B,22,Tooele,3
+2024-04-09T10:41,4/6/24,18u Boys,Cedar City,9,Tooele,6
+2024-04-09T10:42,4/6/24,18u Boys,Murray B,17,Cyprus,9
+2024-04-09T10:43,4/6/24,18u Boys,Cache,16,Wasatch,8
+2024-04-09T10:43,4/6/24,18u Boys,Utah County,7,Kearns B,6
+2024-04-09T10:44,4/6/24,18u Boys,SUWP,16,Cyprus,13
+2024-04-09T10:44,4/6/24,18u Boys,Utah County,10,Cache,9
+2024-04-09T10:45,4/6/24,18u Boys,Kearns B,14,Wasatch,7
+2024-04-10T08:31,4/4/24,18u Girls,Murray,7,Cedar City,4
+2024-04-10T08:32,4/4/24,18u Girls,Utah County,10,Cyprus,9
+2024-04-10T08:33,4/4/24,18u Girls,Murray,16,Tooele,1
+2024-04-10T08:33,4/5/24,18u Girls,Utah County,7,Wasatch,4
+2024-04-10T08:35,4/5/24,18u Girls,Cedar City,12,Tooele,1
+2024-04-10T08:35,4/5/24,18u Girls,Cyprus,11,Wasatch,5
+2024-04-10T08:36,4/5/24,18u Girls,Tooele,7,Wasatch,4
+2024-04-10T08:37,4/6/24,18u Girls,Cedar City,12,Cyprus,7
+2024-04-10T08:40,4/6/24,18u Girls,Murray,19,Utah County,8
+2024-04-10T08:42,4/4/24,14u boys,Cedar City,28,Wasatch,4
+2024-04-10T08:43,4/4/24,14u boys,Kearns A,23,Cache,3
+2024-04-10T08:44,4/5/24,14u boys,Cache,18,Wasatch,4
+2024-04-10T08:44,4/5/24,14u boys,Kearns A,24,Cedar City,3
+2024-04-10T08:46,4/5/24,14u boys,Murray,14,Wasatch,5
+2024-04-10T08:47,4/6/24,14u boys,Murray,14,Cache,9
+2024-04-10T08:47,4/6/24,14u boys,Cache,15,Wasatch,8
+2024-04-10T08:51,4/4/24,12u,Murray Black,18,Cedar City,6
+2024-04-10T08:51,4/4/24,12u,Kearns A,23,SUWP,3
+2024-04-10T08:52,4/5/24,12u,Murray Black,5,Kearns B,0
+2024-04-10T08:54,4/5/24,12u,Cedar City,17,Kearns B,6
+2024-04-10T08:55,4/5/24,12u,Kearns A,16,Murray Black,15
+2024-04-10T08:55,4/6/24,12u,Murray Black,21,SUWP,5
+2024-04-10T08:56,4/6/24,12u,Kearns A,13,Cedar City,5
+2024-04-10T08:57,4/6/24,12u,SUWP,18,Kearns B,5
+2024-04-11T08:08,4/10/2024,18u Girls,Kearns A,9,United,8
+2024-04-11T08:49,4/10,12u,Murray Black,18,Olympus,2
+2024-04-11T08:50,4/10,12u,Olympus,13,Murray Orange,5
+2024-04-11T08:51,4/10,14u boys,Murray,13,Olympus,8
+2024-04-11T09:09,4/9/24,18u Girls,Olympus,7,Murray,3
+2024-04-11T09:10,4/9/24,18u Girls,Kearns A,10,United,8
+2024-04-11T09:13,4/9/24,18u Boys,United,21,Kearns A,12
+2024-04-11T09:14,4/9/24,18u Boys,United,15,Olympus,9
+2024-04-11T09:14,4/9/24,18u Girls,United,12,Olympus,10
+2024-04-11T09:15,4/9/24,16u boys,United,12,Olympus,5
+2024-04-11T09:16,4/9/24,16u Girls,Olympus,7,United,5
+2024-04-15T08:59,4/5/24,14u boys,Bear River,11,Cache B,5
+2024-04-15T17:25,4/12/24,18u Boys,Ogden,8,Bear River,5
+2024-04-15T17:26,4/12/24,16u boys,Ogden,12,Bear River,11
+2024-04-15T17:27,4/12/24,14u boys,Ogden,10,Bear River,5
+2024-04-17T08:53,4/16/24,12u,Murray Black,15,Bear River,14
+2024-04-17T08:54,4/16/24,10u,Murray,7,Bear River,3
+2024-04-17T08:54,4/16/24,18u Girls,Olympus,6,Murray,3
+2024-04-17T08:55,4/16/24,12u,Bear River,21,Murray Orange,6
+2024-04-17T08:56,4/16/24,18u Boys,Murray,11,Olympus,8
+2024-04-17T08:57,4/16/24,14u boys,Murray,19,Bear River,4
+2024-04-17T08:57,4/16/24,16u Girls,Olympus,5,Murray,4
+2024-04-17T08:58,4/16/24,16u boys,Olympus,15,Murray,9
+2024-04-18T07:21,4/17/24,18u Girls,Cyprus,7,Tooele,5
+2024-04-18T07:22,4/17/24,18u Boys,Cyprus,15,Tooele,4
+2024-04-22T08:47,4/19/24,14u boys,Bear River,16,Olympus,7
+2024-04-22T08:49,4/19/24,14u boys,Olympus,15,Cache A,7
+2024-04-22T08:50,4/19/24,14u boys,Olympus,12,South Davis,5
+2024-04-22T08:52,4/19/24,14u boys,Cache A,14,Wasatch,6
+2024-04-22T08:54,4/20/24,10u,Kearns,15,Bear River,7
+2024-04-22T08:55,4/20/24,14u boys,Utah County,11,Cache B,5
+2024-04-22T08:55,4/20/24,18u Boys,Bear River,7,Kearns B,5
+2024-04-22T08:58,4/20/24,12u,Utah County,16,Cache,14
+2024-04-22T08:59,4/20/24,16u boys,Kearns A,10,Bear River,6
+2024-04-22T09:00,4/20/24,12u,Bear River,19,Kearns A,9
+2024-04-22T09:01,4/20/24,14u boys,Olympus,13,Wasatch,4
+2024-04-22T09:03,4/20/24,14u boys,Kearns A,21,Bear River,8
+2024-04-22T09:04,4/20/24,14u boys,Cache B,12,Olympus,8
+2024-04-22T09:07,4/20/24,12u,Bear River,7,Kearns A,5
+2024-04-22T09:08,4/20-24,14u boys,Utah County,15,Olympus,6
+2024-04-22T09:09,4/20-24,14u boys,Kearns A,15,Bear River,7
+2024-04-22T09:10,4/20/24,18u Boys,Bear River,9,Ogden,8
+2024-04-22T09:11,4/20-24,18u Girls,Kearns B,13,Bear River,9
+2024-04-22T09:12,4/20/24,16u boys,Bear River,16,Ogden,9
+2024-04-22T09:13,4/20/24,14u boys,South Davis,19,Wasatch,5
+2024-04-22T09:14,4/20/24,12u,South Davis,21,Utah County,17
+2024-04-22T09:15,4/20-24,14u boys,South Davis,21,Cache B,3
+2024-04-22T09:15,4/20/24,14u boys,Utah County,11,Cache A,10
+2024-04-22T09:17,4/20-24,14u boys,Kearns B,8,Ogden,7
+2024-04-22T09:18,4/20-24,18u Boys,Ogden,10,Kearns B,6
+2024-04-22T09:22,4/20/24,16u boys,Ogden,9,Kearns B,6
+2024-04-22T09:24,4/20/24,14u boys,Ogden,15,Bear River,7
+2024-04-22T11:31,4/20/2024,14u boys,Kearns B,8,Ogden,7
+2024-04-22T11:31,4/20/2024,18u Boys,Bear River,7,Kearns B,5
+2024-04-22T11:32,4/20/2024,18u Girls,Kearns B,15,Bear River,9
+2024-04-22T11:32,4/20/2024,16u boys,Kearns B,10,Bear River,6
+2024-04-22T11:32,4/20/2024,12u,Bear River,19,Kearns B,9
+2024-04-22T11:33,4/20/2024,18u Boys,Ogden,10,Kearns B,6
+2024-04-22T11:35,4/20/2024,18u Boys,Bear River,9,Ogden,8
+2024-04-22T11:35,4/20/2024,14u boys,Ogden,15,Bear River,7
+2024-04-22T11:36,4/20/2024,16u boys,Bear River,16,Ogden,9
+2024-04-23T08:39,4/19/24,16u boys,Utah County,17,Cedar City,13
+2024-04-23T08:40,4/19/24,16u boys,Utah County,15,Cedar City,14
+2024-04-23T08:44,4/19/24,18u Girls,Canyon View,6,Utah County,3
+2024-04-23T08:45,4/19/24,18u Girls,Canyon View,11,Utah County,9
+2024-04-23T08:45,4/19-24,18u Girls,Cedar City,7,Utah County,2
+2024-04-23T08:46,4/19/24,18u Girls,Cedar City,5,Canyon View,4
+2024-04-23T08:47,4/19/24,18u Girls,Cedar City,9,Canyon View,1
+2024-04-23T08:48,4/19/24,18u Boys,Utah County,16,Cedar City,9
+2024-04-23T08:49,4/19/24,18u Boys,SUWP,20,Utah County,10
+2024-04-23T08:51,4/19/24,18u Boys,Cedar City,8,Utah County,4
+2024-04-23T08:52,4/19/24,18u Boys,SUWP,19,Canyon View,7
+2024-04-23T08:53,4/19/24,18u Boys,Canyon View,17,Utah County,8
+2024-04-23T08:53,4/19/24,18u Boys,Canyon View,14,Cedar City,7
+2024-04-23T08:54,4/19/24,18u Boys,SUWP,20,Cedar City,9
+2024-04-24T07:36,South Davis Tournament,12u,South Davis A,20,Cache,2
+2024-04-24T07:37,South Davis Tournament,12u,Utah County,11,South Davis B,4
+2024-04-24T07:38,South Davis Tournament,12u,Cedar City,24,Cache,5
+2024-04-24T07:39,South Davis Tournament,12u,SUWP,9,Utah County,8
+2024-04-24T07:40,South Davis Tournament,12u,Cedar City,16,South Davis A,10
+2024-04-24T07:41,South Davis Tournament,12u,SUWP,12,South Davis B,5
+2024-04-24T07:42,South Davis Tournament,12u,South Davis B,10,Cache,9
+2024-04-24T07:43,South Davis Tournament,12u,South Davis A,20,Utah County,15
+2024-04-24T07:44,South Davis Tournament,12u,Cedar City,12,SUWP,8
+2024-04-24T07:45,South Davis Tournament,18u Girls,South Davis,12,Cache,10
+2024-04-24T07:46,Northern Utah invitational,18u Boys,Cache,16,Cyprus,10
+2024-04-24T07:46,Northern Utah invitational,18u Boys,Utah County,5,Tooele,4
+2024-04-24T07:47,Northern Utah invitational,18u Boys,South Davis,13,Tooele,8
+2024-04-24T07:50,Northern Utah invitational,18u Boys,Cyprus,11,Utah County,8
+2024-04-24T07:51,Northern Utah invitational,18u Boys,South Davis,23,Cache,8
+2024-04-24T07:51,Northern Utah invitational,18u Boys,Cache,13,Tooele,7
+2024-04-24T07:52,Northern Utah invitational,18u Girls,Cache,6,Tooele,1
+2024-04-24T07:53,Northern Utah invitational,18u Girls,Cyprus,7,Utah County,6
+2024-04-24T07:53,Northern Utah invitational,18u Girls,Tooele,8,Utah County,5
+2024-04-24T07:54,Northern Utah invitational,18u Girls,Cache,16,Cyprus,7
+2024-04-24T07:54,Northern Utah invitational,18u Girls,South Davis,14,Tooele,10
+2024-04-24T07:55,Northern Utah invitational,18u Girls,South Davis,10,Utah County,4
+2024-04-24T07:57,4/24/2024 7:57:46,18u Girls,South Davis,18,Cyprus,7
+2024-04-24T07:58,4/24/2024 7:58:16,18u Boys,South Davis,15,Cyprus,9
+2024-04-24T07:58,4/24/2024 7:58:56,16u boys,Cyprus,15,South Davis,13
+2024-04-24T11:11,4/17/2024,16u boys,Kearns B,10,Murray B,8
+2024-04-24T11:11,4/17/2024,16u Girls,Kearns,11,Murray,8
+2024-04-24T11:12,4/17/2024,10u,Kearns,14,Murray,5
+2024-04-24T11:13,4/17/2024,12u,Kearns B,13,Murray Black,8
+2024-04-24T11:13,4/17/2024,12u,Kearns A,13,Murray Black,8
+2024-04-24T11:14,4/17/2024,12u,Kearns B,13,Murray Orange ,4
+2024-04-24T11:14,4/17/2024,14u boys,Kearns A,19,Murray,3
+2024-04-24T11:15,4/23/2024,16u Girls,Kearns ,17,Olympus,10
+2024-04-24T11:16,4/23/2024,16u boys,Kearns A,16,Olympus,5
+2024-04-24T11:16,4/23/2024,18u Girls,Kearns A,14,Olympus,7
+2024-04-24T11:17,4/23/2024,18u Boys,Kearns A,15,Olympus,9
+2024-04-25T09:20,4/23/24,14u boys,Bear River,9,Cache B,8
+2024-04-29T08:33,4/25/24,18u Boys,United,13,Kearns A,6
+2024-04-29T08:34,4/25/24,16u boys,United Red,11,Olympus,3
+2024-04-29T08:35,4/25/24,18u Boys,Kearns A,19,Cyprus,6
+2024-04-29T08:36,4/25/24,16u boys,United Red,13,Kearns A,11
+2024-04-29T08:37,4/25/24,18u Boys,United,17,Cyprus,6
+2024-04-29T08:37,4/26/24,16u boys,Kearns A,17,Olympus,4
+2024-04-29T08:38,4/26/24,18u Girls,Canyon View,11,Cyprus,4
+2024-04-29T08:39,4/26/24,18u Boys,Cyprus,17,Bear River,7
+2024-04-29T08:39,4/26/24,18u Boys,Cache,13,Canyon View,7
+2024-04-29T08:40,4/26/24,18u Girls,Bear River,11,Cyprus,10
+2024-04-29T08:41,4/26/24,18u Boys,Cedar City,6,Kearns B,5
+2024-04-29T08:42,4/26/24,18u Girls,Kearns A,11,Cache,10
+2024-04-29T08:43,4/27/24,18u Girls,Cedar City,8,Cyprus,6
+2024-04-29T08:44,4/27/24,18u Girls,Canyon View,10,Kearns B,8
+2024-04-29T08:44,4/27/24,18u Boys,United,21,Bear River,7
+2024-04-29T08:45,4/27/24,18u Boys,Kearns B,13,Cache,9
+2024-04-29T08:45,4/27/24,16u boys,United Red,18,Bear River,5
+2024-04-29T08:46,4/27/24,18u Girls,Cache,11,Kearns B,4
+2024-04-29T08:47,4/27/24,18u Boys,Canyon View,10,Kearns B,9
+2024-04-29T08:47,4/27/24,18u Boys,Cache,10,Cedar City,9
+2024-04-29T08:48,4/27/24,18u Girls,Cache,9,Canyon View,4
+2024-04-29T08:48,4/27/24,16u Girls,Kearns,16,United,9
+2024-04-29T08:49,4/27/24,18u Boys,Kearns A,19,Bear River,6
+2024-04-29T08:50,4/25/24,16u Girls,Olympus,11,Cyprus,5
+2024-04-29T08:50,4/25/24,16u boys,Kearns B,13,United Blue,3
+2024-04-29T08:51,4/25/24,16u Girls,United,12,Cyprus,4
+2024-04-29T08:51,4/25/24,16u boys,Cyprus,11,United Blue,2
+2024-04-29T08:52,4/25-24,16u Girls,United,9,Olympus,5
+2024-04-29T08:53,4/25-24,16u boys,Kearns B,13,Cyprus,9
+2024-04-29T08:53,4/26/24,16u boys,Cedar City,9,Cyprus,9
+2024-04-29T08:54,4/26/24,16u boys,Cache,18,United Blue,5
+2024-04-29T08:54,4/26/24,16u Girls,Kearns,20,Cache,7
+2024-04-29T08:55,4/26/24,18u Girls,Cedar City,15,Kearns B,13
+2024-04-29T08:55,4/26-24,16u boys,Kearns A,24,Bear River,9
+2024-04-29T08:56,4/26/24,16u Girls,Kearns,11,Cedar City,6
+2024-04-29T08:56,4/26-24,16u boys,Cache,21,Cedar City,10
+2024-04-29T08:58,4/27-24,16u boys,Cache,13,Cyprus,10
+2024-04-29T08:59,4/27-24,16u Girls,Cedar City,12,Cache,9
+2024-04-29T08:59,4/27/24,18u Boys,Canyon View,12,Cedar City,8
+2024-04-29T09:00,4/27-24,16u boys,Kearns B,8,Cache,7
+2024-04-29T09:01,4/27-24,16u boys,Olympus,11,Bear River,7
+2024-04-29T09:01,4/27/24,16u boys,Cedar City,9,United Blue,7
+2024-04-29T09:02,4/27-24,16u boys,Kearns B,15,Cedar City,11
+2024-04-29T09:02,4/27/24,18u Girls,Kearns A,19,Bear River,3
+2024-04-29T09:03,4/27/24,18u Girls,Cedar City,10,Bear River,4
+2024-04-29T09:03,4/27/24,16u Girls,Cache,13,Cyprus,4
+2024-04-29T09:04,4/27/24,16u Girls,Cedar City,6,Olympus,5
+2024-04-29T18:56,4/27/24,16u boys,South Davis,18,Ogden,8
+2024-04-29T18:57,4/27/24,14u boys,South Davis,8,Ogden,5
+2024-04-29T18:58,4/27/24,18u Boys,South Davis,14,Ogden,3
+2024-04-29T18:59,4/29/24,16u boys,Murray,10,Ogden,8
+2024-04-29T19:00,4/29/25,14u boys,Murray,10,Ogden,8
+2024-04-29T19:00,4/29/26,18u Boys,Murray,13,Ogden,2
+2024-04-30T12:45,4/23/24,16u boys,Utah County,16,Ogden,13
+2024-04-30T12:46,4/23/24,18u Boys,Utah County,10,Ogden,6
+2024-04-30T12:46,4/23/24,14u boys,Utah County,9,Ogden,4
+2024-04-30T12:48,4/30/24,12u,Murray Black,18,Utah County,1
+2024-04-30T12:49,4/30/24,12u,Murray Orange,15,Utah County,7
+2024-04-30T12:49,4/30/24,14u boys,Murray,20,Utah County,9
+2024-04-30T12:55,3/27/24,18u Girls,Utah County,10,Tooele,9
+2024-04-30T12:56,3/27/24,18u Boys,Utah County,11,Tooele,2
+2024-04-30T12:58,4/9/24,18u Boys,Murray,18,Utah County,3
+2024-04-30T12:59,4/9/24,18u Girls,Murray,11,Utah County,4
+2024-04-30T12:59,4/9/24,16u boys,Murray,15,Utah County,7
+2024-04-30T13:11,4/18/24,18u Boys,South Davis,13,Utah County,7
+2024-04-30T13:12,4/18/24,18u Girls,South Davis,13,Utah County,9
+2024-04-30T16:39,4/2724,16u boys,Ogden,18,South Davis,8
+2024-04-30T21:02,4/30/24,18u Boys,Utah County,17,Wasatch,7
+2024-04-30T21:03,4/30/24,18u Girls,Utah County,11,Wasatch,2
+2024-05-02T08:42,4/29/24,18u Girls,Bear River,12,Wasatch,3
+2024-05-02T08:43,4/29/24,18u Boys,Wasatch,13,Bear River,12
+2024-05-02T08:44,4/30/24,18u Boys,Olympus,19,South Davis,14
+2024-05-02T08:44,4/30/24,18u Girls,Olympus,13,South Davis,7
+2024-05-02T08:45,4/30/24,16u boys,Olympus,13,South Davis,2
+2024-05-05T15:54,03/25/2024,18u Boys,Kearns B,15,Wasatch,7
+2024-05-05T15:55,03/25/2024,18u Girls,Kearns B,15,Wasatch,4
+2024-05-05T15:56,04/15/2024,18u Boys,Cyprus,15,Wasatch,12
+2024-05-05T15:57,04/15/2024,18u Girls,Cyprus,10,Wasatch,2
+2024-05-05T15:58,03/20/2024,18u Girls,Wasatch,9,Tooele,8
+2024-05-05T15:59,03/20/2024,18u Boys,Wasatch,18,Tooele,12
+2024-05-06T08:25,4/4/24,18u Girls,South Davis,16,Cache,15
+2024-05-06T08:26,4/4/24,18u Boys,South Davis,23,Cache,11
+2024-05-08T10:53,4/22/24,18u Girls,United,8,Murray,5

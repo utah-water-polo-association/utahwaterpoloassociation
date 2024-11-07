@@ -1,6 +1,5 @@
 import csv
 import sys
-import pprint
 from collections import defaultdict
 from pydantic import BaseModel
 from datetime import datetime

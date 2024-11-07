@@ -1,4 +1,4 @@
-from utahwaterpoloassociation.models import Data
+from utahwaterpoloassociation.models.models import Data
 from jinja2 import Environment, PackageLoader, select_autoescape
 import markupsafe
 from markdown.extensions import Extension

@@ -1,7 +1,7 @@
 import glob
 import os
 from utahwaterpoloassociation.file_data import FileData
-from utahwaterpoloassociation.models import Data
+from utahwaterpoloassociation.models.models import Data
 from jinja2 import Environment, Template
 
 from .page_base import PageBase

@@ -1,17 +1,16 @@
 import httpx
 import os
 import csv
-import pprint
 from typing import Optional
 import json
 from slugify import slugify
-from utahwaterpoloassociation.models import (
-    Leauge,
-    SECTIONS,
-)
+from utahwaterpoloassociation.models import Leauge, LEAUGE_CONFIG
 from notion2md.exporter.block import MarkdownExporter
 from notion_client import Client
 from pydantic import BaseModel
+
+from utahwaterpoloassociation.repos import save_league, Leagues
+
 
 BASE_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT6ytRH8Uqoesk5-A8suLW6OlJ-ucUXgAeTab_c6rIKDSC1SO3Onrj_Tno9koOsPUNIbOuuGAVj_4yw/pub?output=csv"
 
@@ -130,11 +129,13 @@ def get_content():
         json.dump(data, fd)
 
 
-def get_league() -> Leauge:
+def get_league(league_id: Leagues) -> Leauge:
     league = Leauge()
-    for section in SECTIONS:
+    for section in LEAUGE_CONFIG[league_id]:
         print("parsing %s" % (section.label))
-        data = httpx.get(BASE_URL + "&gid=" + section.gid, follow_redirects=True)
+        data = httpx.get(
+            section.base_url + "&gid=" + section.gid, follow_redirects=True
+        )
         reader = csv.DictReader(data.iter_lines())
         items: list[dict[str, str]] = [x for x in reader]
         parsed_items = section.model.from_csv(items)
@@ -145,7 +146,8 @@ def get_league() -> Leauge:
 
 
 if __name__ == "__main__":
-    leauge: Leauge = get_league()
+    league_id = Leagues.UTAH_SPRING_2025
+    leauge: Leauge = get_league(league_id)
     data = leauge.model_dump(mode="json", serialize_as_any=True)
     raw = json.dumps(data, sort_keys=True)
     with open("league.json", "w") as file:
@@ -153,3 +155,4 @@ if __name__ == "__main__":
         file.write(raw)
 
     get_content()
+    save_league(league_id, league=leauge)

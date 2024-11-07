@@ -1,7 +1,7 @@
 import os
 from pydantic import BaseModel
 from utahwaterpoloassociation.file_data import FileData
-from utahwaterpoloassociation.models import Data
+from utahwaterpoloassociation.models.models import Data
 from jinja2 import Environment, Template
 
 

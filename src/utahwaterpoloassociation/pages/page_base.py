@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from utahwaterpoloassociation.models import Data
+from utahwaterpoloassociation.models.models import Data
 from jinja2 import Environment
 
 

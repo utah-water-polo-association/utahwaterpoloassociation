@@ -1,5 +1,6 @@
 from typing import Any
-from utahwaterpoloassociation.models import Leauge, Data
+from utahwaterpoloassociation.models.models import Data
+from utahwaterpoloassociation.repos import get_league, Leagues
 import json
 
 
@@ -13,9 +14,7 @@ def process_globals(g) -> Any:
 
 
 def get_global_data() -> Data:
-    league = None
-    with open("league.json", "r") as fd:
-        league: Leauge = Leauge.model_validate_json(fd.read())
+    league = get_league(Leagues.UTAH_SPRING_2024)
 
     globals = {}
     with open(file="global.json", mode="r") as fd:
