@@ -70,12 +70,16 @@ def makeExtension(env: Environment, data: Data):
     return MarkdownJinja(env=env, data=data)
 
 
-def get_environment(data: Data) -> Environment:
-
-    env = Environment(
+def get_jinja_env() -> Environment:
+    return Environment(
         loader=PackageLoader("utahwaterpoloassociation"),
         autoescape=select_autoescape(),
     )
+
+
+def get_environment(data: Data) -> Environment:
+
+    env = get_jinja_env()
 
     def markdown_filter(text):
         text = text.replace("\u2018", "'")  # Left single quote

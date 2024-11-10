@@ -14,9 +14,13 @@ import numpy as np
 import pandas as pd
 from ratingslib.ratings.rating import RatingSystem
 from ratingslib.utils.enums import ratings
-from ratingslib.utils.methods import (create_items_dict, get_indices,
-                                      indices_and_points, log_numpy_matrix,
-                                      parse_columns)
+from ratingslib.utils.methods import (
+    create_items_dict,
+    get_indices,
+    indices_and_points,
+    log_numpy_matrix,
+    parse_columns,
+)
 from ratingslib.utils.validation import validate_type
 from numpy import linalg
 
@@ -53,7 +57,7 @@ class Massey(RatingSystem):
 
     References
     ----------
-    .. [1] Massey, K. (1997). Statistical models applied to the rating of sports teams. 
+    .. [1] Massey, K. (1997). Statistical models applied to the rating of sports teams.
            Statistical models applied to the rating of sports teams.
 
     Examples
@@ -90,9 +94,9 @@ class Massey(RatingSystem):
     """
 
     def __init__(self, version=ratings.MASSEY, data_limit=0):
-        validate_type(data_limit, int, 'data_limit')
+        validate_type(data_limit, int, "data_limit")
         if data_limit < 0:
-            raise ValueError('data_limit should not be negative')
+            raise ValueError("data_limit should not be negative")
         super().__init__(version)
         self.data_limit = data_limit
         self.create_ordered_dict(data_limit=self.data_limit)
@@ -103,20 +107,26 @@ class Massey(RatingSystem):
         try:
             self.rating = linalg.solve(self.Madj, self.d_adj)
         except linalg.LinAlgError:
-            warnings.warn(
-                "Singular matrix in Massey, all ratings will be set to 0")
             self.rating = np.zeros(len(self.d_adj))
 
-    def create_massey_matrix(self, data_df: pd.DataFrame,
-                             items_df: pd.DataFrame,
-                             columns_dict: Optional[Dict[str, Any]] = None
-                             ) -> Tuple[np.ndarray, np.ndarray]:
+    def create_massey_matrix(
+        self,
+        data_df: pd.DataFrame,
+        items_df: pd.DataFrame,
+        columns_dict: Optional[Dict[str, Any]] = None,
+    ) -> Tuple[np.ndarray, np.ndarray]:
         """Construction of adjusted Massey matrix (``M_adj``) and adjusted
         point differential vector (``d_adj``)"""
         col_names = parse_columns(columns_dict)
-        home_col_ind, away_col_ind, home_points_col_ind, away_points_col_ind =\
-            get_indices(col_names.item_i, col_names.item_j,
-                        col_names.points_i, col_names.points_j, data=data_df)
+        home_col_ind, away_col_ind, home_points_col_ind, away_points_col_ind = (
+            get_indices(
+                col_names.item_i,
+                col_names.item_j,
+                col_names.points_i,
+                col_names.points_j,
+                data=data_df,
+            )
+        )
         data_np = data_df.to_numpy()
         teams_dict = create_items_dict(items_df)
 
@@ -127,8 +137,13 @@ class Massey(RatingSystem):
 
         for row in data_np:
             i, j, points_ij, points_ji = indices_and_points(
-                row, teams_dict, home_col_ind, away_col_ind,
-                home_points_col_ind, away_points_col_ind)
+                row,
+                teams_dict,
+                home_col_ind,
+                away_col_ind,
+                home_points_col_ind,
+                away_points_col_ind,
+            )
             d_adj[i] += points_ij - points_ji
             games[i] += 1
             d_adj[j] += points_ji - points_ij
@@ -145,18 +160,27 @@ class Massey(RatingSystem):
 
         return Madj, d_adj
 
-    def preparation_phase(self, data_df: pd.DataFrame, items_df: pd.DataFrame,
-                          columns_dict: Optional[Dict[str, Any]] = None):
+    def preparation_phase(
+        self,
+        data_df: pd.DataFrame,
+        items_df: pd.DataFrame,
+        columns_dict: Optional[Dict[str, Any]] = None,
+    ):
         self.Madj, self.d_adj = self.create_massey_matrix(
-            data_df, items_df, columns_dict=columns_dict)
+            data_df, items_df, columns_dict=columns_dict
+        )
 
         np.set_printoptions(precision=2, linewidth=1000, threshold=np.inf)
-        log_numpy_matrix(self.Madj, 'Massey adjusted')
-        log_numpy_matrix(self.d_adj, 'd adjusted')
+        log_numpy_matrix(self.Madj, "Massey adjusted")
+        log_numpy_matrix(self.d_adj, "d adjusted")
 
-    def rate(self, data_df: pd.DataFrame, items_df: pd.DataFrame,
-             sort: bool = False,
-             columns_dict: Optional[Dict[str, Any]] = None) -> pd.DataFrame:
+    def rate(
+        self,
+        data_df: pd.DataFrame,
+        items_df: pd.DataFrame,
+        sort: bool = False,
+        columns_dict: Optional[Dict[str, Any]] = None,
+    ) -> pd.DataFrame:
         items_df = items_df.copy(deep=True)
         if len(data_df.index) > self.data_limit:
             self.preparation_phase(data_df, items_df, columns_dict)

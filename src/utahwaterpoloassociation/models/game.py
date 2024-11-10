@@ -1,9 +1,69 @@
 from pydantic import BaseModel
+from datetime import datetime
 from typing import Optional, ClassVar
 from .csv import from_csv
 from .location import Location
 from .division import Division
 from .team import Team
+
+
+class GameForAnalysis(BaseModel):
+    date: datetime
+    week: int
+    division_name: str
+    home_team_name: str
+    home_team_score: Optional[float]
+    away_team_name: str
+    away_team_score: Optional[float]
+
+    def game_id(self) -> str:
+        return "%s:%s:%s:%s" % (
+            self.date.timestamp,
+            self.division_name,
+            self.home_team_name,
+            self.home_team_score,
+        )
+
+    def to_df_dict(self):
+        return {
+            "Date": self.date,
+            "HomeTeam": self.home_team_name,
+            "AwayTeam": self.away_team_name,
+            "FTHG": self.home_team_score,
+            "FTAG": self.away_team_score,
+        }
+
+    def opponent(self, name: str) -> Optional[str]:
+        if name == self.home_team_name:
+            return self.away_team_name
+        elif name == self.away_team_name:
+            return self.home_team_name
+        else:
+            return None
+
+    def winning_score(self) -> Optional[float]:
+        if self.home_team_score > self.away_team_score:
+            return self.home_team_score
+        else:
+            return self.away_team_score
+
+    def losing_score(self) -> Optional[float]:
+        if self.home_team_score > self.away_team_score:
+            return self.away_team_score
+        else:
+            return self.home_team_score
+
+    def loser(self) -> str:
+        if self.home_team_score > self.away_team_score:
+            return self.away_team_name
+        else:
+            return self.home_team_name
+
+    def winner(self) -> str:
+        if self.home_team_score > self.away_team_score:
+            return self.home_team_name
+        else:
+            return self.away_team_name
 
 
 class Game(BaseModel):
@@ -57,6 +117,27 @@ class Game(BaseModel):
                 self.away_team_name != "",
                 self.home_team_name != "",
             ]
+        )
+
+    def parsed_date(self) -> datetime:
+        return datetime.strptime(self.date, "%m/%d/%Y")
+
+    def for_analysis(self) -> GameForAnalysis:
+        dt = self.parsed_date()
+        _, wk, _ = dt.isocalendar()
+
+        return GameForAnalysis(
+            date=dt,
+            week=wk,
+            division_name=self.division_name,
+            home_team_name=self.home_team_name,
+            home_team_score=(
+                float(self.home_team_score) if self.home_team_score else None
+            ),
+            away_team_name=self.away_team_name,
+            away_team_score=(
+                float(self.away_team_score) if self.away_team_score else None
+            ),
         )
 
     def hydrate_from_league(self, l: "Leauge"):

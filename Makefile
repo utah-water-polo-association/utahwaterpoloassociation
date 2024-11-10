@@ -51,4 +51,7 @@ deploy:
 	./deploy.sh
 
 load:
-	rye run python src/utahwaterpoloassociation/scripts/load.py
+	rye run python src/utahwaterpoloassociation/scripts/load.py > output/ratings.html
+
+notebooks:
+	rye run jupyter lab

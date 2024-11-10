@@ -29,5 +29,5 @@ def get_global_data() -> Data:
         globals = json.load(fd)
         globals["title"] = "Utah Water Polo Association"
         globals = process_globals(globals)
-    print("%s" % (league))
+
     return Data(league=league, meta=globals, past=past_data)

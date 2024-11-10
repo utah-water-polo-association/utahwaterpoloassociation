@@ -1,0 +1,133 @@
+{% extends "base.html.jinja2" %}
+{% block page_header %}
+<div class="border-b border-gray-200">
+    <div class="sm:flex sm:items-baseline">
+        <h1 class="text-2xl sm:text-4xl font-bold text-gray-900">
+            Season Rankings
+        </h1>
+        <div class="mt-4 sm:ml-10 sm:mt-0">
+            <nav class="-mb-px flex space-x-8">
+                {% for name, item in g.past.items() %}
+                <a href="#{{name}}"
+                    class="whitespace-nowrap border-b-2 px-1 pb-1 sm:pb-4 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                    aria-current="page" @click.prevent="season = '{{name}}'; console.log(season)"
+                    x-bind:class="season == '{{name}}' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'">{{name}}</a>
+                {% endfor %}
+                <span class="whitespace-nowrap border-b-2 px-1 pb-1 sm:pb-4">&nbsp;</span>
+            </nav>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block main %}
+<div class="mx-auto max-w-7xl pt-8">
+    {% for name, item in g.past.items() %}
+    <div class="{% if loop.index != 1%}hidden{% endif %}" x-bind:class="season == '{{name}}' ? '' : 'hidden'"
+        id="{{name}}">
+
+        <div class="border-b border-gray-200">
+            <div class="sm:flex sm:items-baseline">
+                <h1 class="text-1xl sm:text-2xl font-bold text-gray-900">
+                    Division
+                </h1>
+                <div class="mt-4 sm:ml-10 sm:mt-0">
+                    <nav class="-mb-px flex space-x-8">
+                        {% for division in league_rankings(g.past[name]) %}
+                        <a href="#{{division.name}}"
+                            class="whitespace-nowrap border-b-2 px-1 pb-1 sm:pb-4 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                            aria-current="page"
+                            @click.prevent="division = '{{name}}:{{division.name}}'; console.log(division)"
+                            x-bind:class="division == '{{name}}:{{division.name}}' {% if loop.index == 1 %}|| division == ''{% endif %} ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'">{{division.name}}</a>
+                        {% endfor %}
+                        <span class="whitespace-nowrap border-b-2 px-1 pb-1 sm:pb-4">&nbsp;</span>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+        {% for division in league_rankings(g.past[name]) %}
+        <div
+            x-bind:class="division == '{{name}}:{{division.name}}' {% if loop.index == 1 %}|| division == ''{% endif %} ? '' : 'hidden'">
+            {% for wk, ratings_by_method, games in division.ratings_by_week() %}
+            <div class="">
+                <h2 class="pt-5 pb-10">Week {{wk}}</h2>
+                <div class="overflow-x-auto flex">
+                    {% for key, ratings in ratings_by_method.items() %}
+                    <div class="flex-none">
+                        <h3>Ranking Method {{key}}</h3>
+                        <table class="divide-y divide-gray-300 mr-10">
+                            <thead>
+                                <tr>
+                                    <td scope="col" class="px-1 py-2 text-left text-sm font-semibold text-gray-900">
+                                        Rank
+                                    </td>
+                                    <td scope="col" class="px-1 py-2 text-left text-sm font-semibold text-gray-900">
+                                        Name
+                                    </td>
+                                    <td scope="col" class="px-1 py-2 text-right text-sm font-semibold text-gray-900">
+                                        W-L
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                {% for rating in ratings %}
+                                <tr>
+                                    <td class="whitespace-nowrap px-1 py-1 text-left text-sm text-gray-500">
+                                        {{rating.ranking}} - {{'%0.2f'
+                                        %
+                                        rating.rating}}
+                                    </td>
+                                    <td class="whitespace-nowrap px-1 py-2 text-sm text-gray-500">{{rating.Item.name}}
+                                    </td>
+                                    <td class="whitespace-nowrap px-1 py-2 text-right text-sm text-gray-500">
+                                        {{rating.Item.wins}} - {{rating.Item.losses}}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endfor %}
+                    <div class="flex-none">
+                        <h3>Games</h3>
+                        <table class="divide-y divide-gray-300 mr-10">
+                            <thead>
+                                <tr>
+                                    <td scope="col" class="px-1 py-2 text-left text-sm font-semibold text-gray-900">
+                                        Winner
+                                    </td>
+                                    <td scope="col" class="px-1 py-2 text-left text-sm font-semibold text-gray-900">
+                                        Looser
+                                    </td>
+                                    <td scope="col" class="px-1 py-2 text-right text-sm font-semibold text-gray-900">
+                                        W-L
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                {% for game in games %}
+                                <tr>
+                                    <td class="whitespace-nowrap px-1 py-1 text-left text-sm text-gray-500">
+                                        {{ game.winner() }}
+                                    </td>
+                                    <td class="whitespace-nowrap px-1 py-2 text-sm text-gray-500">
+                                        {{ game.loser() }}
+                                    </td>
+                                    <td class="whitespace-nowrap px-1 py-2 text-right text-sm text-gray-500">
+                                        {{game.winning_score()}} - {{game.losing_score()}}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

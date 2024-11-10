@@ -15,8 +15,10 @@
 </head>
 
 <body class="h-full">
-    <div class="min-h-full">
+    <div class="min-h-full" x-data="{{js_data or {} | tojson}}">
+        {% block nav %}
         {% include 'nav.html.jinja2' %}
+        {% endblock %}
         <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
             <header>
                 {% block page_header %}
@@ -54,27 +56,15 @@
                 {% endblock %}
             </header>
             <main>
+                {% block main %}
                 <div class="mx-auto max-w-7xl prose prose-sm sm:prose-base pt-8">
                     {% block content %}
                     {% endblock %}
                 </div>
+                {% endblock %}
             </main>
         </div>
-        {# <footer>
-            <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-                <div class="border-t border-gray-200 py-8 text-center text-sm text-gray-500 sm:text-left">
-                    <div class="sm:flex sm:items-baseline">
-                        <div class="flex-1">
-
-                        </div>
-                        <div class="tag-out flex-1">
-                            <span class="block sm:inline">&copy; 2024 Utah Water Polo Association.</span>
-                            <span class="block sm:inline">All rights reserved.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer> #}
+        {% block footer %}
         <footer class="bg-white">
             <div class="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
                 <div class="xl:grid xl:grid-cols-3 xl:gap-8">
@@ -122,6 +112,7 @@
                 </div>
             </div>
         </footer>
+        {% endblock %}
     </div>
 </body>
 

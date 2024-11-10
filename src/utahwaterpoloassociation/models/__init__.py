@@ -5,7 +5,7 @@ from .division import Division
 from .team import Team
 from .contact import Contact
 from .leauge import Leauge
-from .sections import SectionConfig, LEAUGE_CONFIG
+from .game import Game, GameForAnalysis
 
 __ALL__ = (
     Organization,
@@ -15,6 +15,6 @@ __ALL__ = (
     Contact,
     Leauge,
     Data,
-    SectionConfig,
-    LEAUGE_CONFIG,
+    Game,
+    GameForAnalysis,
 )
