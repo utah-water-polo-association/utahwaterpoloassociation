@@ -1,4 +1,11 @@
-{% macro table(games) -%}
+{% macro table(
+games,
+home_team="Home Team (Dark)",
+away_team="Away Team (White)",
+home_team_score="Home Team Score",
+away_team_score="Away Team Score",
+include_location=True,
+include_time=True) -%}
 <div class="mt-8 flow-root">
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -8,55 +15,64 @@
                         <th scope="col"
                             class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                             Date</th>
+                        {% if include_time %}
                         <th scope="col"
                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Time
                         </th>
+                        {% endif %}
+                        {% if include_location %}
                         <th scope="col"
                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900 hidden lg:table-cell">
                             Location
                         </th>
+                        {% endif %}
                         <th scope="col"
                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
                             Division</th>
                         <th scope="col"
-                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Away
-                            Team (White)
+                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            {{away_team}}
                         </th>
                         <th scope="col"
                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm hidden xl:table-cell font-semibold text-gray-900">
-                            Away
-                            Team Score
+                            {{away_team_score}}
                         </th>
                         <th scope="col"
-                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Home
-                            Team (Dark)</th>
+                            class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">
+                            {{home_team}}</th>
                         <th scope="col"
                             class="whitespace-nowrap px-2 py-3.5 text-left text-sm hidden xl:table-cell font-semibold text-gray-900">
-                            Home
-                            Team Score</th>
+                            {{home_team_score}}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 bg-white">
                     {% for game in games %}
                     <tr>
                         <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-0">{{ game.date }}</td>
+                        {% if include_time %}
                         <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{ game.time }}</td>
+                        {% endif %}
+                        {% if include_location %}
                         <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900 hidden lg:table-cell">{{
                             game.location.name }}</td>
+                        {% endif %}
                         <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{{ game.division.name }}</td>
                         <td
                             class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 {% if game.away_team.name == game.winner.name %}font-bold{% endif %}">
                             {{ game.away_team.name }}
-                            <span class="xl:collapse">{{
-                                game.away_team_score }}</span>
+                            <span class="xl:collapse">
+                                {{game.away_team_score }}
+                            </span>
                         </td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">{{
-                            game.away_team_score }}</td>
+                        <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">
+                            {{ game.away_team_score }}
+                        </td>
                         <td
                             class="whitespace-nowrap px-2 py-2 text-sm text-gray-500 {% if game.home_team.name == game.winner.name %}font-bold{% endif %}">
                             {{ game.home_team.name }}
-                            <span class="xl:collapse">{{
-                                game.home_team_score }}</span>
+                            <span class="xl:collapse">
+                                {{ game.home_team_score }}
+                            </span>
                         </td>
                         <td class="whitespace-nowrap px-2 py-2 text-sm hidden xl:table-cell text-gray-500">{{
                             game.home_team_score }}</td>

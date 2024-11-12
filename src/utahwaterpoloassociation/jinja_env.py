@@ -107,13 +107,30 @@ def get_environment(data: Data) -> Environment:
 
     env.globals["directory"] = directory
 
-    def schedule(season=None):
+    def schedule(
+        season=None,
+        home_team="Home Team (Dark)",
+        away_team="Away Team (White)",
+        home_team_score="Home Team Score",
+        away_team_score="Away Team Score",
+        include_location=True,
+        include_time=True,
+    ):
         league = data.league
         if season:
             league = data.past[season]
 
         return markupsafe.Markup(
-            env.get_template(name="schedule.html.jinja2").render(g=data, league=league)
+            env.get_template(name="schedule.html.jinja2").render(
+                g=data,
+                league=league,
+                home_team=home_team,
+                away_team=away_team,
+                home_team_score=home_team_score,
+                away_team_score=away_team_score,
+                include_location=include_location,
+                include_time=include_time,
+            )
         )
 
     env.globals["schedule_fall_high_school"] = schedule
