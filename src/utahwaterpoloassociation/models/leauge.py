@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from datetime import datetime, timedelta
 from .organization import Organization
 from .location import Location
 from .division import Division
@@ -17,6 +18,14 @@ class Leauge(Hashable):
     teams: dict[str, Team] = {}
     games: list[Game] = []
     contacts: list[Contact] = []
+
+    def unreported_games(self, division):
+        nw = datetime.now() + timedelta(days=1)
+        games = filter(lambda x: x.parsed_date() <= nw, self.games)
+        games = filter(lambda x: not x.reported(), games)
+        games = list(filter(lambda x: x.division_name == division, games))
+        print("filtered for division %s" % (list(games)))
+        return games
 
     def directory(self) -> list[DirectoryEntry]:
         directory_items: list[DirectoryEntry] = []

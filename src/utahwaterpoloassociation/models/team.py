@@ -24,7 +24,7 @@ class Team(BaseModel):
 
     @staticmethod
     def from_csv(data: list[dict]) -> list["Team"]:
-        data = [x for x in data if x.get("name")]
+        data = [x for x in data if x.get("Team")]
         return from_csv(Team, data)
 
     def key(self) -> Tuple[str, Division]:

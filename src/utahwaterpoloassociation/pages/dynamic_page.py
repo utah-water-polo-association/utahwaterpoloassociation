@@ -22,6 +22,20 @@ class DynamicPage(PageBase):
         )
         pages.append(page)
 
+        page = cls(
+            output_path="report/index.html",
+            template="report.html.jinja2",
+            path="/report/",
+        )
+        pages.append(page)
+
+        page = cls(
+            output_path="report/done/index.html",
+            template="done.html.jinja2",
+            path="/report/done/",
+        )
+        pages.append(page)
+
         return pages
 
     @property

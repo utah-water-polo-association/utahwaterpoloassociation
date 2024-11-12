@@ -135,13 +135,18 @@ def get_content():
 def get_league(league_id: Leagues) -> Leauge:
     league = Leauge()
     for section in LEAUGE_CONFIG[league_id]:
+        print()
+        print()
         print("parsing %s %s" % (league_id, section.label))
+        print()
         data = httpx.get(
             section.base_url + "&gid=" + section.gid, follow_redirects=True
         )
         reader = csv.DictReader(data.iter_lines())
         items: list[dict[str, str]] = [x for x in reader]
+        print("Sample csv %s" % items[0:2])
         parsed_items = section.model.from_csv(items)
+        print("Sample parsed %s" % parsed_items[0:2])
         for x in parsed_items:
             league.add_data(x)
 
@@ -149,7 +154,8 @@ def get_league(league_id: Leagues) -> Leauge:
 
 
 if __name__ == "__main__":
-    leagues_to_sync = [Leagues.UTAH_SPRING_2024, Leagues.UTAH_SPRING_2025]
+    # Is mostly static now, so let's not mess with it Leagues.UTAH_SPRING_2024,
+    leagues_to_sync = [Leagues.UTAH_SPRING_2025]
     for league_id in leagues_to_sync:
         leauge: Leauge = get_league(league_id)
         save_league(league_id, league=leauge)

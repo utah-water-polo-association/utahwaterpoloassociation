@@ -1,4 +1,5 @@
 from typing import Any
+import os
 from utahwaterpoloassociation.models.models import Data, Leauge
 from utahwaterpoloassociation.repos import get_league, Leagues
 import json
@@ -30,4 +31,7 @@ def get_global_data() -> Data:
         globals["title"] = "Utah Water Polo Association"
         globals = process_globals(globals)
 
+    globals["php_host"] = os.environ.get(
+        "PHP_HOST", "https://beta.utahwaterpoloassociation.com"
+    )
     return Data(league=league, meta=globals, past=past_data)

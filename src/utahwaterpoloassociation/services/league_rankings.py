@@ -72,6 +72,8 @@ class Division(BaseModel):
         for wk, games in self.games_by_week.items():
             unique_games: dict[str, GameForAnalysis] = {}
             for game in games:
+                if not game.decided():
+                    continue
                 unique_games[game.game_id()] = game
                 self.teams[game.away_team_name].add_game(game)
                 self.teams[game.home_team_name].add_game(game)
@@ -80,7 +82,7 @@ class Division(BaseModel):
                 [
                     self.games_df,
                     pd.DataFrame(
-                        [x.to_df_dict() for x in games],
+                        [x.to_df_dict() for x in games if game.decided()],
                         columns=["Date", "HomeTeam", "AwayTeam", "FTHG", "FTAG"],
                     ),
                 ]

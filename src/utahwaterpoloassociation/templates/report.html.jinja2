@@ -1,0 +1,137 @@
+{% extends "base.html.jinja2" %}
+{% block page_header %}
+{% endblock %}
+{% block main %}
+<form action="{{g.meta.php_host}}/upload_xyz.php" method="POST" enctype="multipart/form-data"
+    x-data="{ division: '', game_id: '' }">
+    <div class="space-y-12">
+        <div class="border-b border-gray-900/10 pb-12">
+            <h2 class="text-base/7 font-semibold text-gray-900">Report A Game</h2>
+            <p class="mt-1 text-sm/6 text-gray-600">Report a game here. In order to report game you'll need to ensure
+                that the game is on the official list of games. All reports require a score sheet.</p>
+
+            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div class="col-span-full">
+                    <label for="division" class="block text-sm/6 font-medium text-gray-900">Division</label>
+                    <div class="mt-2">
+                        <select id="country" name="country" autocomplete="country-name" x-model="division"
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm/6">
+                            <option value="">Select Division</option>
+                            {% for division in g.league.divisions.keys() %}
+                            <option value="{{division}}">{{ division }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                {% for division in g.league.divisions.keys() %}
+                <template x-if="division == '{{division}}'">
+                    <div class="col-span-full">
+                        <label for="country" class="block text-sm/6 font-medium text-gray-900">Game</label>
+                        <div class="mt-2">
+                            <select id="game" name="game" x-model="game_id"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm/6">
+                                <option value="">Select a game</option>
+                                {% for game in g.league.unreported_games(division=division) %}
+                                <option value="{{game.game_id()}}">
+                                    {{game.date}} - {{ game.home_team_name }} vs {{game.away_team_name }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </template>
+                {% for game in g.league.unreported_games(division=division) %}
+                <template x-if="game_id == '{{game.game_id()}}'">
+                    <div class="col-span-full">
+                        <label for="winner" class="block text-sm/6 font-medium text-gray-900">Winner</label>
+                        <div class="mt-2">
+                            <select id="winner" name="winner" x-model="division"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm/6">
+                                <option value="{{game.home_team_name}}">
+                                    {{ game.home_team_name }}
+                                </option>
+                                <option value="{{game.away_team_name}}">
+                                    {{ game.away_team_name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </template>
+                {% endfor %}
+                {% endfor %}
+                <template x-if="division && game_id">
+                    <div>
+                        <div class="sm:col-span-2">
+                            <label for="winning_score" class="block text-sm/6 font-medium text-gray-900">
+                                Winning Score
+                            </label>
+                            <div class="mt-2">
+                                <input type="text" required name="winning_score" id="winning_score"
+                                    autocomplete="address-level1"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
+                            </div>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="losing_score" class="block text-sm/6 font-medium text-gray-900">
+                                Losing Score
+                            </label>
+                            <div class="mt-2">
+                                <input required type="text" name="losing_score" id="losing_score"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
+                            </div>
+                        </div>
+                    </div>
+                </template>
+                <div class="col-span-full" x-data="{ files: null }">
+                    <label for="score-sheet" class="block text-sm/6 font-medium text-gray-900">Score Sheet</label>
+                    <div class="mt-2 flex justify-center rounded-lg">
+                        <div class="flex flex-col flex-grow mb-3">
+                            <div x-data="{ files: null }" id="FileUpload"
+                                class="block w-full relative bg-white appearance-none hover:shadow-outline-gray">
+                                <div class="mt-4 flex text-sm/6 text-gray-600">
+                                    <label for="score-sheet"
+                                        class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                        <span>Upload a file: PNG, JPG, GIF up to 10MB</span>
+                                        <input required id="score-sheet" name="score-sheet" type="file"
+                                            class="sr-only absolute inset-0 z-50 m-0 p-0 w-full h-full outline-none opacity-0"
+                                            x-on:change="files = $event.target.files; console.log($event.target.files);"
+                                            required aria-required="">
+                                    </label>
+                                </div>
+                                <template x-if="files !== null">
+                                    <div class="flex flex-col space-y-1">
+                                        <template x-for="(_,index) in Array.from({ length: files.length })">
+                                            <div class="flex flex-row items-center space-x-2">
+                                                <template x-if="files[index].type.includes('audio/')"><i
+                                                        class="far fa-file-audio fa-fw"></i></template>
+                                                <template x-if="files[index].type.includes('application/')"><i
+                                                        class="far fa-file-alt fa-fw"></i></template>
+                                                <template x-if="files[index].type.includes('image/')"><i
+                                                        class="far fa-file-image fa-fw"></i></template>
+                                                <template x-if="files[index].type.includes('video/')"><i
+                                                        class="far fa-file-video fa-fw"></i></template>
+                                                <span class="font-medium text-gray-900"
+                                                    x-text="files[index].name">Uploading</span>
+                                                <span class="text-xs self-end text-gray-500"
+                                                    x-text="filesize(files[index].size)">...</span>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-6 flex items-center justify-end gap-x-6">
+        <button type="submit"
+            class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Report</button>
+    </div>
+</form>
+
+{% endblock %}

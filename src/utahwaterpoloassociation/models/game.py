@@ -18,10 +18,10 @@ class GameForAnalysis(BaseModel):
 
     def game_id(self) -> str:
         return "%s:%s:%s:%s" % (
-            self.date.timestamp,
+            self.date.timestamp(),
             self.division_name,
             self.home_team_name,
-            self.home_team_score,
+            self.away_team_name,
         )
 
     def to_df_dict(self):
@@ -33,6 +33,9 @@ class GameForAnalysis(BaseModel):
             "FTAG": self.away_team_score,
         }
 
+    def decided(self) -> bool:
+        return self.home_team_score and self.away_team_score
+
     def opponent(self, name: str) -> Optional[str]:
         if name == self.home_team_name:
             return self.away_team_name
@@ -42,24 +45,36 @@ class GameForAnalysis(BaseModel):
             return None
 
     def winning_score(self) -> Optional[float]:
+        if not self.decided():
+            return None
+
         if self.home_team_score > self.away_team_score:
             return self.home_team_score
         else:
             return self.away_team_score
 
     def losing_score(self) -> Optional[float]:
+        if not self.decided():
+            return None
+
         if self.home_team_score > self.away_team_score:
             return self.away_team_score
         else:
             return self.home_team_score
 
-    def loser(self) -> str:
+    def loser(self) -> Optional[str]:
+        if not self.decided():
+            return None
+
         if self.home_team_score > self.away_team_score:
             return self.away_team_name
         else:
             return self.home_team_name
 
-    def winner(self) -> str:
+    def winner(self) -> Optional[str]:
+        if not self.decided():
+            return None
+
         if self.home_team_score > self.away_team_score:
             return self.home_team_name
         else:
@@ -107,8 +122,19 @@ class Game(BaseModel):
 
     @staticmethod
     def from_csv(data: list[dict]) -> list["Game"]:
-        data = [x for x in data if x.get("date")]
+        data = [x for x in data if x.get("Date")]
         return from_csv(Game, data)
+
+    def game_id(self) -> str:
+        return "%s:%s:%s:%s" % (
+            self.parsed_date().timestamp(),
+            self.division_name,
+            self.home_team_name,
+            self.away_team_name,
+        )
+
+    def reported(self) -> bool:
+        return self.home_team_score and self.away_team_score
 
     def valid(self):
         return all(

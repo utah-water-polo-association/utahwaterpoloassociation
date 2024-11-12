@@ -22,7 +22,7 @@ server:
 	rye run python -m http.server --bind "127.0.0.1" -d "./output"
 
 dev:
-	rye run -- honcho -f Procfile start
+	rye run -- honcho -e .env -f Procfile start
 
 watch:
 	rye run watchmedo shell-command --patterns='content/*;src/utahwaterpoloassociation/templates/*;global.yaml' --recursive --command='make generate' .
@@ -53,5 +53,5 @@ deploy:
 load:
 	rye run python src/utahwaterpoloassociation/scripts/load.py > output/ratings.html
 
-notebooks:
-	rye run jupyter lab
+rsync: generate
+	rsync -r --delete-after output/* eczrvsmy@50.6.153.225:/home1/eczrvsmy/public_html/website_287658e3/
