@@ -17,6 +17,7 @@ def data_location(data_key: str) -> str:
 class Leagues(Enum):
     UTAH_FALL_HS_2023 = "UTAH_FALL_HS_2023"
     UTAH_SPRING_2024 = "UTAH_SPRING_2024"
+    UTAH_FALL_HS_2024 = "UTAH_FALL_HS_2024"
     UTAH_SPRING_2025 = "UTAH_SPRING_2025"
 
 
