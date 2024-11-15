@@ -1,9 +1,38 @@
 {% import "games.html.jinja2" as games %}
-{{ games.table(
-league.games,
-home_team=home_team,
-away_team=away_team,
-home_team_score=home_team_score,
-away_team_score=away_team_score,
-include_location=include_location,
-include_time=include_time) }}
+<div x-data="{'division': 'All'}">
+    <div>
+        <div class="sm:hidden">
+            <label for="tabs" class="sr-only">Select a Division</label>
+            <select x-model="division" id="tabs" name="tabs"
+                class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                {% for division in league.schedule().division_order %}
+                <option value="{{division}}">{{division}}</option>
+                {% endfor %}
+            </select>
+            </label>
+        </div>
+        <div class="hidden sm:block">
+            <nav class="flex space-x-4" aria-label="Tabs">
+                {% for division in league.schedule().division_order %}
+                <a href="#{{division}}" @click.prevent="division = '{{division}}'"
+                    x-bind:class="division == '{{division}}' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:text-gray-700' "
+                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                    {{division}}
+                </a>
+                {% endfor %}
+            </nav>
+        </div>
+    </div>
+    {% for division in league.schedule().division_order %}
+    <div class="" x-bind:class="division == '{{division}}' ? '' : 'hidden' ">
+        {{ games.table(
+        league.schedule().by_division[division],
+        home_team=home_team,
+        away_team=away_team,
+        home_team_score=home_team_score,
+        away_team_score=away_team_score,
+        include_location=include_location,
+        include_time=include_time) }}
+    </div>
+    {% endfor %}
+</div>

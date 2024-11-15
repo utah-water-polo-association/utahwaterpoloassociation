@@ -36,8 +36,7 @@
                         {% for division in league_rankings(g.past[name]) %}
                         <a href="#{{division.name}}"
                             class="whitespace-nowrap border-b-2 px-1 pb-1 sm:pb-4 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                            aria-current="page"
-                            @click.prevent="division = '{{name}}:{{division.name}}'; console.log(division)"
+                            aria-current="page" @click.prevent="division = '{{name}}:{{division.name}}'"
                             x-bind:class="division == '{{name}}:{{division.name}}' {% if loop.index == 1 %}|| division == ''{% endif %} ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'">{{division.name}}</a>
                         {% endfor %}
                         <span class="whitespace-nowrap border-b-2 px-1 pb-1 sm:pb-4">&nbsp;</span>

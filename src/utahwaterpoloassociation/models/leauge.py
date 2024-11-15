@@ -10,6 +10,55 @@ from .directory_entry import DirectoryEntry
 
 from .hashable import Hashable
 
+ALL_DIVISION = "All"
+DIVISION_ORDER = [
+    "HS Varsity Boys",
+    "18u Boys",
+    "HS Varsity Girls",
+    "18u Girls",
+    "HS Combined Boys",
+    "16u Boys",
+    "HS Combined Girls",
+    "16u Girls",
+    "HS JV Boys",
+    "14u Boys",
+    "14u Girls",
+    "10u Mixed",
+    "12u Mixed",
+]
+
+
+DIVISION_AND_ALL = [ALL_DIVISION] + DIVISION_ORDER
+
+
+class Schedule(BaseModel):
+    # by_team: dict[str, list[Game]]
+    by_division: dict[str, list[Game]]
+    games: list[Game]
+
+    @property
+    def division_order(self) -> list[str]:
+        return [x for x in DIVISION_AND_ALL if x in self.by_division]
+
+    def add_game(self, game: Game):
+        # if game.away_team_name not in self.by_team:
+        #     self.by_team[game.away_team_name] = []
+
+        # if game.home_team_name not in self.by_team:
+        #     self.by_team[game.home_team_name] = []
+
+        if game.division_name not in self.by_division:
+            self.by_division[game.division_name] = []
+
+        if ALL_DIVISION not in self.by_division:
+            self.by_division[ALL_DIVISION] = []
+
+        self.by_division[ALL_DIVISION].append(game)
+        # self.by_team[game.away_team_name].append(game)
+        # self.by_team[game.home_team_name].append(game)
+        self.by_division[game.division_name].append(game)
+        self.games.append(game)
+
 
 class Leauge(Hashable):
     organizations: dict[str, Organization] = {}
@@ -26,6 +75,15 @@ class Leauge(Hashable):
         games = list(filter(lambda x: x.division_name == division, games))
         print("filtered for division %s" % (list(games)))
         return games
+
+    def schedule(self) -> Schedule:
+        schedule = Schedule(
+            by_team={}, by_division={}, games=[], division_order=DIVISION_AND_ALL
+        )
+        for game in self.games:
+            schedule.add_game(game)
+
+        return schedule
 
     def directory(self) -> list[DirectoryEntry]:
         directory_items: list[DirectoryEntry] = []
