@@ -15,7 +15,7 @@ warnings.simplefilter(action="ignore", category=FutureWarning)
 RANKING_METHODS: dict[str, RatingSystem] = {
     "WinLoss": rl.Winloss(normalization=False),
     "Colley": rl.Colley(),
-    "Massey": rl.Massey(),
+    # "Massey": rl.Massey(),
 }
 
 

@@ -15,7 +15,7 @@
 </head>
 
 <body class="h-full">
-    <div class="min-h-full" x-data="{{js_data or {} | tojson}}">
+    <div class="min-h-full" x-data="{{js_data or '{}'}}">
         {% block nav %}
         {% include 'nav.html.jinja2' %}
         {% endblock %}

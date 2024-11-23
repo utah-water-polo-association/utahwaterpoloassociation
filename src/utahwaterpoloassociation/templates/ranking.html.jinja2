@@ -23,8 +23,7 @@
 {% block main %}
 <div class="mx-auto max-w-7xl pt-8">
     {% for name, item in g.past.items() %}
-    <div class="{% if loop.index != 1%}hidden{% endif %}" x-bind:class="season == '{{name}}' ? '' : 'hidden'"
-        id="{{name}}">
+    <div class="" :class="season == '{{name}}' ? '' : 'hidden'">
 
         <div class="border-b border-gray-200">
             <div class="sm:flex sm:items-baseline">

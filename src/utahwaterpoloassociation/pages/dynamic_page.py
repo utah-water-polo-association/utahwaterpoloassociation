@@ -54,7 +54,7 @@ class DynamicPage(PageBase):
             p={"attributes": {"title": "Rankings", "path": self.path}},
             g=data,
             league_rankings=league_rankings,
-            js_data={"season": list(data.past.keys())[0], "division": ""},
+            js_data="{season: '%s', division: ''}" % (list(data.past.keys())[0]),
         )
         output_path = os.path.join(base, "output", self.output_path)
 
