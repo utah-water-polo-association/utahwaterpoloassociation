@@ -73,7 +73,6 @@ class Leauge(Hashable):
         games = filter(lambda x: x.parsed_date() <= nw, self.games)
         games = filter(lambda x: not x.reported(), games)
         games = list(filter(lambda x: x.division_name == division, games))
-        print("filtered for division %s" % (list(games)))
         return games
 
     def schedule(self) -> Schedule:

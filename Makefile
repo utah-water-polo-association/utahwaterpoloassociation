@@ -55,3 +55,6 @@ load:
 
 rsync: generate
 	rsync -r --delete-after output/* eczrvsmy@50.6.153.225:/home1/eczrvsmy/public_html/website_287658e3/
+
+ssh:
+	ssh eczrvsmy@50.6.153.225

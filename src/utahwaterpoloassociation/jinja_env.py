@@ -107,6 +107,16 @@ def get_environment(data: Data) -> Environment:
 
     env.globals["directory"] = directory
 
+    def club_map() -> Markup:
+        league = data.league
+
+        return markupsafe.Markup(
+            env.get_template(name="club_map.html.jinja2").render(
+                g=data,
+                league=league,
+            )
+        )
+
     def schedule(
         season=None,
         home_team="Home Team (Dark)",
@@ -136,5 +146,6 @@ def get_environment(data: Data) -> Environment:
     env.globals["schedule_fall_high_school"] = schedule
     env.globals["schedule_fall_youth"] = schedule
     env.globals["schedule_spring"] = schedule
+    env.globals["club_map"] = club_map
 
     return env
