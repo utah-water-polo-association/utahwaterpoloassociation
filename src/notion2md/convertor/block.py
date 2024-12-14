@@ -45,7 +45,7 @@ class BlockConvertor:
                     + "\n\n"
                 )
             else:
-                outcome_block = f"[//]: # ({block_type} is not supported)\n\n"
+                outcome_block = ""  # f"[//]: # ({block_type} is not supported)\n\n"
             # Convert child block
             if block["has_children"]:
                 # create child page
@@ -140,7 +140,7 @@ class BlockConvertor:
 
                 fullpath = os.path.join(self._config.tmp_path, downloaded_file_name)
                 fullpath_asset = os.path.join("./assets", downloaded_file_name)
-
+                print("%s %s" % (fullpath, fullpath_asset))
                 if self._io:
                     self._io.write_line(status("Downloading", f"{unquoted_file_name}"))
                     request.urlretrieve(url, fullpath)

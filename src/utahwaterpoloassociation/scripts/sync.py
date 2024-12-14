@@ -12,10 +12,12 @@ from pydantic import BaseModel
 
 from utahwaterpoloassociation.repos import save_league, Leagues
 
+transport = httpx.HTTPTransport(retries=2)
+client = httpx.Client(transport=transport)
 
 notion_client = Client(auth=os.environ["NOTION_TOKEN"])
 
-FOOTER_NAV_PAGES = ["About", "Past Seasons"]
+FOOTER_NAV_PAGES = ["About UWPA", "Past Seasons"]
 
 
 def from_csv(cls, data):
@@ -139,8 +141,8 @@ def get_league(league_id: Leagues) -> Leauge:
         print()
         print("parsing %s %s" % (league_id, section.label))
         print()
-        data = httpx.get(
-            section.base_url + "&gid=" + section.gid, follow_redirects=True, retries=2
+        data = client.get(
+            section.base_url + "&gid=" + section.gid, follow_redirects=True
         )
         reader = csv.DictReader(data.iter_lines())
         items: list[dict[str, str]] = [x for x in reader]
