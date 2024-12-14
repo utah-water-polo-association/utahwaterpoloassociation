@@ -140,7 +140,7 @@ def get_league(league_id: Leagues) -> Leauge:
         print("parsing %s %s" % (league_id, section.label))
         print()
         data = httpx.get(
-            section.base_url + "&gid=" + section.gid, follow_redirects=True
+            section.base_url + "&gid=" + section.gid, follow_redirects=True, retries=2
         )
         reader = csv.DictReader(data.iter_lines())
         items: list[dict[str, str]] = [x for x in reader]
