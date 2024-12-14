@@ -141,17 +141,11 @@ class BlockConvertor:
                 fullpath = os.path.join(self._config.tmp_path, downloaded_file_name)
                 fullpath_asset = os.path.join("./assets", downloaded_file_name)
                 print("%s %s" % (fullpath, fullpath_asset))
-                if self._io:
-                    self._io.write_line(status("Downloading", f"{unquoted_file_name}"))
-                    request.urlretrieve(url, fullpath)
-                    self._io.write_line(
-                        success(
-                            "Downloaded",
-                            f'"{unquoted_file_name}" -> "{downloaded_file_name}"',
-                        )
-                    )
-                else:
-                    request.urlretrieve(url, fullpath)
+                print(f"Downloading: {unquoted_file_name} to {fullpath}")
+                request.urlretrieve(url, fullpath)
+                print(
+                    f"Downloaded: {unquoted_file_name} {downloaded_file_name} {fullpath}"
+                )
                 return name, fullpath_asset
             else:
                 if self._io:
