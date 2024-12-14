@@ -4,5 +4,6 @@
   "python.analysis.inlayHints.variableTypes": false,
   "yaml.schemas": {
     "https://json.schemastore.org/github-workflow.json": "file:///Users/alex/Documents/codes/utahwaterpoloassociation/.github/workflows/deploy.yaml"
-  }
+  },
+  "makefile.configureOnOpen": false
 }
