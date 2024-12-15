@@ -117,6 +117,14 @@ def get_environment(data: Data) -> Environment:
             )
         )
 
+    def instagram() -> Markup:
+
+        return markupsafe.Markup(
+            env.get_template(name="instagram.html.jinja2").render(
+                g=data,
+            )
+        )
+
     def schedule(
         season=None,
         home_team="Home Team (Dark)",
@@ -147,5 +155,6 @@ def get_environment(data: Data) -> Environment:
     env.globals["schedule_fall_youth"] = schedule
     env.globals["schedule_spring"] = schedule
     env.globals["club_map"] = club_map
+    env.globals["instagram"] = instagram
 
     return env

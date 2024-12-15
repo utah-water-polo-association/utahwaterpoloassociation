@@ -45,13 +45,18 @@ class BlockConvertor:
                     + "\n\n"
                 )
             else:
-                outcome_block = ""  # f"[//]: # ({block_type} is not supported)\n\n"
+                outcome_block = f"[//]: # ({block_type} is not supported)\n\n"
+
             # Convert child block
             if block["has_children"]:
                 # create child page
                 if block_type == "child_page":
                     # call make_child_function
                     pass
+
+                elif block_type == "column_list":
+                    child_blocks = self._client.get_children(block["id"])
+                    outcome_block = self.create_columns(columns=child_blocks)
                 # create table block
                 elif block_type == "table":
                     depth += 1
@@ -73,6 +78,11 @@ class BlockConvertor:
                     error(f"{e}: Error occured block_type:{block_type}")
                 )
         return outcome_block
+
+    def create_columns(self, columns: list | None) -> str:
+        columns = columns or list()
+        num_columns = len(columns)
+        return f"<div class='columns-{num_columns}'></div>"
 
     def create_table(self, cell_blocks: dict):
         table_list = []
@@ -285,7 +295,7 @@ def table_row(info: list) -> list:
 
 
 def column_list(info: list):
-    return ""
+    return "A Column list"
 
 
 # Since Synced Block has only child blocks, not name, it will return blank
@@ -299,7 +309,7 @@ BLOCK_TYPES = {
     "heading_1": heading_1,
     "heading_2": heading_2,
     "heading_3": heading_3,
-    "column_list": column_list,
+    # "column_list": column_list,
     "callout": callout,
     "toggle": bulleted_list_item,
     "quote": quote,

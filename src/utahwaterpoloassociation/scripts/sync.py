@@ -17,7 +17,7 @@ client = httpx.Client(transport=transport)
 
 notion_client = Client(auth=os.environ["NOTION_TOKEN"])
 
-FOOTER_NAV_PAGES = ["About UWPA", "Past Seasons"]
+FOOTER_NAV_PAGES = ["Past Seasons"]
 
 
 def from_csv(cls, data):
