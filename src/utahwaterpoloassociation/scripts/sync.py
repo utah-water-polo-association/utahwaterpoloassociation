@@ -173,6 +173,9 @@ if __name__ == "__main__":
     # Is mostly static now, so let's not mess with it Leagues.UTAH_SPRING_2024,
     leagues_to_sync = [
         Leagues.UTAH_SPRING_2025,
+        Leagues.UTAH_SPRING_2024,
+        Leagues.UTAH_FALL_HS_2023,
+        Leagues.UTAH_FALL_HS_2024,
     ]
     for league_id in leagues_to_sync:
         leauge: Leauge = get_league(league_id)

@@ -125,6 +125,14 @@ class Game(BaseModel):
         data = [x for x in data if x.get("Date")]
         return from_csv(Game, data)
 
+    def key(self) -> str:
+        return "%s-%s-%s-%s" % (
+            self.away_team_name,
+            self.home_team_name,
+            self.away_team_score,
+            self.home_team_score,
+        )
+
     def game_id(self) -> str:
         return "%s:%s:%s:%s" % (
             self.parsed_date().timestamp(),
@@ -139,9 +147,14 @@ class Game(BaseModel):
     def valid(self):
         return all(
             [
-                self.division != "",
+                self.date and len(self.date) <= 15,
+                self.division_name not in ("1", "2", "3", "4", "5"),
+                self.division_name != "",
+                self.division_name is not None,
                 self.away_team_name != "",
+                self.away_team_name not in ("1", "2", "3", "4", "5"),
                 self.home_team_name != "",
+                self.home_team_name not in ("1", "2", "3", "4", "5"),
             ]
         )
 

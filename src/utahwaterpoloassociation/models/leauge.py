@@ -126,7 +126,8 @@ class Leauge(Hashable):
             self.teams[d.key()] = d
         elif isinstance(d, Game):
             d.hydrate_from_league(self)
-            self.games.append(d)
+            if d.valid():
+                self.games.append(d)
         elif isinstance(d, Contact):
             d.organization = self.organizations[d.organization_name]
             self.contacts.append(d)

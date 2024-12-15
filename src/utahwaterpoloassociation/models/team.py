@@ -6,10 +6,31 @@ from .csv import from_csv
 from .organization import Organization
 from .division import Division
 
+NAMES_TO_ICON = {
+    "Bear River": "bearriver",
+    "Brighton": "brighton",
+    "Cache": "waterpolo",
+    "Canyon View": "waterpolo",
+    "Cedar": "cedar",
+    "Cyprus": "cyprus",
+    "Kearns": "kearns",
+    "Murray": "murray",
+    "Ogden": "orgden",
+    "Olympus": "olympus",
+    "Park City": "parkcity",
+    "SUWP": "waterpolo",
+    "Skyline": "skyline",
+    "South Davis": "southdavis",
+    "Tooele": "waterpolo",
+    "UCO": "waterpolo",
+    "United": "waterpolo",
+    "Wasatch": "wasatch",
+}
+
 
 class Team(BaseModel):
     MAP: ClassVar[dict[str, str]] = {
-        "Team": "name",
+        "Team Name": "name",
         "Organization": "organization_name",
         "Leauge": "division_name",
         "__division": "division",
@@ -24,7 +45,7 @@ class Team(BaseModel):
 
     @staticmethod
     def from_csv(data: list[dict]) -> list["Team"]:
-        data = [x for x in data if x.get("Team")]
+        data = [x for x in data if x.get("Team Name")]
         return from_csv(Team, data)
 
     def key(self) -> Tuple[str, Division]:
@@ -35,3 +56,8 @@ class Team(BaseModel):
 
     def url(self):
         os.path.join(self.organization.slug(), self.division.slug(), self.slug())
+
+    def icon(self) -> str:
+        name = NAMES_TO_ICON.get(self.organization_name, "waterpolo")
+
+        return "/icons/%s.png" % (name)
