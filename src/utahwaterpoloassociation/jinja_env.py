@@ -3,6 +3,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 import markupsafe
 from markdown.extensions import Extension
 from markdown.preprocessors import Preprocessor
+from markdown.extensions.md_in_html import MarkdownInHtmlExtension
 from markdown import Markdown
 from markupsafe import Markup
 import markdown

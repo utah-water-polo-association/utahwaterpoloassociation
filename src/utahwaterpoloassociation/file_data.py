@@ -16,7 +16,7 @@ class FileData(BaseModel):
     body: str
 
     def render_as_markdown(self) -> str:
-        return markdown.markdown(self.body)
+        return markdown.markdown(self.body, extensions=["md_in_html"])
 
     def main_section(self):  # -> Any:
         return self.attributes.get("parent_section", self.attributes.get("section"))

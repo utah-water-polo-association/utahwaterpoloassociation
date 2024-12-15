@@ -121,7 +121,21 @@ def export_pages(pages):
             section=page.path(),
         )
 
+        # je = JSONExporter(
+        #     block_id=page.id,
+        #     output_filename="index",
+        #     output_path="content/%s" % (output_path),
+        #     web_path=page.path(),
+        #     download=True,
+        #     unzipped=True,
+        #     token=os.environ["NOTION_TOKEN"],
+        #     page_title=page.title,
+        #     section=page.path(),
+        # )
+
         me.export()
+        # je.export()
+
         export_pages(page.pages)
 
 

@@ -1,5 +1,6 @@
 import os
 import shutil
+import json
 
 from notion2md.config import Config
 from notion2md.convertor.block import BlockConvertor
@@ -83,14 +84,16 @@ class Exporter:
 
 
 class MarkdownExporter(Exporter):
+
     def export(self):
         self.create_directories()
+        page_title = self._config.page_title or ""
         with open(
             os.path.join(self._config.output_path, self._config.file_name + ".md"),
             "w",
             encoding="utf-8",
         ) as output:
-            page_title = self._config.page_title or ""
+
             data = PAGE_TEMPLATE % (
                 page_title.title(),
                 page_title,
@@ -98,8 +101,32 @@ class MarkdownExporter(Exporter):
             )
             output.write(data.lstrip())
             output.write(self.block_convertor.convert(self.get_blocks()))
-        if not self._config.unzipped:
-            self.make_zip()
+
+
+class JSONExporter(Exporter):
+
+    def get_children(self, id: str):
+        children = self._client.get_children(id)
+        children = list(filter(lambda x: x["type"] != "child_page", children))
+        print("types", [x["type"] for x in children])
+        for child in children:
+            if child["has_children"]:
+                child["children"] = self.get_children(child["id"])
+
+        return list(children)
+
+    def export(self):
+        self.create_directories()
+        page_data = {
+            "config": self._config.to_dict(),
+            "blocks": self.get_children(self._config.target_id),
+        }
+        with open(
+            os.path.join(self._config.output_path, self._config.file_name + ".json"),
+            "w",
+            encoding="utf-8",
+        ) as output:
+            output.write(json.dumps(page_data))
 
 
 class StringExporter(Exporter):

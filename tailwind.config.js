@@ -3,7 +3,7 @@ module.exports = {
   content: [
     'content/**.md',
     'src/utahwaterpoloassociation/templates/**.jinja2',
-    'output/**.html',
+    'output/*/**.html',
   ],
   theme: {
     extend: {},

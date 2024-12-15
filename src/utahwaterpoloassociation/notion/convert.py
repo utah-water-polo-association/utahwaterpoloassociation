@@ -3,20 +3,14 @@ import hashlib
 import os
 import urllib.request as request
 from urllib.parse import urlparse, unquote
-import markdown
-from cleo.io.io import IO
 
 from notion2md.config import Config
-from notion2md.console.formatter import error
-from notion2md.notion_api import NotionClient
 from .richtext import richtext_convertor
 
 
 class BlockConvertor:
-    def __init__(self, config: Config, client: NotionClient, io: IO = None):
+    def __init__(self, config: Config):
         self._config = config
-        self._client = client
-        self._io = io
 
     def convert(self, blocks: dict) -> str:
         outcome_blocks: str = ""
@@ -36,7 +30,6 @@ class BlockConvertor:
         if check_block_is_blank(block, block_type):
             return blank() + "\n\n"
 
-        # try:
         if block_type in BLOCK_TYPES:
             outcome_block = (
                 BLOCK_TYPES[block_type](self.collect_info(block[block_type])) + "\n\n"
@@ -52,29 +45,24 @@ class BlockConvertor:
                 pass
 
             elif block_type == "column_list":
-                child_blocks = self._client.get_children(block["id"])
+                child_blocks = block.get("children", [])
                 depth += 1
                 outcome_block = self.create_columns(columns=child_blocks, depth=depth)
             # create table block
             elif block_type == "table":
                 depth += 1
-                child_blocks = self._client.get_children(block["id"])
+                child_blocks = block.get("children", [])
                 outcome_block = self.create_table(cell_blocks=child_blocks)
             # create indent block
             else:
                 depth += 1
-                child_blocks = self._client.get_children(block["id"])
+                child_blocks = block.get("children", [])
                 for block in child_blocks:
                     converted_block = self.convert_block(
                         block,
                         depth,
                     )
                     outcome_block += converted_block + "\n"
-        # except Exception as e:
-        #     if self._io:
-        #         self._io.write_line(
-        #             error(f"{e}: Error occured block_type:{block_type}")
-        #         )
         return outcome_block
 
     def create_columns(self, columns: list | None, depth: int = 0) -> str:
@@ -145,29 +133,24 @@ class BlockConvertor:
     def download_file(self, url: str) -> tuple[str, str]:
         file_name = os.path.basename(urlparse(url).path)
         unquoted_file_name = unquote(file_name)
-        if self._config.download:
-            if unquoted_file_name:
-                name, extension = os.path.splitext(unquoted_file_name)
+        if not unquoted_file_name:
+            print(f"invalid {url}")
+            raise f"invalid {url}"
 
-                if not extension:
-                    return unquoted_file_name, url
+        name, extension = os.path.splitext(unquoted_file_name)
 
-                url_hash = hashlib.blake2s(urlparse(url).path.encode()).hexdigest()[:8]
-                downloaded_file_name = f"{url_hash}_{unquoted_file_name}"
+        if not extension:
+            raise f"Missing extension {unquoted_file_name}"
 
-                fullpath = os.path.join(self._config.tmp_path, downloaded_file_name)
-                fullpath_asset = os.path.join("./assets", downloaded_file_name)
-                print(f"Downloading: {unquoted_file_name} to {fullpath}")
-                request.urlretrieve(url, fullpath)
-                print(
-                    f"Downloaded: {unquoted_file_name} {downloaded_file_name} {fullpath}"
-                )
-                return name, fullpath_asset
-            else:
-                if self._io:
-                    self._io.write_line(error(f"invalid {url}"))
-        else:
-            return unquoted_file_name, url
+        url_hash = hashlib.blake2s(urlparse(url).path.encode()).hexdigest()[:8]
+        downloaded_file_name = f"{url_hash}_{unquoted_file_name}"
+
+        fullpath = os.path.join(self._config.tmp_path, downloaded_file_name)
+        fullpath_asset = os.path.join("./assets", downloaded_file_name)
+        print(f"Downloading: {unquoted_file_name} to {fullpath}")
+        request.urlretrieve(url, fullpath)
+        print(f"Downloaded: {unquoted_file_name} {downloaded_file_name} {fullpath}")
+        return name, fullpath_asset
 
     def to_string(self, blocks: dict) -> str:
         return self.convert(blocks)

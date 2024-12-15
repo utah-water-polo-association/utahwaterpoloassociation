@@ -1,11 +1,11 @@
 from typing import Any, Type
-from utahwaterpoloassociation.pages import PageBase, FilePage, DynamicPage
+from utahwaterpoloassociation.pages import PageBase, MarkdownPage, DynamicPage
 from utahwaterpoloassociation.jinja_env import get_environment
 from utahwaterpoloassociation.global_data import get_global_data
 from jinja2 import Environment
 
 
-page_sources: list[Type[PageBase]] = [FilePage, DynamicPage]
+page_sources: list[Type[PageBase]] = [MarkdownPage, DynamicPage]
 
 
 class Generator:

@@ -7,14 +7,14 @@ from jinja2 import Environment, Template
 from .page_base import PageBase
 
 
-class FilePage(PageBase):
+class MarkdownPage(PageBase):
     relative_directory: str
     relative_path: str
     absolute_path: str
     template: str = "page.html.jinja2"
 
     @classmethod
-    def collect(cls, data: Data) -> list["FilePage"]:
+    def collect(cls, data: Data) -> list["MarkdownPage"]:
         pages = []
         pwd = os.getcwd()
         basename = "content"
@@ -24,6 +24,9 @@ class FilePage(PageBase):
                 continue
             if "/assets/" in filename:
                 continue
+            if ".md" not in filename:
+                continue
+
             dir, fname = os.path.split(p=filename)
             dir = dir.replace(basename, "output")
             relative_path = os.path.join(dir, fname)

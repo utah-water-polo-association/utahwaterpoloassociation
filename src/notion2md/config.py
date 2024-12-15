@@ -1,4 +1,5 @@
 import os
+import json
 
 from notion_client.helpers import get_id
 
@@ -67,3 +68,22 @@ class Config(object):
             self.unzipped = False
             self.tmp_path = os.path.join(os.getcwd(), "tmp")
         self.web_path = web_path
+
+    def to_dict(self) -> dict:
+        return {
+            "file_name": self.file_name,
+            "target_id": self.target_id,
+            "output_path": self.output_path,
+            "asset_path": self.asset_path,
+            "tmp_path": self.tmp_path,
+            "download": self.download,
+            "unzipped": self.unzipped,
+            "path_name": self.path_name,
+            "page_title": self.page_title,
+            "section": self.section,
+            "web_path": self.web_path,
+        }
+
+    @classmethod
+    def from_dict(cls, data) -> "Config":
+        return cls(**data)
