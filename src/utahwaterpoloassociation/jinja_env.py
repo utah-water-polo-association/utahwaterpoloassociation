@@ -128,10 +128,9 @@ def get_environment(data: Data) -> Environment:
 
     def schedule(
         season=None,
-        home_team="Home Team (Dark)",
-        away_team="Away Team (White)",
-        home_team_score="Home Team Score",
-        away_team_score="Away Team Score",
+        home_team="Home Team",
+        away_team="Away Team",
+        score="Score",
         include_location=True,
         include_time=True,
     ):
@@ -145,8 +144,7 @@ def get_environment(data: Data) -> Environment:
                 league=league,
                 home_team=home_team,
                 away_team=away_team,
-                home_team_score=home_team_score,
-                away_team_score=away_team_score,
+                score=score,
                 include_location=include_location,
                 include_time=include_time,
             )

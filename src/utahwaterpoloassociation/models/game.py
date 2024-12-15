@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional, ClassVar
+from time import strftime, strptime, struct_time
 from .csv import from_csv
 from .location import Location
 from .division import Division
@@ -161,6 +162,23 @@ class Game(BaseModel):
     def parsed_date(self) -> datetime:
         return datetime.strptime(self.date, "%m/%d/%Y")
 
+    def parsed_time(self) -> struct_time | None:
+        if self.time == "":
+            return None
+
+        return strptime(self.time, "%I:%M:%S %p")
+        # return datetime.strptime(self.time, "%m/%d/%Y")
+
+    def short_date_format(self) -> str:
+        return datetime.strftime(self.parsed_date(), "%-m/%-d")
+
+    def short_time_format(self) -> struct_time | None:
+        if not self.parsed_time():
+            return ""
+
+        return strftime("%-I:%M %p", self.parsed_time())
+        # return datetime.strptime(self.time, "%m/%d/%Y")
+
     def for_analysis(self) -> GameForAnalysis:
         dt = self.parsed_date()
         _, wk, _ = dt.isocalendar()
@@ -188,6 +206,13 @@ class Game(BaseModel):
 
         self.home_team = l.teams["-".join([self.home_team_name, self.division.name])]
         self.away_team = l.teams["-".join([self.away_team_name, self.division.name])]
+
+        if self.home_team_score and self.away_team_score:
+            if not self.winner_name and self.home_team_score > self.away_team_score:
+                self.winner_name = self.home_team_name
+
+            if not self.loser_name and self.away_team_score > self.home_team_score:
+                self.loser_name = self.away_team_score
 
         if self.winner_name:
             self.winner = l.teams["-".join([self.winner_name, self.division.name])]

@@ -14,17 +14,25 @@ ALL_DIVISION = "All"
 DIVISION_ORDER = [
     "HS Varsity Boys",
     "18u Boys",
+    "18u Mens",
     "HS Varsity Girls",
     "18u Girls",
+    "18u Womens",
     "HS Combined Boys",
     "16u Boys",
+    "16u Mens",
     "HS Combined Girls",
     "16u Girls",
+    "16u Womens",
     "HS JV Boys",
     "14u Boys",
+    "14u Combined",
     "14u Girls",
-    "10u Mixed",
+    "14u Womens",
+    "12u Combined",
     "12u Mixed",
+    "10u Combined",
+    "10u Mixed",
 ]
 
 
