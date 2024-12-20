@@ -15,7 +15,7 @@ NAMES_TO_ICON = {
     "Cyprus": "cyprus",
     "Kearns": "kearns",
     "Murray": "murray",
-    "Ogden": "orgden",
+    "Ogden": "ogden",
     "Olympus": "olympus",
     "Park City": "parkcity",
     "SUWP": "waterpolo",
