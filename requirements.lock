@@ -110,6 +110,8 @@ pelican==4.10.1
     # via pelican-tailwindcss
 pelican-tailwindcss==0.2.0
     # via utahwaterpoloassociation
+pillow==11.1.0
+    # via utahwaterpoloassociation
 platformdirs==4.3.6
     # via black
 pluggy==1.5.0

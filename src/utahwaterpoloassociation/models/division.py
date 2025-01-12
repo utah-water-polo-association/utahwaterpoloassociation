@@ -14,6 +14,14 @@ class Division(BaseModel):
     def from_csv(data: list[dict]) -> list["Division"]:
         return from_csv(Division, data)
 
+    def short_name(self) -> str:
+        parts = self.name.split(" ")
+        age = parts[0]
+        kind = parts[1]
+        if age != "HS":
+            age = int(age.replace("u", ""))
+        return f"{age}{kind[0]}"
+
     def __hash__(self) -> int:
         return self.name.__hash__()
 

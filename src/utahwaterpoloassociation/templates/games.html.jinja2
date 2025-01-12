@@ -4,7 +4,8 @@ home_team="Home Team",
 away_team="Away Team",
 score="Score",
 include_location=True,
-include_time=True) -%}
+include_time=True,
+include_division=True) -%}
 <div>
     <div class="mt-8 flow-root not-prose" id="schedule">
         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -15,7 +16,10 @@ include_time=True) -%}
                             <th scope="col" data-type="date"
                                 class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-0">
                                 <span class="sm:inline hidden">Date</span>
-                                <span class="sm:hidden inline">Date/Time</span>
+                                <span class="sm:hidden inline">
+                                    <p>Date</p>
+                                    <p>Time</p>
+                                </span>
                             </th>
                             {% if include_time %}
                             <th scope="col"
@@ -29,8 +33,14 @@ include_time=True) -%}
                                 Location
                             </th>
                             {% endif %}
+                            {% if include_division %}
                             <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left font-semibold text-gray-900">
-                                Division</th>
+                                <span class="sm:inline hidden">Division</span>
+                                <span class="sm:hidden inline">
+                                    Div.
+                                </span>
+                            </th>
+                            {% endif %}
                             <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left font-semibold text-gray-900">
                                 {{away_team}}
                             </th>
@@ -48,7 +58,8 @@ include_time=True) -%}
                             <td class="whitespace-nowrap py-2 pl-4 pr-3 text-gray-500 sm:pl-0">
                                 <p class="sm:block hidden">{{ game.date }}</p>
                                 <p class="sm:hidden block">
-                                    {{ game.short_date_format() }} {{ game.short_time_format() }}
+                                <p>{{ game.short_date_format() }}</p>
+                                <p>{{ game.short_time_format() }}</p>
                                 </p>
                             </td>
                             {% if include_time %}
@@ -61,7 +72,12 @@ include_time=True) -%}
                                 {{ game.location.name }}
                             </td>
                             {% endif %}
-                            <td class="whitespace-nowrap px-2 py-2 text-gray-500">{{ game.division.name }}</td>
+                            {% if include_division %}
+                            <td class="whitespace-nowrap px-2 py-2 text-gray-500">
+                                <span class="sm:hidden">{{ game.division.short_name() }}</span>
+                                <span class="sm:inline hidden">{{ game.division.name }}</span>
+                            </td>
+                            {% endif %}
                             <td
                                 class="align-middle whitespace-nowrap px-2 py-2  {% if game.away_team.name == game.winner.name %}font-bold text-neutral-900 {% else %}text-gray-500{% endif %}">
                                 <img class="lg:size-6 size-4 inline-block" src="{{game.away_team.icon()}}" />

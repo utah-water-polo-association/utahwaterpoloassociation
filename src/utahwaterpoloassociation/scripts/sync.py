@@ -10,6 +10,9 @@ from notion2md.exporter.block import MarkdownExporter
 from notion_client import Client
 from pydantic import BaseModel
 
+# Convert image to webp using PIL
+from PIL import Image
+from io import BytesIO
 from utahwaterpoloassociation.repos import save_league, Leagues
 
 transport = httpx.HTTPTransport(retries=2)
@@ -169,16 +172,54 @@ def get_league(league_id: Leagues) -> Leauge:
     return league
 
 
+def get_icons(league: Leauge):
+    for k, o in league.organizations.items():
+        print(o.logo_link)
+        if not o.logo_link.startswith("http"):
+            return
+
+        # Create icons directory if it doesn't exist
+        os.makedirs("public/icons", exist_ok=True)
+
+        # Get the image and detect mime type
+        print(f"Downloading {o.logo_link} {o.slug()}.webp")
+        response = httpx.get(o.logo_link)
+        response.raise_for_status()
+
+        # Generate output filename using organization slug
+        output_path = f"public/icons/{o.slug()}.webp"
+
+        # Load image from response content
+        img = Image.open(BytesIO(response.content))
+
+        # Convert to RGB if needed (some formats like PNG can have RGBA)
+        if img.mode in ("RGBA", "LA"):
+            background = Image.new("RGB", img.size, (255, 255, 255))
+            background.paste(img, mask=img.split()[-1])
+            img = background
+
+        img.save(output_path, "WEBP", quality=85)
+
+        # Write the image data
+        with open(f"public/{o.icon_path()}", "wb") as f:
+            f.write(response.content)
+
+
 if __name__ == "__main__":
     # Is mostly static now, so let's not mess with it Leagues.UTAH_SPRING_2024,
     leagues_to_sync = [
-        Leagues.UTAH_SPRING_2025,
         # Leagues.UTAH_SPRING_2024,
         # Leagues.UTAH_FALL_HS_2023,
         # Leagues.UTAH_FALL_HS_2024,
+        Leagues.UTAH_SPRING_2025,
     ]
+
+    leauge = None
+    league_id = None
     for league_id in leagues_to_sync:
         leauge: Leauge = get_league(league_id)
         save_league(league_id, league=leauge)
+
+    get_icons(leauge)
 
     get_content()

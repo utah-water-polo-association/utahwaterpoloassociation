@@ -1,19 +1,35 @@
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 <link href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" rel="stylesheet" />
 <div class="not-prose">
-    <div class="flex h-96">
-        <div class="flex-none w-64 h-full overflow-y-scroll">
-            <h2 class="text-lg font-bold">Clubs</h2>
+    <div class="sm:flex sm:h-96">
+        <div class="flex-none h-96 w-full sm:w-32 sm:flex-1 sm:w-auto">
+            <div id="osm-map" class="w-full h-full"></div>
+        </div>
+        <div class="flex-none h-96 overflow-y-scroll sm:w-64 sm:h-full sm:pl-4">
+            <h2 class="text-2xl font-bold">Clubs</h2>
             <ul role="list" class="divide-y divide-gray-200">
                 {% for o in g.league.directory() %}
                 <li class="py-4">
-                    <h2>{{ o.organization.name }}</h2>
+                    <h2 class="link text-xl">
+                        {% if o.organization.website %}
+                        <a href='{{ o.organization.website }}' target='_blank'>
+                            <img class="inline size-4" src="{{ o.organization.icon_path() }}" />
+                            <span>{{ o.organization.full_name}}</span>
+                        </a>
+                        {% else %}
+                        <img class="inline size-4" src="{{ o.organization.icon_path() }}" />
+                        <span>{{ o.organization.full_name}}</span>
+                        {% endif %}
+                    </h2>
+                    <p>
+                        <img class='inline size-4'
+                            src='https://www.google.com/images/branding/product/ico/maps15_bnuw3a_32dp.ico'></img>
+                        <a href='https://www.google.com/maps/search/?api=1&query={{ o.organization.address }}'
+                            target='_blank'>{{ o.organization.address }}</a>
+                    </p>
                 </li>
                 {%endfor %}
             </ul>
-        </div>
-        <div class="flex-1 w-32">
-            <div id="osm-map" class="w-full h-full"></div>
         </div>
     </div>
 </div>
@@ -33,12 +49,39 @@
 
     var center = L.latLng("40.65334851511579", "-111.90336901265653");
     // Target's GPS coordinates.
-    var kearns = L.latLng("40.64915066074539", "-112.00678140084297");
-    var olympous = L.latLng("40.6827458389517", "-111.82304984994916");
+    {% for o in g.league.directory() %}
+    console.log("{{o.organization}}")
+    var {{ o.organization.name.replace(' ', '_') }}Icon = L.icon({
+        iconUrl: "{{ o.organization.icon_path() }}",
+        iconSize: [38, 38],
+        // iconAnchor: [22, 94],
+        // popupAnchor: [-3, -76],
+        // shadowUrl: 'my-icon-shadow.png',
+        // shadowSize: [68, 95],
+        // shadowAnchor: [22, 94]f
+    })
+    var {{ o.organization.name.replace(' ', '_') }} = L.latLng("{{ o.organization.latitude }}", "{{ o.organization.longitude }}");
+    {% endfor %}
     // Set map's center to target with zoom 14.
-    map.setView(center, 12);
+    map.setView(center, 10);
 
     // Place a marker on the same location.
-    L.marker(kearns).addTo(map);
-    L.marker(olympous).addTo(map);
+    {% for o in g.league.directory() %}
+    var popup = [
+        {% if o.organization.website %}
+    "<p><a href='{{ o.organization.website }}' target='_blank'>{{ o.organization.full_name }}</a></p>",
+        "<p><a href='{{ o.organization.website }}' target='_blank'>{{ o.organization.website }}</a></p>",
+        {% else %}
+    "<p>{{ o.organization.full_name }}</p>",
+        {% endif %}
+
+    "<p><img class='inline size-4' src='https://www.google.com/images/branding/product/ico/maps15_bnuw3a_32dp.ico'></img><a href='https://www.google.com/maps/search/?api=1&query={{ o.organization.address }}' target='_blank'>{{ o.organization.address }}</a></p>"
+    ].join("");
+    L.marker({{ o.organization.name.replace(' ', '_') }}, {
+        icon: {{ o.organization.name.replace(' ', '_') }}Icon,
+        title: "{{ o.organization.name }}",
+        url: "{{ o.organization.website }}"
+    }).bindPopup(popup).addTo(map);
+    {% endfor %}
+    // L.marker(olympous).addTo(map);
 </script>
