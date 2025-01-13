@@ -8,93 +8,109 @@ include_time=True,
 include_division=True) -%}
 <div>
     <div class="mt-8 flow-root not-prose" id="schedule">
-        <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div class="overflow-x-auto">
+            <div class="inline-block min-w-full py-2 align-middle">
                 <table class="min-w-full divide-y divide-gray-300 text-sm md:text-lg">
                     <thead>
-                        <tr>
+                        <tr class="align-top">
                             <th scope="col" data-type="date"
-                                class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-0">
-                                <span class="sm:inline hidden">Date</span>
-                                <span class="sm:hidden inline">
+                                class="whitespace-nowrap text-left font-semibold text-gray-900">
+                                <span class="hidden sm:inline">Date</span>
+                                <span class="inline sm:hidden">
                                     <p>Date</p>
                                     <p>Time</p>
                                 </span>
                             </th>
                             {% if include_time %}
                             <th scope="col"
-                                class="whitespace-nowrap px-2 py-3.5 text-left font-semibold text-gray-900 sm:table-cell hidden">
+                                class="whitespace-nowrap text-left font-semibold text-gray-900 hidden sm:table-cell">
                                 Time
                             </th>
                             {% endif %}
-                            {% if include_location %}
-                            <th scope="col"
-                                class="whitespace-nowrap px-2 py-3.5 text-left font-semibold text-gray-900 lg:table-cell hidden">
-                                Location
-                            </th>
-                            {% endif %}
                             {% if include_division %}
-                            <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left font-semibold text-gray-900">
+                            <th scope="col" class="whitespace-nowrap text-left font-semibold text-gray-900">
                                 <span class="sm:inline hidden">Division</span>
                                 <span class="sm:hidden inline">
                                     Div.
                                 </span>
                             </th>
                             {% endif %}
-                            <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left font-semibold text-gray-900">
+                            <th scope="col"
+                                class="whitespace-nowrap text-left font-semibold text-gray-900 table-cell sm:hidden">
+                                Teams
+                            </th>
+                            <th scope="col"
+                                class="whitespace-nowrap text-left font-semibold text-gray-900 sm:table-cell hidden">
                                 {{away_team}}
                             </th>
-                            <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left font-semibold text-gray-900">
+                            <th scope="col"
+                                class="whitespace-nowrap text-left font-semibold text-gray-900 sm:table-cell hidden">
                                 {{home_team}}
                             </th>
-                            <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left font-semibold text-gray-900">
-                                <span class="xl:inline hidden">{{score}}</span>
+                            <th scope="col" class="whitespace-nowrap text-left font-semibold text-gray-900">
+                                <span blah-class="xl:inline hidden">{{score}}</span>
                             </th>
+                            {% if include_location %}
+                            <th scope="col"
+                                class="whitespace-nowrap text-left font-semibold text-gray-900 lg:table-cell hidden">
+                                Location
+                            </th>
+                            {% endif %}
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
                         {% for game in games %}
                         <tr class="align-middle">
-                            <td class="whitespace-nowrap py-2 pl-4 pr-3 text-gray-500 sm:pl-0">
-                                <p class="sm:block hidden">{{ game.date }}</p>
-                                <p class="sm:hidden block">
-                                <p>{{ game.short_date_format() }}</p>
-                                <p>{{ game.short_time_format() }}</p>
-                                </p>
+                            <td class="whitespace-nowrap text-gray-500">
+                                <p class="hidden sm:block">{{ game.date }}</p>
+                                <p class="block sm:hidden">{{ game.short_date_format() }}</p>
+                                <p class="block sm:hidden">{{ game.short_time_format() }}</p>
                             </td>
                             {% if include_time %}
-                            <td class="whitespace-nowrap px-2 py-2 text-gray-900 sm:table-cell hidden">
+                            <td class="whitespace-nowrap pt-1 pb-2 text-gray-900 sm:table-cell hidden">
                                 {{ game.short_time_format() }}
                             </td>
                             {% endif %}
-                            {% if include_location %}
-                            <td class="whitespace-nowrap px-2 py-2 text-gray-900 lg:table-cell hidden">
-                                {{ game.location.name }}
-                            </td>
-                            {% endif %}
                             {% if include_division %}
-                            <td class="whitespace-nowrap px-2 py-2 text-gray-500">
+                            <td class="whitespace-nowrap pt-1 pb-2 text-gray-500">
                                 <span class="sm:hidden">{{ game.division.short_name() }}</span>
                                 <span class="sm:inline hidden">{{ game.division.name }}</span>
                             </td>
                             {% endif %}
                             <td
-                                class="align-middle whitespace-nowrap px-2 py-2  {% if game.away_team.name == game.winner.name %}font-bold text-neutral-900 {% else %}text-gray-500{% endif %}">
+                                class="align-middle whitespace-nowrap pt-1 pb-2 table-cell sm:hidden {% if game.away_team.name == game.winner.name %}font-bold text-neutral-900 {% else %}text-gray-500{% endif %}">
+                                <p>
+                                    <img class="lg:size-6 size-4 inline-block" src="{{game.away_team.icon()}}" />
+                                    <span class="inline-block">{{ game.away_team.name }}</span>
+                                </p>
+                                <p>
+                                    <img class="lg:size-6 size-4 inline-block" src="{{game.home_team.icon()}}" />
+                                    <span class="inline-block">{{ game.home_team.name }}</span>
+                                </p>
+
+                            </td>
+                            <td
+                                class="align-middle whitespace-nowrap pt-1 pb-2 sm:table-cell hidden {% if game.away_team.name == game.winner.name %}font-bold text-neutral-900 {% else %}text-gray-500{% endif %}">
                                 <img class="lg:size-6 size-4 inline-block" src="{{game.away_team.icon()}}" />
                                 <span class="inline-block">{{ game.away_team.name }}</span>
 
                             </td>
                             <td
-                                class="align-middle whitespace-nowrap px-2 py-2 {% if game.home_team.name == game.winner.name %}font-bold text-neutral-900{% else %}text-gray-500{% endif %}">
+                                class="align-middle whitespace-nowrap pt-1 pb-2 sm:table-cell hidden {% if game.home_team.name == game.winner.name %}font-bold text-neutral-900{% else %}text-gray-500{% endif %}">
                                 <img class="lg:size-6 size-4 inline-block" src="{{game.home_team.icon()}}" />
                                 <span class="inline-block">{{ game.home_team.name }}</span>
 
                             </td>
-                            <td class="whitespace-nowrap px-2 py-2 text-gray-500">
+                            <td class="whitespace-nowrap pt-1 pb-2 text-gray-500">
                                 {% if game.away_team_score and game.home_team_score %}
                                 ({{ game.away_team_score }} - {{ game.home_team_score }})
                                 {% endif %}
                             </td>
+                            {% if include_location %}
+                            <td class="whitespace-nowrap pt-1 pb-2 text-gray-900 lg:table-cell hidden">
+                                {{ game.location.name }}
+                            </td>
+                            {% endif %}
                         </tr>
                         {% endfor %}
                     </tbody>

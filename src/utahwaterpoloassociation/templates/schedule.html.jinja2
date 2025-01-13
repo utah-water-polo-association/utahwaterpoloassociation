@@ -1,5 +1,52 @@
 {% import "games.html.jinja2" as games %}
-<div x-data="{'division': 'All'}">
+<script>
+    function parseHashQueryString(hash) {
+        if (!hash || hash.length < 2) {
+            return {};
+        }
+
+        // Remove the leading '#'
+        const queryString = hash.slice(1);
+
+        // Use URLSearchParams to parse the query string
+        const params = new URLSearchParams(queryString);
+
+        // Convert to an object
+        const result = {};
+        for (const [key, value] of params.entries()) {
+            result[key] = value;
+        }
+
+        return result;
+    }
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('games', (div = 'all') => ({
+            division: div,
+            init() {
+                let b = { division: div, ...parseHashQueryString(window.location.hash) };
+                console.log("b", b);
+                Object.keys(b).forEach(key => {
+                    this[key] = b[key];
+                });
+                window.addEventListener('popstate', () => {
+                    let b = { division: div, ...parseHashQueryString(window.location.hash) };
+                    console.log("pop state b", b);
+                    Object.keys(b).forEach(key => {
+                        this[key] = b[key];
+                    });
+                });
+                this.$watch('division', () => {
+                    if (this.division == 'All') {
+                        window.history.pushState({}, '', '');
+                    } else {
+                        window.history.pushState({}, '', `#division=${this.division}`);
+                    }
+                });
+            }
+        }));
+    });
+</script>
+<div x-data="games('All')">
     <div>
         <div class="sm:hidden">
             <label for="tabs" class="sr-only">Select a Division</label>
@@ -11,10 +58,10 @@
             </select>
             </label>
         </div>
-        <div class="hidden sm:block">
-            <nav class="flex space-x-4" aria-label="Tabs">
+        <div class="hidden sm:block w-full">
+            <nav class="flex space-x-4 overflow-x-scroll" aria-label="Tabs">
                 {% for division in league.schedule().division_order %}
-                <a href="#{{division}}" @click.prevent="division = '{{division}}'"
+                <a href="#division={{division}}" @click.prevent="division = '{{division}}'"
                     x-bind:class="division == '{{division}}' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:text-gray-700' "
                     class="rounded-md px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
                     {{division}}
@@ -32,7 +79,7 @@
         score=score,
         include_location=include_location,
         include_time=include_time,
-        include_division=False) }}
+        include_division=division == 'All') }}
     </div>
     {% endfor %}
 </div>

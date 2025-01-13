@@ -19,7 +19,7 @@
         {% block nav %}
         {% include 'nav.html.jinja2' %}
         {% endblock %}
-        <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl px-1 py-8 sm:px-3 lg:px-5">
             <header>
                 {% block page_header %}
                 <div class="border-b border-gray-200">
@@ -36,7 +36,7 @@
                             {% endif %}
                         </h1>
                         <div class="mt-4 sm:ml-10 sm:mt-0">
-                            <nav class="-mb-px flex space-x-8">
+                            <nav class="-mb-px flex space-x-8 w-full overflow-x-scroll">
                                 {% for link in g.meta.navigation %}
                                 {% if p.attributes.path.startswith(link.link) and link.navigation %}
                                 {% for link in link.navigation %}
