@@ -53,7 +53,7 @@ deploy:
 load:
 	rye run python src/utahwaterpoloassociation/scripts/load.py > output/ratings.html
 
-rsync: generate
+rsync:
 	rsync -r --delete-after output/* eczrvsmy@50.6.153.225:/home1/eczrvsmy/public_html/website_287658e3/
 	rsync -r --delete-after output/* eczrvsmy@50.6.153.225:/home1/eczrvsmy/public_html/
 

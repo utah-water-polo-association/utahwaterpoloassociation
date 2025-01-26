@@ -9,3 +9,4 @@ make tailwind
 make generate_css
 make generate
 make copy_assets
+make generate_css
