@@ -2,13 +2,12 @@
 
 UNAME_S := $(shell uname -s)
 UNAME_P := $(shell uname -p)
+TAILWIND :=./tailwindcss
 
 ifeq "$(CI)" "true"
     PULL_ENV :=
-	TAILWIND :=./tailwindcss
 else
     PULL_ENV :=  op run --env-file="./.env" --
-	TAILWIND :=./tailwindcss
 endif
 
 ifeq "$(UNAME_S)" "Darwin"
