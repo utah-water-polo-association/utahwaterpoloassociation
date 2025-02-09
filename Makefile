@@ -1,10 +1,26 @@
 # In CI environment variables will be set no need to use 1password
+
+UNAME_S := $(shell uname -s)
+UNAME_P := $(shell uname -p)
+
 ifeq "$(CI)" "true"
     PULL_ENV :=
 	TAILWIND :=./tailwindcss
 else
     PULL_ENV :=  op run --env-file="./.env" --
-	TAILWIND :=tailwindcss
+	TAILWIND :=./tailwindcss
+endif
+
+ifeq "$(UNAME_S)" "Darwin"
+	OS :=macos
+else
+    OS :=linux
+endif
+
+ifeq "$(UNAME_P)" "arm"
+	ARCH :=arm64
+else
+    ARCH :=x64
 endif
 
 sync:
@@ -37,9 +53,9 @@ generate_css:
 	${TAILWIND} -i css/input.css -o output/style.css --minify
 
 tailwind:
-	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
-	chmod +x tailwindcss-linux-x64
-	mv tailwindcss-linux-x64 tailwindcss
+	curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-${OS}-${ARCH}
+	chmod +x tailwindcss-${OS}-${ARCH}
+	mv tailwindcss-${OS}-${ARCH} tailwindcss
 
 build:
 	./build.sh
