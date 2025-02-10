@@ -7,9 +7,29 @@ include_location=True,
 include_time=True,
 include_division=True) -%}
 <div>
+    {# Group games by week #}
+    {% set current_week = namespace(value=none) %}
+
     <div class="mt-8 flow-root not-prose" id="schedule">
         <div class="overflow-x-auto">
             <div class="inline-block min-w-full py-2 align-middle">
+                {% for game in games %}
+                {# Convert date string to datetime object #}
+                {% set date = game.date|datetime %}
+                {# Get the week start date (Monday) for current game #}
+                {% set game_week = date.strftime('%Y-W%W') %}
+
+                {# If we're starting a new week, create a new table #}
+                {% if game_week != current_week.value %}
+                {% if not loop.first %}
+                </tbody>
+                </table>
+                {% endif %}
+
+                {% set current_week.value = game_week %}
+                <h3 class="font-semibold text-lg text-gray-900 mt-8 mb-4">Week of {{ date.strftime('%B %d, %Y') }}
+                </h3>
+
                 <table class="min-w-full divide-y divide-gray-300 text-sm md:text-lg">
                     <thead>
                         <tr class="align-top">
@@ -59,16 +79,17 @@ include_division=True) -%}
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
-                        {% for game in games %}
+                        {% endif %}
+
                         <tr class="align-middle">
                             <td class="whitespace-nowrap text-gray-500">
-                                <p class="hidden sm:block">{{ game.date }}</p>
-                                <p class="block sm:hidden">{{ game.short_date_format() }}</p>
-                                <p class="block sm:hidden">{{ game.short_time_format() }}</p>
+                                <p class="hidden sm:block">{{ date.strftime('%a %-m/%-d') }}</p>
+                                <p class="block sm:hidden">{{ date.strftime('%a %-m/%-d') }}</p>
+                                <p class="block sm:hidden">{{ date.strftime('%I:%M %p').lower() }}</p>
                             </td>
                             {% if include_time %}
                             <td class="whitespace-nowrap pt-1 pb-2 text-gray-900 sm:table-cell hidden">
-                                {{ game.short_time_format() }}
+                                {{ date.strftime('%-I:%M %p').lower() }}
                             </td>
                             {% endif %}
                             {% if include_division %}
@@ -112,9 +133,12 @@ include_division=True) -%}
                             </td>
                             {% endif %}
                         </tr>
-                        {% endfor %}
+
+                        {% if loop.last %}
                     </tbody>
                 </table>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </div>

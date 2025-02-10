@@ -1,9 +1,11 @@
+from datetime import datetime
+
+
 from utahwaterpoloassociation.models.models import Data
 from jinja2 import Environment, PackageLoader, select_autoescape
 import markupsafe
 from markdown.extensions import Extension
 from markdown.preprocessors import Preprocessor
-from markdown.extensions.md_in_html import MarkdownInHtmlExtension
 from markdown import Markdown
 from markupsafe import Markup
 import markdown
@@ -156,4 +158,11 @@ def get_environment(data: Data) -> Environment:
     env.globals["club_map"] = club_map
     env.globals["instagram"] = instagram
 
+    def datetime_filter(date_str):
+        return datetime.strptime(
+            date_str, "%m/%d/%Y"
+        )  # Changed format to match M/D/YYYY
+
+    # In your Jinja2 environment setup:
+    env.filters["datetime"] = datetime_filter
     return env
