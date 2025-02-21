@@ -45,7 +45,7 @@ $files = process_file($_FILES['score-sheet']);
 
 
 // Multiple recipients
-$to = 'voidfiles@gmail.com'; // note the comma
+$to = 'voidfiles@gmail.com,mwalker@kopfc.com'; // note the comma
 
 // Subject
 $subject = 'Game report';
