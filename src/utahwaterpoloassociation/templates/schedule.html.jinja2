@@ -49,9 +49,9 @@
 <div x-data="games('All')">
     <div>
         <div class="sm:hidden">
-            <label for="tabs" class="sr-only">Select a Division</label>
+            <label for="tabs" class="block text-sm/6 font-medium text-gray-900">Select a Division</label>
             <select x-model="division" id="tabs" name="tabs"
-                class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
                 {% for division in league.schedule().division_order %}
                 <option value="{{division}}">{{division}}</option>
                 {% endfor %}

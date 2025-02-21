@@ -85,7 +85,7 @@ include_division=True) -%}
                             <td class="whitespace-nowrap text-gray-500">
                                 <p class="hidden sm:block">{{ date.strftime('%a %-m/%-d') }}</p>
                                 <p class="block sm:hidden">{{ date.strftime('%a %-m/%-d') }}</p>
-                                <p class="block sm:hidden">{{ date.strftime('%I:%M %p').lower() }}</p>
+                                <p class="block sm:hidden">{{ game.short_time_format() }}</p>
                             </td>
                             {% if include_time %}
                             <td class="whitespace-nowrap pt-1 pb-2 text-gray-900 sm:table-cell hidden">
