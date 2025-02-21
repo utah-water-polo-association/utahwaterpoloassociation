@@ -34,7 +34,7 @@ include_division=True) -%}
                     <thead>
                         <tr class="align-top">
                             <th scope="col" data-type="date"
-                                class="whitespace-nowrap text-left font-semibold text-gray-900">
+                                class="w-24 whitespace-nowrap text-left font-semibold text-gray-900">
                                 <span class="hidden sm:inline">Date</span>
                                 <span class="inline sm:hidden">
                                     <p>Date</p>
@@ -43,12 +43,12 @@ include_division=True) -%}
                             </th>
                             {% if include_time %}
                             <th scope="col"
-                                class="whitespace-nowrap text-left font-semibold text-gray-900 hidden sm:table-cell">
+                                class="w-24 whitespace-nowrap text-left font-semibold text-gray-900 hidden sm:table-cell">
                                 Time
                             </th>
                             {% endif %}
                             {% if include_division %}
-                            <th scope="col" class="whitespace-nowrap text-left font-semibold text-gray-900">
+                            <th scope="col" class="w-32 whitespace-nowrap text-left font-semibold text-gray-900">
                                 <span class="sm:inline hidden">Division</span>
                                 <span class="sm:hidden inline">
                                     Div.
@@ -56,23 +56,23 @@ include_division=True) -%}
                             </th>
                             {% endif %}
                             <th scope="col"
-                                class="whitespace-nowrap text-left font-semibold text-gray-900 table-cell sm:hidden">
+                                class="w-48 whitespace-nowrap text-left font-semibold text-gray-900 table-cell sm:hidden">
                                 Teams
                             </th>
                             <th scope="col"
-                                class="whitespace-nowrap text-left font-semibold text-gray-900 sm:table-cell hidden">
+                                class="w-48 whitespace-nowrap text-left font-semibold text-gray-900 sm:table-cell hidden">
                                 {{away_team}}
                             </th>
                             <th scope="col"
-                                class="whitespace-nowrap text-left font-semibold text-gray-900 sm:table-cell hidden">
+                                class="w-48 whitespace-nowrap text-left font-semibold text-gray-900 sm:table-cell hidden">
                                 {{home_team}}
                             </th>
-                            <th scope="col" class="whitespace-nowrap text-left font-semibold text-gray-900">
-                                <span blah-class="xl:inline hidden">{{score}}</span>
+                            <th scope="col" class="w-24 whitespace-nowrap text-left font-semibold text-gray-900">
+                                <span class="xl:inline hidden">{{score}}</span>
                             </th>
                             {% if include_location %}
                             <th scope="col"
-                                class="whitespace-nowrap text-left font-semibold text-gray-900 lg:table-cell hidden">
+                                class="w-48 whitespace-nowrap text-left font-semibold text-gray-900 lg:table-cell hidden">
                                 Location
                             </th>
                             {% endif %}
@@ -89,7 +89,7 @@ include_division=True) -%}
                             </td>
                             {% if include_time %}
                             <td class="whitespace-nowrap pt-1 pb-2 text-gray-900 sm:table-cell hidden">
-                                {{ date.strftime('%-I:%M %p').lower() }}
+                                {{ game.short_time_format() }}
                             </td>
                             {% endif %}
                             {% if include_division %}
