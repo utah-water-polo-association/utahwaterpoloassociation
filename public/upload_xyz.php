@@ -21,8 +21,8 @@ function mime2ext($mime) {
 // [error] => 0
 // [size] => 26690
 
-$prod = $_SERVER['HTTP_HOST'] == "beta.utahwaterpoloassociation.com";
-$uwpa_host = getenv("UWPA_HOST") ?: "https://beta.utahwaterpoloassociation.com";
+$prod = $_SERVER['HTTP_HOST'] == "utahwaterpoloassociation.com";
+$uwpa_host = getenv("UWPA_HOST") ?: "https://utahwaterpoloassociation.com";
 
 
 if (!file_exists('./uploads/')) {
