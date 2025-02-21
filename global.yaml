@@ -27,6 +27,9 @@ navigation:
       - title: Directory
         link: /coaches/directory
         section: directory
+      - title: Score Reporting
+        link: /report/
+        section: report
   - title: Referees
     link: /referees
     section: referees

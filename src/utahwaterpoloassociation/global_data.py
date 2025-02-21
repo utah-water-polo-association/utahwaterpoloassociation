@@ -11,6 +11,15 @@ def process_globals(g) -> Any:
     for link in g["navigation"]:
         g["navigation_by_link"][link["link"]] = link
 
+    g["navigation"][2]["navigation"].append(
+        {
+            "link": "/report/",
+            "navigation": [],
+            "section": "header",
+            "title": "Score Reporting",
+        },
+    )
+
     return g
 
 
