@@ -7,21 +7,21 @@ from .organization import Organization
 from .division import Division
 
 NAMES_TO_ICON = {
-    "Bear River": "bearriver",
+    "Bear River": "bear-river",
     "Brighton": "brighton",
     "Cache": "cache",
-    "Canyon View": "canyon_view",
+    "Canyon View": "canyon-view",
     "Cedar": "cedar",
     "Cyprus": "cyprus",
     "Kearns": "kearns",
     "Murray": "murray",
     "Ogden": "ogden",
     "Olympus": "olympus",
-    "Park City": "parkcity",
+    "Park City": "park-city",
     "SUWP": "waterpolo",
     "Skyline": "skyline",
-    "South Davis": "southdavis",
-    "Tooele": "toole",
+    "South Davis": "south-davis",
+    "Tooele": "tooele",
     "UCO": "uco",
     "United": "united",
     "Wasatch": "wasatch",
@@ -60,4 +60,4 @@ class Team(BaseModel):
     def icon(self) -> str:
         name = NAMES_TO_ICON.get(self.organization_name, "waterpolo")
 
-        return "/icons/%s.png" % (name)
+        return "/icons/%s.webp" % (name)
