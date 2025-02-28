@@ -9,8 +9,8 @@ from .division import Division
 NAMES_TO_ICON = {
     "Bear River": "bearriver",
     "Brighton": "brighton",
-    "Cache": "waterpolo",
-    "Canyon View": "waterpolo",
+    "Cache": "cache",
+    "Canyon View": "canyon_view",
     "Cedar": "cedar",
     "Cyprus": "cyprus",
     "Kearns": "kearns",
@@ -21,9 +21,9 @@ NAMES_TO_ICON = {
     "SUWP": "waterpolo",
     "Skyline": "skyline",
     "South Davis": "southdavis",
-    "Tooele": "waterpolo",
-    "UCO": "waterpolo",
-    "United": "waterpolo",
+    "Tooele": "toole",
+    "UCO": "uco",
+    "United": "united",
     "Wasatch": "wasatch",
 }
 
