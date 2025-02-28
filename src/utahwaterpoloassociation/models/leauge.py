@@ -77,7 +77,7 @@ class Leauge(Hashable):
     contacts: list[Contact] = []
 
     def unreported_games(self, division):
-        nw = datetime.now() + timedelta(days=7)
+        nw = datetime.now() + timedelta(days=3)
         games = filter(lambda x: x.parsed_date() <= nw, self.games)
         # if division == "18u Mens":
         #     assert False, [division, list(games)]
