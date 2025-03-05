@@ -41,6 +41,6 @@ def get_global_data() -> Data:
         globals = process_globals(globals)
 
     globals["php_host"] = os.environ.get(
-        "PHP_HOST", "https://beta.utahwaterpoloassociation.com"
+        "PHP_HOST", "https://utahwaterpoloassociation.com"
     )
     return Data(league=league, meta=globals, past=past_data)
