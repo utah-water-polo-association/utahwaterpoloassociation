@@ -63,6 +63,7 @@ $message = "
         <title>Report for game {$_POST['game']}</title>
     </head>
     <body>
+        <p>Report for game {$_POST['game']}</p>
         <p>Winner: {$_POST['winner']}</p>
         <p>Winning Score: {$_POST['winning_score']}</p>
         <p>Losing Score: {$_POST['losing_score']}</p>
