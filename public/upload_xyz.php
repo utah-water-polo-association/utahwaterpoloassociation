@@ -48,7 +48,7 @@ $files = process_file($_FILES['score-sheet']);
 $to = 'voidfiles@gmail.com,mwalker@kopfc.com'; // note the comma
 
 // Subject
-$subject = 'Game report {$_POST['game']}';
+$subject = "Game report {$_POST['game']}";
 
 // [country] => 18u Mens
 //     [game] => 1731222000.0:18u Mens:Kearns:Olympus
