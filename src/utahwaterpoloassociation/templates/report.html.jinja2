@@ -14,7 +14,7 @@
                 <div class="col-span-full">
                     <label for="division" class="block text-sm/6 font-medium text-gray-900">Division</label>
                     <div class="mt-2">
-                        <select id="country" name="country" autocomplete="country-name" x-model="division"
+                        <select id="country" required name="country" autocomplete="country-name" x-model="division"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm/6">
                             <option value="">Select Division</option>
                             {% for division in g.league.divisions.keys() %}
@@ -29,7 +29,7 @@
                     <div class="col-span-full">
                         <label for="country" class="block text-sm/6 font-medium text-gray-900">Game</label>
                         <div class="mt-2">
-                            <select id="game" name="game" x-model="game_id"
+                            <select required id="game" name="game" x-model="game_id"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm/6">
                                 <option value="">Select a game</option>
                                 {% for game in g.league.unreported_games(division=division) %}
@@ -46,7 +46,7 @@
                     <div class="col-span-full">
                         <label for="winner" class="block text-sm/6 font-medium text-gray-900">Winner</label>
                         <div class="mt-2">
-                            <select id="winner" name="winner" x-model="division"
+                            <select required id="winner" name="winner" x-model="division"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm/6">
                                 <option value="{{game.home_team_name}}">
                                     {{ game.home_team_name }}
@@ -67,13 +67,12 @@
                                 Winning Score
                             </label>
                             <div class="mt-2">
-                                <input type="text" required name="winning_score" id="winning_score"
-                                    autocomplete="address-level1"
+                                <input required type="text" required name="winning_score" id="winning_score"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6">
                             </div>
                         </div>
                         <div class="sm:col-span-2">
-                            <label for="losing_score" class="block text-sm/6 font-medium text-gray-900">
+                            <label required for="losing_score" class="block text-sm/6 font-medium text-gray-900">
                                 Losing Score
                             </label>
                             <div class="mt-2">
