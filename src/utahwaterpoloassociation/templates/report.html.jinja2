@@ -2,8 +2,7 @@
 {% block page_header %}
 {% endblock %}
 {% block main %}
-<form action="{{g.meta.php_host}}/upload_xyz.php" method="POST" enctype="multipart/form-data"
-    x-data="{ division: '', game_id: '' }">
+<form action="/upload_xyz.php" method="POST" enctype="multipart/form-data" x-data="{ division: '', game_id: '' }">
     <div class="space-y-12">
         <div class="border-b border-gray-900/10 pb-12">
             <h2 class="text-base/7 font-semibold text-gray-900">Report A Game</h2>
@@ -14,7 +13,7 @@
                 <div class="col-span-full">
                     <label for="division" class="block text-sm/6 font-medium text-gray-900">Division</label>
                     <div class="mt-2">
-                        <select id="country" required name="country" autocomplete="country-name" x-model="division"
+                        <select id="division" required name="division" x-model="division"
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm/6">
                             <option value="">Select Division</option>
                             {% for division in g.league.divisions.keys() %}
