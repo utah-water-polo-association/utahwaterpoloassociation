@@ -7,10 +7,10 @@
         </h1>
         <div class="mt-4 sm:ml-10 sm:mt-0">
             <nav class="-mb-px flex space-x-8">
-                {% for name, item in g.past.items() %}
+                {% for name, item in g.past.items() | reverse %}
                 <a href="#{{name}}"
                     class="whitespace-nowrap border-b-2 px-1 pb-1 sm:pb-4 text-sm font-medium border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                    aria-current="page" @click.prevent="season = '{{name}}'; console.log(season)"
+                    aria-current="page" @click.prevent="season = '{{name}}'"
                     x-bind:class="season == '{{name}}' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'">{{name}}</a>
                 {% endfor %}
                 <span class="whitespace-nowrap border-b-2 px-1 pb-1 sm:pb-4">&nbsp;</span>
@@ -22,7 +22,7 @@
 {% endblock %}
 {% block main %}
 <div class="mx-auto max-w-7xl pt-8">
-    {% for name, item in g.past.items() %}
+    {% for name, item in g.past.items() | reverse %}
     <div class="" :class="season == '{{name}}' ? '' : 'hidden'">
 
         <div class="border-b border-gray-200">
@@ -47,7 +47,7 @@
         {% for division in league_rankings(g.past[name]) %}
         <div
             x-bind:class="division == '{{name}}:{{division.name}}' {% if loop.index == 1 %}|| division == ''{% endif %} ? '' : 'hidden'">
-            {% for wk, teams in division.ratings_by_week_new() %}
+            {% for wk, teams in division.ratings_by_week_new() | reverse %}
             <div class="">
                 <h2 class="pt-5 pb-10">Week {{wk}}</h2>
                 <div class="overflow-x-auto flex">
