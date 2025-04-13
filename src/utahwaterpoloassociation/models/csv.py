@@ -6,8 +6,11 @@ def from_csv(cls, data):
             if remote_key.startswith("__"):
                 kwargs[local_key] = None
             else:
-                val = row[remote_key].strip()
-                kwargs[local_key] = val
+                if remote_key not in row:
+                    kwargs[local_key] = None
+                else:
+                    val = row[remote_key].strip()
+                    kwargs[local_key] = val
 
         results.append(cls(**kwargs))
 

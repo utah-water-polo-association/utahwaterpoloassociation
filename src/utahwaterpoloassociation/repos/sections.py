@@ -5,6 +5,7 @@ from utahwaterpoloassociation.models.location import Location
 from utahwaterpoloassociation.models.division import Division
 from utahwaterpoloassociation.models.team import Team
 from utahwaterpoloassociation.models.game import Game
+from utahwaterpoloassociation.models.tournament import Tournament
 from utahwaterpoloassociation.models.contact import Contact
 from .leagues import Leagues
 
@@ -67,6 +68,18 @@ LEAUGE_CONFIG: dict[Leagues, list[SectionConfig]] = {
         ),
         SectionConfig(
             base_url=LEAGUE_MAIN, label="Contact Sheet", gid="1058937840", model=Contact
+        ),
+        SectionConfig(
+            base_url=LEAGUE_SPRING_2025,
+            label="Tournaments",
+            gid="1759874846",
+            model=Tournament,
+        ),
+        SectionConfig(
+            base_url=LEAGUE_SPRING_2025,
+            label="Tournament Games",
+            gid="745729711",
+            model=Game,
         ),
     ],
     Leagues.UTAH_FALL_HS_2023: [

@@ -1,4 +1,9 @@
 {% import "games.html.jinja2" as games %}
+<style>
+    [x-cloak] {
+        display: none !important;
+    }
+</style>
 <script>
     function parseHashQueryString(hash) {
         if (!hash || hash.length < 2) {
@@ -19,11 +24,29 @@
 
         return result;
     }
+
+    function saveStateToHash(state) {
+        console.log("saveStateToHash", state);
+        items = Object.entries(state)
+            .map(([key, value]) => {
+                if (value == 'All') {
+                    return null;
+                }
+                return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+            }).filter((item) => item !== null);
+
+        if (items.length == 0) {
+            return '#';
+        }
+
+        return '#' + items.join('&');
+    }
     document.addEventListener('alpine:init', () => {
-        Alpine.data('games', (div = 'all') => ({
+        Alpine.data('games', (div = 'all', tourn = 'all') => ({
             division: div,
+            tournament: tourn,
             init() {
-                let b = { division: div, ...parseHashQueryString(window.location.hash) };
+                let b = { division: div, tournament: tourn, ...parseHashQueryString(window.location.hash) };
                 console.log("b", b);
                 Object.keys(b).forEach(key => {
                     this[key] = b[key];
@@ -35,51 +58,74 @@
                         this[key] = b[key];
                     });
                 });
+
                 this.$watch('division', () => {
-                    if (this.division == 'All') {
-                        window.history.pushState({}, '', '');
-                    } else {
-                        window.history.pushState({}, '', `#division=${this.division}`);
-                    }
+                    window.history.pushState({}, '', saveStateToHash({ division: this.division, tournament: this.tournament }));
+                });
+
+                this.$watch('tournament', () => {
+                    this.division = 'All';
+                    window.history.pushState({}, '', saveStateToHash({ division: this.division, tournament: this.tournament }));
                 });
             }
         }));
     });
 </script>
-<div x-data="games('All')">
-    <div>
-        <div class="sm:hidden">
-            <label for="tabs" class="block text-sm/6 font-medium text-gray-900">Select a Division</label>
-            <select x-model="division" id="tabs" name="tabs"
-                class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-                {% for division in league.schedule().division_order %}
-                <option value="{{division}}">{{division}}</option>
-                {% endfor %}
-            </select>
-            </label>
-        </div>
-        <div class="hidden sm:block w-full">
-            <nav class="flex space-x-4 overflow-x-scroll" aria-label="Tabs">
-                {% for division in league.schedule().division_order %}
-                <a href="#division={{division}}" @click.prevent="division = '{{division}}'"
-                    x-bind:class="division == '{{division}}' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:text-gray-700' "
-                    class="rounded-md px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
-                    {{division}}
-                </a>
-                {% endfor %}
-            </nav>
-        </div>
+<div x-data="games('All', 'All')">
+    <div id="tournament">
+        <label for="tabs" class="inline-block text-sm/6 font-medium text-gray-900">Select a Tournament</label>
+        <select x-model="tournament" id="tabs" name="tabs"
+            class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+            {% for schedule in league.schedules().keys() %}
+            <option value="{{schedule}}">{{schedule}}</option>
+            {% endfor %}
+        </select>
+        </label>
     </div>
-    {% for division in league.schedule().division_order %}
-    <div class="" x-bind:class="division == '{{division}}' ? '' : 'hidden' ">
-        {{ games.table(
-        league.schedule().by_division[division],
-        home_team=home_team,
-        away_team=away_team,
-        score=score,
-        include_location=include_location,
-        include_time=include_time,
-        include_division=division == 'All') }}
+    <div id="division-selectors" x-cloak>
+        {% for name, schedule in league.schedules().items() %}
+        <div x-bind:class="tournament == '{{name}}' ? '' : 'hidden' ">
+            <div class="sm:hidden">
+                <label for="tabs" class="block text-sm/6 font-medium text-gray-900">Select a Division</label>
+                <select x-model="division" id="tabs" name="tabs"
+                    class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                    {% for division in schedule.division_order %}
+                    <option value="{{division}}">{{division}}</option>
+                    {% endfor %}
+                </select>
+                </label>
+            </div>
+            <div class="hidden sm:block w-full">
+                <label for="tabs" class="block text-sm/6 font-medium text-gray-900">Select a Division</label>
+                <nav class="flex space-x-4 overflow-x-scroll" aria-label="Tabs">
+                    {% for division in schedule.division_order %}
+                    <a href="#division={{division}}" @click.prevent="division = '{{division}}'"
+                        x-bind:class="division == '{{division}}' ? 'bg-indigo-100 text-indigo-700' : 'text-gray-500 hover:text-gray-700' "
+                        class="rounded-md px-3 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                        {{division}}
+                    </a>
+                    {% endfor %}
+                </nav>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+    <div id="schedules" x-cloak>
+        {% for name, schedule in league.schedules().items() %}
+        <div x-bind:class="tournament == '{{name}}' ? '' : 'hidden' ">
+            {% for division in schedule.division_order %}
+            <div x-bind:class="division == '{{division}}' ? '' : 'hidden' ">
+                {{ games.table(
+                schedule.by_division[division],
+                home_team=home_team,
+                away_team=away_team,
+                score=score,
+                include_location=include_location,
+                include_time=include_time,
+                include_division=division == 'All') }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
 </div>

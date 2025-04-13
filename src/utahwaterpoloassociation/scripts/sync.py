@@ -15,12 +15,34 @@ from PIL import Image
 from io import BytesIO
 from utahwaterpoloassociation.repos import save_league, Leagues
 
+
 transport = httpx.HTTPTransport(retries=2)
 client = httpx.Client(transport=transport)
 
 notion_client = Client(auth=os.environ["NOTION_TOKEN"])
 
 FOOTER_NAV_PAGES = ["Past Seasons"]
+
+
+def get_league(league_id: Leagues) -> Leauge:
+    league = Leauge()
+    for section in LEAUGE_CONFIG[league_id]:
+        print()
+        print()
+        print("parsing %s %s" % (league_id, section.label))
+        print()
+        data = client.get(
+            section.base_url + "&gid=" + section.gid, follow_redirects=True
+        )
+        reader = csv.DictReader(data.iter_lines())
+        items: list[dict[str, str]] = [x for x in reader]
+        print("Sample csv %s" % items[0:2])
+        parsed_items = section.model.from_csv(items)
+        print("Sample parsed %s" % parsed_items[0:2])
+        for x in parsed_items:
+            league.add_data(x)
+
+    return league
 
 
 def from_csv(cls, data):
@@ -149,27 +171,6 @@ def get_content():
     with open("global.json", "w+") as fd:
         data = {"navigation": [x.model_dump() for x in page.to_navigation().navigation]}
         json.dump(data, fd)
-
-
-def get_league(league_id: Leagues) -> Leauge:
-    league = Leauge()
-    for section in LEAUGE_CONFIG[league_id]:
-        print()
-        print()
-        print("parsing %s %s" % (league_id, section.label))
-        print()
-        data = client.get(
-            section.base_url + "&gid=" + section.gid, follow_redirects=True
-        )
-        reader = csv.DictReader(data.iter_lines())
-        items: list[dict[str, str]] = [x for x in reader]
-        print("Sample csv %s" % items[0:2])
-        parsed_items = section.model.from_csv(items)
-        print("Sample parsed %s" % parsed_items[0:2])
-        for x in parsed_items:
-            league.add_data(x)
-
-    return league
 
 
 def get_icons(league: Leauge):

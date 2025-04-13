@@ -6,66 +6,10 @@ from .division import Division
 from .team import Team
 from .game import Game
 from .contact import Contact
+from .tournament import Tournament
 from .directory_entry import DirectoryEntry
-
+from .schedule import Schedule, DIVISION_AND_ALL
 from .hashable import Hashable
-
-ALL_DIVISION = "All"
-DIVISION_ORDER = [
-    "HS Varsity Boys",
-    "18u Boys",
-    "18u Mens",
-    "HS Varsity Girls",
-    "18u Girls",
-    "18u Womens",
-    "HS Combined Boys",
-    "16u Boys",
-    "16u Mens",
-    "HS Combined Girls",
-    "16u Girls",
-    "16u Womens",
-    "HS JV Boys",
-    "14u Boys",
-    "14u Combined",
-    "14u Girls",
-    "14u Womens",
-    "12u Combined",
-    "12u Mixed",
-    "10u Combined",
-    "10u Mixed",
-]
-
-
-DIVISION_AND_ALL = [ALL_DIVISION] + DIVISION_ORDER
-
-
-class Schedule(BaseModel):
-    # by_team: dict[str, list[Game]]
-    by_division: dict[str, list[Game]]
-    games: list[Game]
-
-    @property
-    def division_order(self) -> list[str]:
-        return [x for x in DIVISION_AND_ALL if x in self.by_division]
-
-    def add_game(self, game: Game):
-        # if game.away_team_name not in self.by_team:
-        #     self.by_team[game.away_team_name] = []
-
-        # if game.home_team_name not in self.by_team:
-        #     self.by_team[game.home_team_name] = []
-
-        if game.division_name not in self.by_division:
-            self.by_division[game.division_name] = []
-
-        if ALL_DIVISION not in self.by_division:
-            self.by_division[ALL_DIVISION] = []
-
-        self.by_division[ALL_DIVISION].append(game)
-        # self.by_team[game.away_team_name].append(game)
-        # self.by_team[game.home_team_name].append(game)
-        self.by_division[game.division_name].append(game)
-        self.games.append(game)
 
 
 class Leauge(Hashable):
@@ -75,6 +19,7 @@ class Leauge(Hashable):
     teams: dict[str, Team] = {}
     games: list[Game] = []
     contacts: list[Contact] = []
+    tournaments: dict[str, Tournament] = {}
 
     def unreported_games(self, division):
         nw = datetime.now() + timedelta(days=3)
@@ -88,14 +33,38 @@ class Leauge(Hashable):
 
         return games
 
-    def schedule(self) -> Schedule:
+    def schedule(self, tournament_name=None) -> Schedule:
         schedule = Schedule(
             by_team={}, by_division={}, games=[], division_order=DIVISION_AND_ALL
         )
-        for game in self.games:
+        games: list[Game] = []
+
+        if tournament_name:
+            games += self.tournaments[tournament_name].games
+        else:
+            games = [] + self.games
+            for t in self.tournaments.values():
+                games += t.games
+
+        for game in games:
             schedule.add_game(game)
 
         return schedule
+
+    def schedules(self) -> dict[str, Schedule]:
+        schedules: dict[str, Schedule] = {}
+        schedules["All"] = self.schedule()
+        for t in self.tournaments.values():
+            if t.name == "Regular Sesaon":
+                continue
+
+            if t.name == "Regular Season":
+                continue
+
+            name = t.name + " " + t.start_date + "-" + t.end_date
+            schedules[name] = t.schedule(tournament_name=t.name)
+
+        return schedules
 
     def directory(self) -> list[DirectoryEntry]:
         directory_items: list[DirectoryEntry] = []
@@ -140,7 +109,12 @@ class Leauge(Hashable):
         elif isinstance(d, Game):
             d.hydrate_from_league(self)
             if d.valid():
-                self.games.append(d)
+                if d.tournament_name:
+                    self.tournaments[d.tournament_name].add_game(d)
+                else:
+                    self.games.append(d)
         elif isinstance(d, Contact):
             d.organization = self.organizations[d.organization_name]
             self.contacts.append(d)
+        elif isinstance(d, Tournament):
+            self.tournaments[d.name] = d

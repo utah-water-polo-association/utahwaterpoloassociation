@@ -77,3 +77,6 @@ rsync_php:
 
 ssh:
 	ssh eczrvsmy@50.6.153.225
+
+dump_games:
+	rye run python src/utahwaterpoloassociation/scripts/dump_games.py | jq -s '.[].tournament_name'

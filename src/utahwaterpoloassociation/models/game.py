@@ -84,6 +84,7 @@ class GameForAnalysis(BaseModel):
 
 class Game(BaseModel):
     MAP: ClassVar[dict[str, str]] = {
+        "Tournament": "tournament_name",
         "Date": "date",
         "Time": "time",
         "Location": "location_name",
@@ -112,7 +113,6 @@ class Game(BaseModel):
     home_team_score: Optional[str]
     winner_name: Optional[str]
     loser_name: Optional[str]
-
     location: Optional[Location]
     division: Optional[Division]
 
@@ -120,6 +120,7 @@ class Game(BaseModel):
     home_team: Optional[Team]
     winner: Optional[Team]
     loser: Optional[Team]
+    tournament_name: Optional[str] = None
 
     @staticmethod
     def from_csv(data: list[dict]) -> list["Game"]:
@@ -207,12 +208,19 @@ class Game(BaseModel):
         self.home_team = l.teams["-".join([self.home_team_name, self.division.name])]
         self.away_team = l.teams["-".join([self.away_team_name, self.division.name])]
 
-        if self.home_team_score and self.away_team_score:
-            if not self.winner_name and self.home_team_score > self.away_team_score:
-                self.winner_name = self.home_team_name
+        home_team_score, away_team_score = map(
+            lambda x: float(x) if x else None,
+            [self.home_team_score, self.away_team_score],
+        )
 
-            if not self.loser_name and self.away_team_score > self.home_team_score:
-                self.loser_name = self.away_team_score
+        if home_team_score and away_team_score:
+            if not self.winner_name and home_team_score > away_team_score:
+                self.winner_name = self.home_team_name
+                self.loser_name = self.away_team_name
+
+            if not self.loser_name and away_team_score > home_team_score:
+                self.loser_name = self.away_team_name
+                self.winner_name = self.home_team_name
 
         if self.winner_name:
             self.winner = l.teams["-".join([self.winner_name, self.division.name])]

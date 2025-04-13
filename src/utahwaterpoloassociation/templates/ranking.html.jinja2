@@ -47,13 +47,11 @@
         {% for division in league_rankings(g.past[name]) %}
         <div
             x-bind:class="division == '{{name}}:{{division.name}}' {% if loop.index == 1 %}|| division == ''{% endif %} ? '' : 'hidden'">
-            {% for wk, ratings_by_method, games in division.ratings_by_week() %}
+            {% for wk, teams in division.ratings_by_week_new() %}
             <div class="">
                 <h2 class="pt-5 pb-10">Week {{wk}}</h2>
                 <div class="overflow-x-auto flex">
-                    {% for key, ratings in ratings_by_method.items() %}
                     <div class="flex-none">
-                        <h3>Ranking Method {{key}}</h3>
                         <table class="divide-y divide-gray-300 mr-10">
                             <thead>
                                 <tr>
@@ -63,57 +61,31 @@
                                     <td scope="col" class="px-1 py-2 text-left text-sm font-semibold text-gray-900">
                                         Name
                                     </td>
-                                    <td scope="col" class="px-1 py-2 text-right text-sm font-semibold text-gray-900">
-                                        W-L
+                                    <td scope="col" class="px-1 py-2 text-left text-sm font-semibold text-gray-900">
+                                        Games
                                     </td>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-200">
-                                {% for rating in ratings %}
+                                {% for team in teams %}
                                 <tr>
                                     <td class="whitespace-nowrap px-1 py-1 text-left text-sm text-gray-500">
-                                        {{rating.ranking}} - {{'%0.2f'
-                                        %
-                                        rating.rating}}
+                                        <span>{{loop.index}}</span>
+                                        <span> - </span>
+                                        <span>{{ '%0.2f' % team.colley_rating }}</span>
                                     </td>
-                                    <td class="whitespace-nowrap px-1 py-2 text-sm text-gray-500">{{rating.Item.name}}
-                                    </td>
-                                    <td class="whitespace-nowrap px-1 py-2 text-right text-sm text-gray-500">
-                                        {{rating.Item.wins}} - {{rating.Item.losses}}
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                    {% endfor %}
-                    <div class="flex-none">
-                        <h3>Games</h3>
-                        <table class="divide-y divide-gray-300 mr-10">
-                            <thead>
-                                <tr>
-                                    <td scope="col" class="px-1 py-2 text-left text-sm font-semibold text-gray-900">
-                                        Winner
-                                    </td>
-                                    <td scope="col" class="px-1 py-2 text-left text-sm font-semibold text-gray-900">
-                                        Looser
-                                    </td>
-                                    <td scope="col" class="px-1 py-2 text-right text-sm font-semibold text-gray-900">
-                                        W-L
-                                    </td>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                {% for game in games %}
-                                <tr>
-                                    <td class="whitespace-nowrap px-1 py-1 text-left text-sm text-gray-500">
-                                        {{ game.winner() }}
-                                    </td>
-                                    <td class="whitespace-nowrap px-1 py-2 text-sm text-gray-500">
-                                        {{ game.loser() }}
-                                    </td>
-                                    <td class="whitespace-nowrap px-1 py-2 text-right text-sm text-gray-500">
-                                        {{game.winning_score()}} - {{game.losing_score()}}
+                                    <td class="whitespace-nowrap px-1 py-2 text-sm text-gray-500">{{team.name}}</td>
+                                    <td>
+                                        <ol>
+                                            {% for game in team.games %}
+                                            <li>
+                                                <span class="font-bold">{{game.winner.name}}</span>
+                                                <span> - </span>
+                                                <span>{{game.loser.name}}</span>
+                                                <span>({{game.winner_score}} - {{game.loser_score}})</span>
+                                            </li>
+                                            {% endfor %}
+                                        </ol>
                                     </td>
                                 </tr>
                                 {% endfor %}
