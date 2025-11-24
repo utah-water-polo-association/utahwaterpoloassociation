@@ -212,15 +212,15 @@ if __name__ == "__main__":
         # Leagues.UTAH_SPRING_2024,
         # Leagues.UTAH_FALL_HS_2023,
         # Leagues.UTAH_FALL_HS_2024,
-        Leagues.UTAH_SPRING_2025,
+        # Leagues.UTAH_SPRING_2025,
     ]
 
-    leauge = None
-    league_id = None
-    for league_id in leagues_to_sync:
-        leauge: Leauge = get_league(league_id)
-        save_league(league_id, league=leauge)
+    # leauge = None
+    # league_id = None
+    # for league_id in leagues_to_sync:
+    #     leauge: Leauge = get_league(league_id)
+    #     save_league(league_id, league=leauge)
 
-    get_icons(leauge)
+    # get_icons(leauge)
 
     get_content()
