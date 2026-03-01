@@ -1,1 +1,4 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@source "../output/**/*.html";
+@source "../src/utahwaterpoloassociation/templates/**/*.jinja2";
