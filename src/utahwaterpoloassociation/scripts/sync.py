@@ -1,6 +1,7 @@
 import httpx
 import os
 import csv
+import time
 from typing import Optional
 import json
 from slugify import slugify
@@ -8,6 +9,7 @@ from utahwaterpoloassociation.models import Leauge
 from utahwaterpoloassociation.repos import LEAUGE_CONFIG
 from notion2md.exporter.block import MarkdownExporter
 from notion_client import Client
+from notion_client.errors import HTTPResponseError
 from pydantic import BaseModel
 
 # Convert image to webp using PIL
@@ -20,6 +22,20 @@ transport = httpx.HTTPTransport(retries=2)
 client = httpx.Client(transport=transport)
 
 notion_client = Client(auth=os.environ["NOTION_TOKEN"])
+
+
+def notion_retry(fn, *args, max_retries: int = 3, **kwargs):
+    """Retry Notion API calls on transient server errors (5xx)."""
+    for attempt in range(max_retries):
+        try:
+            return fn(*args, **kwargs)
+        except HTTPResponseError as e:
+            if e.status >= 500 and attempt < max_retries - 1:
+                wait = 2 ** attempt
+                print(f"Notion API returned {e.status}, retrying in {wait}s (attempt {attempt + 1}/{max_retries})")
+                time.sleep(wait)
+            else:
+                raise
 
 FOOTER_NAV_PAGES = ["Past Seasons"]
 
@@ -106,7 +122,7 @@ class Page(BaseModel):
 
 
 def get_pages(parent: Page) -> list[Page]:
-    resp = notion_client.blocks.children.list(block_id=parent.id)
+    resp = notion_retry(notion_client.blocks.children.list, block_id=parent.id)
     child_pages = list(
         filter(lambda x: x["type"] == "child_page", resp.get("results", []))
     )
@@ -120,7 +136,7 @@ def get_pages(parent: Page) -> list[Page]:
 
 
 def get_page(id: str) -> Page:
-    resp = notion_client.blocks.retrieve(block_id=id)
+    resp = notion_retry(notion_client.blocks.retrieve, block_id=id)
     page = Page.from_result(resp, None)
     page.pages = get_pages(page)
 
