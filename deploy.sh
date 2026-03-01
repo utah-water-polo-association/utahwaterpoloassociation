@@ -1,11 +1,13 @@
 #!/bin/sh
 
 set -eu
-eval `ssh-agent -s`
-echo "$INPUT_REMOTE_KEY"
+
+SSH_OPTS="-o IgnoreUnknown=UseKeychain -o StrictHostKeyChecking=no -o AddKeysToAgent=yes -o UseKeychain=yes"
+REMOTE="eczrvsmy@50.6.153.225"
+
+eval "$(ssh-agent -s)"
 echo "$INPUT_REMOTE_KEY" | ssh-add -
-ssh-add -l
-ssh -v -o IgnoreUnknown=UseKeychain -o StrictHostKeyChecking=no -o AddKeysToAgent=yes -o UseKeychain=yes  eczrvsmy@50.6.153.225
-rsync -r --delete-after -e 'ssh -o IgnoreUnknown=UseKeychain -o StrictHostKeyChecking=No -o AddKeysToAgent=Yes -o UseKeychain=Yes' output/* eczrvsmy@50.6.153.225:/home1/eczrvsmy/public_html/website_287658e3/
-rsync -r --delete-after -e 'ssh -o IgnoreUnknown=UseKeychain -o StrictHostKeyChecking=No -o AddKeysToAgent=Yes -o UseKeychain=Yes' output/* eczrvsmy@50.6.153.225:/home1/eczrvsmy/public_html/
-ssh -v -o IgnoreUnknown=UseKeychain -o StrictHostKeyChecking=no -o AddKeysToAgent=yes -o UseKeychain=yes eczrvsmy@50.6.153.225 "chmod 755 /home1/eczrvsmy/public_html/uploads"
+
+rsync -r --delete-after -e "ssh $SSH_OPTS" output/* "$REMOTE:/home1/eczrvsmy/public_html/website_287658e3/"
+rsync -r --delete-after -e "ssh $SSH_OPTS" output/* "$REMOTE:/home1/eczrvsmy/public_html/"
+ssh $SSH_OPTS "$REMOTE" "chmod 755 /home1/eczrvsmy/public_html/uploads"
